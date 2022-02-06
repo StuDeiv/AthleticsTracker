@@ -11,4 +11,10 @@
     <string name="login_failed">"Error al acceder"</string>
     <string name="iniciar">INICIAR</string>
     <string name="pausar">PAUSAR</string>
+    <string name="hint_email">Introduce aquí tu mail...</string>
+    <string name="hint_contrasenia">Introduce aquí tu contraseña...</string>
+    <string name="registrar">REGISTRAR</string>
+    <string name="acceder">ACCEDER</string>
+    <string name="bienvenido">¡Bienvenidx!</string>
+    <string name="btnBienvenida_text">CONTINUA CON EL REGISTRO</string>
 </resources>
