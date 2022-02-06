@@ -54,6 +54,9 @@ public class AuthActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 Toast.makeText(getApplicationContext(), "Hola"+mailUsuario, Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(),Registro1Activity.class);
+                                intent.putExtra("mailUsuario",mailUsuario);
+                                startActivity(intent);
                             }else{
                                 mostrarAlertaRegistroUsuario();
                             }

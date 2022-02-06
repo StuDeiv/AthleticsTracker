@@ -28,7 +28,6 @@
         android:layout_height="wrap_content"
         android:ems="12"
         android:hint="@string/hint_email"
-        android:hintTextColor="#78909C"
         android:inputType="textEmailAddress"
         android:minHeight="48dp"
         android:textSize="@dimen/auth_texts" />
@@ -48,7 +47,6 @@
         android:layout_height="wrap_content"
         android:ems="12"
         android:hint="@string/hint_contrasenia"
-        android:hintTextColor="#78909C"
         android:inputType="textPassword"
         android:minHeight="48dp"
         android:textSize="@dimen/auth_texts" />
