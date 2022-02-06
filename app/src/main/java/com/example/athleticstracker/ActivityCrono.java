@@ -42,9 +42,10 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_crono);
 
-        /* Iniciamos los textos, los botones, y ponemos a 0 los corredores que han llegado a la meta */
-        iniciarTextos();
-        iniciarBotones();
+        /* Inicializamos los textos, los botones, y ponemos a 0 los corredores que han llegado a la meta */
+        capturarTextos();
+        capturarBotones();
+        iniciarTextosYBotones();
         this.meta = 0;
 
         /* Método que se llamará cuando hagamos click en el botón INICIAR */
@@ -64,65 +65,71 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
                 stpe.shutdown();
                 txtTiempoGeneral.setText(getResources().getText(R.string._0_00_0));
                 meta = 0;
-                iniciarTextos();
-                iniciarBotones();
+                iniciarTextosYBotones();
             }
         });
 
     }
 
     /**
-     * Método que captura los textos y los inicializa. Ocultaremos los tiempos de las calles.
+     * Método que captura los textos de la vista.
      */
-    private void iniciarTextos(){
+    private void capturarTextos(){
         this.txtPrueba = (TextView) findViewById(R.id.txtPrueba);
         this.txtTiempoGeneral = (TextView) findViewById(R.id.txtTiempoGeneral);
         this.txtTiempo1 = (TextView) findViewById(R.id.txtTiempo1);
-        this.txtTiempo1.setVisibility(View.INVISIBLE);
         this.txtTiempo2 = (TextView) findViewById(R.id.txtTiempo2);
-        this.txtTiempo2.setVisibility(View.INVISIBLE);
         this.txtTiempo3 = (TextView) findViewById(R.id.txtTiempo3);
-        this.txtTiempo3.setVisibility(View.INVISIBLE);
         this.txtTiempo4 = (TextView) findViewById(R.id.txtTiempo4);
-        this.txtTiempo4.setVisibility(View.INVISIBLE);
         this.txtTiempo5 = (TextView) findViewById(R.id.txtTiempo5);
-        this.txtTiempo5.setVisibility(View.INVISIBLE);
         this.txtTiempo6 = (TextView) findViewById(R.id.txtTiempo6);
-        this.txtTiempo6.setVisibility(View.INVISIBLE);
         this.txtTiempo7 = (TextView) findViewById(R.id.txtTiempo7);
-        this.txtTiempo7.setVisibility(View.INVISIBLE);
     }
 
     /**
-     * Método que captura los botones de la vista y los inicializa. De primeras, solo estará habili-
-     * tado el botón de Iniciar el cronómetro.
+     * Método que captura los botones de la vista. (También les añade el clickListener)
      */
-    private void iniciarBotones(){
+    private void capturarBotones(){
         this.btnIniciar = (Button) findViewById(R.id.btnIniciar);
         this.btnIniciar.setEnabled(true);
         this.btnReiniciar = (Button) findViewById(R.id.btnReiniciar);
-        this.btnReiniciar.setEnabled(false);
         this.btnCalle1 = (Button) findViewById(R.id.btnCalle1);
-        this.btnCalle1.setEnabled(false);
         this.btnCalle1.setOnClickListener(this);
         this.btnCalle2 = (Button) findViewById(R.id.btnCalle2);
-        this.btnCalle2.setEnabled(false);
         this.btnCalle2.setOnClickListener(this);
         this.btnCalle3 = (Button) findViewById(R.id.btnCalle3);
-        this.btnCalle3.setEnabled(false);
         this.btnCalle3.setOnClickListener(this);
         this.btnCalle4 = (Button) findViewById(R.id.btnCalle4);
-        this.btnCalle4.setEnabled(false);
         this.btnCalle4.setOnClickListener(this);
         this.btnCalle5 = (Button) findViewById(R.id.btnCalle5);
-        this.btnCalle5.setEnabled(false);
         this.btnCalle5.setOnClickListener(this);
         this.btnCalle6 = (Button) findViewById(R.id.btnCalle6);
-        this.btnCalle6.setEnabled(false);
         this.btnCalle6.setOnClickListener(this);
         this.btnCalle7 = (Button) findViewById(R.id.btnCalle7);
-        this.btnCalle7.setEnabled(false);
         this.btnCalle7.setOnClickListener(this);
+    }
+
+
+    /**
+     * Método que inicia el estado de textos y botones cuando el cronómetro está parado.
+     */
+    private void iniciarTextosYBotones(){
+        this.txtTiempo1.setVisibility(View.INVISIBLE);
+        this.txtTiempo2.setVisibility(View.INVISIBLE);
+        this.txtTiempo3.setVisibility(View.INVISIBLE);
+        this.txtTiempo4.setVisibility(View.INVISIBLE);
+        this.txtTiempo5.setVisibility(View.INVISIBLE);
+        this.txtTiempo6.setVisibility(View.INVISIBLE);
+        this.txtTiempo7.setVisibility(View.INVISIBLE);
+        this.btnIniciar.setEnabled(true);
+        this.btnReiniciar.setEnabled(false);
+        this.btnCalle1.setEnabled(false);
+        this.btnCalle2.setEnabled(false);
+        this.btnCalle3.setEnabled(false);
+        this.btnCalle4.setEnabled(false);
+        this.btnCalle5.setEnabled(false);
+        this.btnCalle6.setEnabled(false);
+        this.btnCalle7.setEnabled(false);
     }
 
     /**
