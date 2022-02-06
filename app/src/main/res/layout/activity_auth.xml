@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AuthActivity">
+
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/at_logo250" />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_email"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="@dimen/auth_texts"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="12"
+        android:hint="@string/hint_email"
+        android:hintTextColor="#78909C"
+        android:inputType="textEmailAddress"
+        android:minHeight="48dp"
+        android:textSize="@dimen/auth_texts" />
+
+    <TextView
+        android:id="@+id/textViewContrasenia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/prompt_password"
+        android:textColor="@color/design_default_color_primary"
+        android:textSize="@dimen/auth_texts"
+        android:textStyle="bold" />
+
+    <EditText
+        android:id="@+id/editTextTextContrasenia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="12"
+        android:hint="@string/hint_contrasenia"
+        android:hintTextColor="#78909C"
+        android:inputType="textPassword"
+        android:minHeight="48dp"
+        android:textSize="@dimen/auth_texts" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="30dp" />
+
+    <LinearLayout
+        android:id="@+id/layaoutBotones"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnRegistrar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/registrar" />
+
+        <Space
+            android:id="@+id/spaceBtnAuth"
+            android:layout_width="10dp"
+            android:layout_height="wrap_content" />
+
+        <Button
+            android:id="@+id/btnAcceder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="@string/acceder" />
+    </LinearLayout>
+
+</LinearLayout>
