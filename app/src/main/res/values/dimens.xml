@@ -5,4 +5,5 @@
     <dimen name="auth_texts">26sp</dimen>
     <dimen name="bienvenida">46sp</dimen>
     <dimen name="bienvenida_2">24sp</dimen>
+    <dimen name="register_layout">20sp</dimen>
 </resources>

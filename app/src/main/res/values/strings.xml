@@ -21,4 +21,14 @@
     <string name="acceder">ACCEDER</string>
     <string name="bienvenido">¡Bienvenidx!</string>
     <string name="btnBienvenida_text">CONTINUA CON EL REGISTRO</string>
+    <string name="siguiente">SIGUIENTE</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellidos">Apellidos</string>
+    <string name="fecha_nacimiento">Fecha de nacimiento</string>
+    <string name="sexo">Sexo</string>
+    <string name="hint_fechanacimiento">Formato (DD-MM-AAAA)</string>
+    <string name="hint_apellidos">Aquí tus apellidos</string>
+    <string name="hint_nombre">Pon aquí tu nombre</string>
+    <string name="titulo_registro2">¿LISTX PARA HACER HISTORIA?</string>
+    <string name="pregunta_rol">¿Eres atleta o entrenador/a?</string>
 </resources>
