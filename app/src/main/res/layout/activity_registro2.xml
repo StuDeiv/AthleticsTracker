@@ -37,8 +37,7 @@
         android:ems="10"
         android:hint="@string/hint_nombre"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="Name" />
+        android:minHeight="48dp" />
 
     <TextView
         android:id="@+id/textViewApellidos"
@@ -56,8 +55,7 @@
         android:ems="10"
         android:hint="@string/hint_apellidos"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="Name" />
+        android:minHeight="48dp" />
 
     <TextView
         android:id="@+id/textViewFechaNacimiento"
@@ -75,8 +73,7 @@
         android:ems="10"
         android:hint="@string/hint_fechanacimiento"
         android:inputType="textPersonName"
-        android:minHeight="48dp"
-        android:text="Name" />
+        android:minHeight="48dp" />
 
     <TextView
         android:id="@+id/textViewSexo"

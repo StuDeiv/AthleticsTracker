@@ -31,4 +31,7 @@
     <string name="hint_nombre">Pon aquí tu nombre</string>
     <string name="titulo_registro2">¿LISTX PARA HACER HISTORIA?</string>
     <string name="pregunta_rol">¿Eres atleta o entrenador/a?</string>
+    <string name="titulo_registro3">¡Elige tu club y no pierdas ni un segundo más!</string>
+    <string name="seleccion_club">Selecciona tu club</string>
+    <string name="registrar_club">¿NO ENCUENTRAS TU CLUB? ¡Registralo aquí!</string>
 </resources>
