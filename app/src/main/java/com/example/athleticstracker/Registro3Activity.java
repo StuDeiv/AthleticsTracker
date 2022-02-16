@@ -26,7 +26,7 @@ public class Registro3Activity extends AppCompatActivity {
         ArrayList<String> nombreClubes = new ArrayList<>();
         nombreClubes.add("Atletismo en general");
         String[] nombreClubesArray = nombreClubes.toArray(new String[0]);
-        ArrayAdapter<Object> adaptador = new ArrayAdapter<Object>(this, android.R.layout.simple_list_item_1,nombreClubesArray);
+        ArrayAdapter<String> adaptador = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,nombreClubesArray);
         adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         this.spinnerSeleccionClub.setAdapter(adaptador);
 
