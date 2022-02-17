@@ -73,6 +73,8 @@
         android:ems="10"
         android:hint="@string/hint_fechanacimiento"
         android:inputType="textPersonName"
+        android:focusable="false"
+        android:clickable="true"
         android:minHeight="48dp" />
 
     <TextView

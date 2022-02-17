@@ -54,6 +54,15 @@ public class AuthActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 String mailUsuario = editTextMail.getText().toString();
+                String contrasenia = editTextContrasenia.getText().toString();
+                Intent intent = new Intent(getApplicationContext(),Registro1Activity.class);
+                intent.putExtra("mailUsuario",mailUsuario);
+                intent.putExtra("contrasenia",contrasenia);
+                startActivity(intent);
+
+                /* El proceso de alta en la base de datos ya no se hace en esta activity.
+                 * Aquí habría que comprobar que el email no etá registrado
+                 *
                 //Si los campos mail y contraseña no están vacios
                 if (!editTextMail.getText().toString().isEmpty() && !editTextContrasenia.getText().toString().isEmpty()){
 
@@ -71,7 +80,7 @@ public class AuthActivity extends AppCompatActivity {
                         }
                     });
 
-                }
+                }*/
             }
         });
     }
