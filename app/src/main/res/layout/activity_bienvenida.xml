@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center_vertical"
-    tools:context=".Registro1Activity">
+    tools:context=".BienvenidaActivity">
 
     <TextView
         android:id="@+id/textViewBienvenido"
@@ -37,6 +37,6 @@
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:text="@string/btnBienvenida_text" />
+        android:text="Comenzar" />
 
 </LinearLayout>

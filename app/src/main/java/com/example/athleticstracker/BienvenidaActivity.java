@@ -9,9 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.android.material.button.MaterialButtonToggleGroup;
-
-public class Registro1Activity extends AppCompatActivity {
+public class BienvenidaActivity extends AppCompatActivity {
 
     private TextView textViewUsuario;
     private Button btnContinuar;
@@ -22,7 +20,7 @@ public class Registro1Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registro1);
+        setContentView(R.layout.activity_bienvenida);
         obtenerDatos();
         iniciarSiguienteActivity();
     }

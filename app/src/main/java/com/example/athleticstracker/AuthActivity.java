@@ -7,20 +7,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -55,10 +49,13 @@ public class AuthActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String mailUsuario = editTextMail.getText().toString();
                 String contrasenia = editTextContrasenia.getText().toString();
-                Intent intent = new Intent(getApplicationContext(),Registro1Activity.class);
+                Intent intent = new Intent(getApplicationContext(), BienvenidaActivity.class);
                 intent.putExtra("mailUsuario",mailUsuario);
                 intent.putExtra("contrasenia",contrasenia);
                 startActivity(intent);
+
+
+                //TODO: REVISAR QUE NO EXISTE EL USUARIO EN LA BASE DE DATOS
 
                 /* El proceso de alta en la base de datos ya no se hace en esta activity.
                  * Aquí habría que comprobar que el email no etá registrado
@@ -97,7 +94,7 @@ public class AuthActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                Intent intent = new Intent(getApplicationContext(),Registro1Activity.class);
+                                Intent intent = new Intent(getApplicationContext(), BienvenidaActivity.class);
                                 intent.putExtra("mailUsuario",mailUsuario);
                                 startActivity(intent);
                             }else{

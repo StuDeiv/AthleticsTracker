@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AthleticsTracker">
         <activity
+            android:name=".RegistrosAtleta"
+            android:exported="false" />
+        <activity
+            android:name=".ResultadosActivity"
+            android:exported="false" />
+        <activity
             android:name=".SeleccionAtletasPruebaActivity"
             android:exported="false" />
         <activity
@@ -22,7 +28,7 @@
             android:name=".Registro2Activity"
             android:exported="false" />
         <activity
-            android:name=".Registro1Activity"
+            android:name=".BienvenidaActivity"
             android:exported="false" />
         <activity
             android:name=".ActivityCrono"
