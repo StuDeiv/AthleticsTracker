@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AthleticsTracker">
         <activity
+            android:name=".RegistroClubActivity"
+            android:exported="false" />
+        <activity
             android:name=".Registro3Activity"
             android:exported="false" />
         <activity
