@@ -189,6 +189,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.btnCalle1:
+                //TODO: Guardar registro en formato ms y crear variables String
                 this.txtTiempo1.setText(this.txtTiempoGeneral.getText()); //Copiamos el texto.
                 this.txtTiempo1.setVisibility(View.VISIBLE); //Lo hacemos visible
                 this.btnCalle1.setEnabled(false); //Deshabilitamos ese botón
