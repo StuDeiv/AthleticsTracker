@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -31,9 +32,6 @@ public class AuthActivity extends AppCompatActivity {
         inicializarComponentes();
         registroUsuarios();
         iniciarSesion();
-
-
-
     }
 
     private void inicializarComponentes() {
@@ -57,27 +55,7 @@ public class AuthActivity extends AppCompatActivity {
 
                 //TODO: REVISAR QUE NO EXISTE EL USUARIO EN LA BASE DE DATOS
 
-                /* El proceso de alta en la base de datos ya no se hace en esta activity.
-                 * Aquí habría que comprobar que el email no etá registrado
-                 *
-                //Si los campos mail y contraseña no están vacios
-                if (!editTextMail.getText().toString().isEmpty() && !editTextContrasenia.getText().toString().isEmpty()){
 
-                    FirebaseAuth.getInstance().createUserWithEmailAndPassword(mailUsuario,editTextContrasenia.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()){
-                                Toast.makeText(getApplicationContext(), "Hola"+mailUsuario, Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(),Registro1Activity.class);
-                                intent.putExtra("mailUsuario",mailUsuario);
-                                startActivity(intent);
-                            }else{
-                                mostrarAlertaRegistroUsuario();
-                            }
-                        }
-                    });
-
-                }*/
             }
         });
     }
@@ -95,6 +73,7 @@ public class AuthActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 Intent intent = new Intent(getApplicationContext(), BienvenidaActivity.class);
+                                Toast.makeText(getApplicationContext(), "Bienvenido"+mailUsuario, Toast.LENGTH_SHORT).show();
                                 intent.putExtra("mailUsuario",mailUsuario);
                                 startActivity(intent);
                             }else{

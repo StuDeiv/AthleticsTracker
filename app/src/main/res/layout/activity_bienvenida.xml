@@ -39,4 +39,11 @@
         android:layout_height="wrap_content"
         android:text="Comenzar" />
 
+    <Button
+        android:id="@+id/btnOlvidasteContrasenia"
+        android:backgroundTint="@color/design_default_color_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="@string/olvidaste_contrasenia" />
 </LinearLayout>
