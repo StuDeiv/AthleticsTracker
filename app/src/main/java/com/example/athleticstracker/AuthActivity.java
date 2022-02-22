@@ -81,10 +81,6 @@ public class AuthActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
-                                Intent intent = new Intent(getApplicationContext(), BienvenidaActivity.class);
-                                Toast.makeText(getApplicationContext(), "Bienvenido"+mailUsuario, Toast.LENGTH_SHORT).show();
-                                intent.putExtra("mailUsuario",mailUsuario);
-                                startActivity(intent);
                                 //Si la autentificación se ha realizado correctamente, nos traemos de la BBDD el usuario con ese email
                                 mDatabase.collection("users").document(mailUsuario).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                     @Override
@@ -98,7 +94,7 @@ public class AuthActivity extends AppCompatActivity {
                                                 intent.putExtra("user", user);
                                                 startActivity(intent);
                                                 break;
-                                            case "Entreandor":
+                                            case "Entrenador":
                                                 intent = new Intent(getApplicationContext(), MenuEntrenador.class);
                                                 intent.putExtra("user", user);
                                                 startActivity(intent);
