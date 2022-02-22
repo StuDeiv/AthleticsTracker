@@ -53,18 +53,16 @@ public class AuthActivity extends AppCompatActivity {
         this.btnRegistrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String mailUsuario = editTextMail.getText().toString();
-                String contrasenia = editTextContrasenia.getText().toString();
-                Intent intent = new Intent(getApplicationContext(), BienvenidaActivity.class);
-                intent.putExtra("mailUsuario",mailUsuario);
-                intent.putExtra("contrasenia",contrasenia);
-                startActivity(intent);
-
-
-                //TODO: REVISAR QUE NO EXISTE EL USUARIO EN LA BASE DE DATOS
-
-
-
+                if (!StringUtils.isBlank(editTextMail.getText().toString()) && !StringUtils.isBlank(editTextContrasenia.getText().toString())){
+                    String mailUsuario = editTextMail.getText().toString();
+                    String contrasenia = editTextContrasenia.getText().toString();
+                    Intent intent = new Intent(getApplicationContext(), Registro2Activity.class);
+                    intent.putExtra("mailUsuario",mailUsuario);
+                    intent.putExtra("contrasenia",contrasenia);
+                    startActivity(intent);
+                }else{
+                    Toast.makeText(getBaseContext(), "Campos no pueden estar vacíos", Toast.LENGTH_LONG).show();
+                }
             }
         });
     }
