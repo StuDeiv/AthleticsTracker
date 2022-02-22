@@ -3,11 +3,13 @@ package com.example.athleticstracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,13 +25,29 @@ import java.util.ArrayList;
 public class Registro3Activity extends AppCompatActivity {
 
     private Spinner spinnerSeleccionClub;
+    private Button btnRegistrarClub;
+    private Button btnSiguiente;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registro3);
+
+        //Recogemos los elementos del layout
         this.spinnerSeleccionClub = (Spinner) findViewById(R.id.spinnerSeleccionClub);
+        this.btnRegistrarClub = (Button) findViewById(R.id.btnRegistrarClub);
+        this.btnSiguiente = (Button) findViewById(R.id.btnSiguiente);
+
+        //Acción pulsar boton registrar
+        btnRegistrarClub.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),RegistroClubActivity.class);
+                startActivity(intent);
+            }
+        });
+
         cargarDatosSpinner();
     }
 

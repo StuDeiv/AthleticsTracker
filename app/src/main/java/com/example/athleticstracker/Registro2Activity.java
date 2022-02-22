@@ -13,6 +13,8 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.time.LocalDate;
 
 public class Registro2Activity extends AppCompatActivity {
@@ -57,7 +59,6 @@ public class Registro2Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 continuarRegistro();
-
             }
         });
         this.editTextFechaNacimiento.setOnClickListener(new View.OnClickListener() {
@@ -113,26 +114,19 @@ public class Registro2Activity extends AppCompatActivity {
     private boolean verificarCampos(){
         String nombre = this.editTextNombre.getText().toString();
         String apellidos = this.editTextApellidos.getText().toString();
-        if(nombre.isEmpty()){
+        if(StringUtils.isBlank(nombre)){
             Toast.makeText(this, "El campo Nombre no puede estar vacío.", Toast.LENGTH_LONG).show();
             return false;
         }
-        if(nombre.startsWith(" ")){
-            Toast.makeText(this, "El campo Nombre no puede empezar por espacio.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if(apellidos.isEmpty()){
+        if(StringUtils.isBlank(apellidos)){
             Toast.makeText(this, "El campo Apellidos no puede estar vacío.", Toast.LENGTH_LONG).show();
-            return false;
-        }
-        if(apellidos.startsWith(" ")){
-            Toast.makeText(this, "El campo Apellidos no puede empezar por espacio.", Toast.LENGTH_LONG).show();
             return false;
         }
         if(fecha == null){
             Toast.makeText(this, "Debe seleccionar una fecha de nacimiento.", Toast.LENGTH_LONG).show();
             return false;
         }
+        //Comprobamos que la fecha seleccionada no se encuentre después de la fecha actual
         if(fecha.isAfter(LocalDate.now())){
             Toast.makeText(this, "Fecha de nacimiento debe ser anterior a la fecha actual...", Toast.LENGTH_LONG).show();
             return false;
