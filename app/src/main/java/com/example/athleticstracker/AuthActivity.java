@@ -13,9 +13,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import org.apache.commons.lang3.StringUtils;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -24,6 +29,8 @@ public class AuthActivity extends AppCompatActivity {
     private EditText editTextContrasenia;
     private Button btnAcceder;
     private Button btnRegistrar;
+    private FirebaseFirestore mDatabase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +39,7 @@ public class AuthActivity extends AppCompatActivity {
         inicializarComponentes();
         registroUsuarios();
         iniciarSesion();
+        mDatabase = FirebaseFirestore.getInstance();
     }
 
     private void inicializarComponentes() {
@@ -56,6 +64,7 @@ public class AuthActivity extends AppCompatActivity {
                 //TODO: REVISAR QUE NO EXISTE EL USUARIO EN LA BASE DE DATOS
 
 
+
             }
         });
     }
@@ -66,8 +75,8 @@ public class AuthActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String mailUsuario = editTextMail.getText().toString();
                 //Si los campos mail y contraseña no están vacios
-                if (!editTextMail.getText().toString().isEmpty() && !editTextContrasenia.getText().toString().isEmpty()){
-
+                if (!StringUtils.isBlank(editTextMail.getText().toString()) && !StringUtils.isBlank(editTextContrasenia.getText().toString())){
+                    //Tratamos de iniciar sesión
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(mailUsuario,editTextContrasenia.getText().toString()).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
@@ -76,12 +85,34 @@ public class AuthActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Bienvenido"+mailUsuario, Toast.LENGTH_SHORT).show();
                                 intent.putExtra("mailUsuario",mailUsuario);
                                 startActivity(intent);
+                                //Si la autentificación se ha realizado correctamente, nos traemos de la BBDD el usuario con ese email
+                                mDatabase.collection("users").document(mailUsuario).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        Usuario user = documentSnapshot.toObject(Usuario.class);
+                                        Intent intent;
+                                        //Evaluamos su rol y dependiendo de él, cargamos la siguiente activity
+                                        switch (user.getRol()){
+                                            case "Atleta":
+                                                intent = new Intent(getApplicationContext(), MenuAtleta.class);
+                                                intent.putExtra("user", user);
+                                                startActivity(intent);
+                                                break;
+                                            case "Entreandor":
+                                                intent = new Intent(getApplicationContext(), MenuEntrenador.class);
+                                                intent.putExtra("user", user);
+                                                startActivity(intent);
+                                                break;
+                                        }
+                                    }
+                                });
                             }else{
                                 mostrarAlertaRegistroUsuario();
                             }
                         }
                     });
-
+                }else{
+                    Toast.makeText(getBaseContext(), "Campos no pueden estar vacíos", Toast.LENGTH_LONG).show();
                 }
             }
         });
