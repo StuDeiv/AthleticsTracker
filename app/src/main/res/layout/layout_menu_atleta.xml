@@ -8,10 +8,10 @@
     tools:context=".MenuAtleta">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonRegistrosPersonales"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ver resultados"
+        android:text="@string/registros_personales"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

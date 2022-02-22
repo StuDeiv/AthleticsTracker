@@ -35,4 +35,5 @@
     <string name="seleccion_club">Selecciona tu club</string>
     <string name="registrar_club">¿NO ENCUENTRAS TU CLUB? ¡Registralo aquí!</string>
     <string name="titulo_club">¡Corre (nunca mejor dicho) y registra los tiempazos de tu club!</string>
+    <string name="registros_personales">registros personales</string>
 </resources>
