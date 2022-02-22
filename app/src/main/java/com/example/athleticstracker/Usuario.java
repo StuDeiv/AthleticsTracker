@@ -13,7 +13,7 @@ public class Usuario implements Serializable {
     private String rol;
     private LocalDate fechaNac;
     private Club club;
-    private ArrayList<Prueba> pruebas;
+    private ArrayList<Registro> registros;
 
     public Usuario() {
         this.nombre = "";
@@ -23,10 +23,10 @@ public class Usuario implements Serializable {
         this.rol = "";
         this.fechaNac = null;
         this.club = new Club();
-        this.pruebas = new ArrayList<>();
+        this.registros = new ArrayList<>();
     }
 
-    public Usuario(String nombre, String apellidos, String email, String sexo, String rol, LocalDate fechaNac, Club club, ArrayList<Prueba> pruebas) {
+    public Usuario(String nombre, String apellidos, String email, String sexo, String rol, LocalDate fechaNac, Club club, ArrayList<Registro> registros) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
@@ -34,7 +34,7 @@ public class Usuario implements Serializable {
         this.rol = rol;
         this.fechaNac = fechaNac;
         this.club = club;
-        this.pruebas = pruebas;
+        this.registros =registros;
     }
 
     public String getNombre() {
@@ -93,11 +93,11 @@ public class Usuario implements Serializable {
         this.club = club;
     }
 
-    public ArrayList<Prueba> getPruebas() {
-        return pruebas;
+    public ArrayList<Registro> getRegistros() {
+        return registros;
     }
 
-    public void setPruebas(ArrayList<Prueba> pruebas) {
-        this.pruebas = pruebas;
+    public void setRegistros(ArrayList<Registro> registros) {
+        this.registros = registros;
     }
 }
