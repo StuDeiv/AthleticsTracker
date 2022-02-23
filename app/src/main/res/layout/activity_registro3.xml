@@ -61,7 +61,7 @@
             android:layout_height="12dp" />
 
         <Button
-            android:id="@+id/btnSiguiente"
+            android:id="@+id/btnSiguienteClub"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="right"

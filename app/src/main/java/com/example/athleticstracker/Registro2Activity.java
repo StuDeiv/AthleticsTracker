@@ -48,11 +48,11 @@ public class Registro2Activity extends AppCompatActivity {
 
         //Capturamos los elementos del layout
         this.editTextNombre = (EditText) findViewById(R.id.editTextNombre);
-        this.editTextApellidos = (EditText) findViewById(R.id.editTextApellidos);
+        this.editTextApellidos = (EditText) findViewById(R.id.editTextLocalidad);
         this.spinnerSexo = (Spinner) findViewById(R.id.spinnerSexo);
         this.spinnerRol = (Spinner) findViewById(R.id.spinnerRol);
-        this.editTextFechaNacimiento = (EditText) findViewById(R.id.editTextFechaCelebracion);
-        this.btnSiguiente = (Button) findViewById(R.id.btnSiguiente);
+        this.editTextFechaNacimiento = (EditText) findViewById(R.id.editTextMail);
+        this.btnSiguiente = (Button) findViewById(R.id.btnSiguienteClub);
 
         //Asignamos los clicks listeners para el botón y para el EditText de la fecha
         btnSiguiente.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +78,7 @@ public class Registro2Activity extends AppCompatActivity {
                 fecha = LocalDate.of(year, month, day);
                 editTextFechaNacimiento.setText(day+"-"+month+"-"+year);
             }
-        }, 1995, 1, 1);
+        }, LocalDate.now().getYear()-5, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth());
         dpd.show();
     }
 

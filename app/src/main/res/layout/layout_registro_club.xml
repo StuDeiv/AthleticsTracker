@@ -40,73 +40,41 @@
         android:minHeight="48dp" />
 
     <TextView
-        android:id="@+id/textViewApellidos"
+        android:id="@+id/textViewLocalidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/apellidos"
+        android:text="Localidad"
         android:textSize="@dimen/register_layout"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextApellidos"
+        android:id="@+id/editTextLocalidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/hint_apellidos"
+        android:hint="La ciudad del mejor club de la historia..."
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
     <TextView
-        android:id="@+id/textViewFechaNacimiento"
+        android:id="@+id/textViewMail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/fecha_nacimiento"
+        android:text="Mail del club"
         android:textSize="@dimen/register_layout"
         android:textColor="@color/black"
         android:textStyle="bold" />
 
     <EditText
-        android:id="@+id/editTextFechaCelebracion"
+        android:id="@+id/editTextMail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="@string/hint_fechanacimiento"
+        android:hint="elmejorclub@gmail.com"
         android:inputType="textPersonName"
         android:focusable="false"
         android:clickable="true"
-        android:minHeight="48dp" />
-
-    <TextView
-        android:id="@+id/textViewSexo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sexo"
-        android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-    <Spinner
-        android:id="@+id/spinnerSexo"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/spinnersexo"
-        android:minHeight="48dp" />
-
-    <TextView
-        android:id="@+id/textViewRol"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pregunta_rol"
-        android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
-        android:textStyle="bold" />
-
-    <Spinner
-        android:id="@+id/spinnerRol"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:entries="@array/spinnerrol"
         android:minHeight="48dp" />
 
     <Space
@@ -114,7 +82,7 @@
         android:layout_height="20dp" />
 
     <Button
-        android:id="@+id/btnSiguiente"
+        android:id="@+id/btnSiguienteClub"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="right"

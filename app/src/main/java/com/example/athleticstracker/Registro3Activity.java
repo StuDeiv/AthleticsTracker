@@ -7,15 +7,12 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -37,7 +34,7 @@ public class Registro3Activity extends AppCompatActivity {
         //Recogemos los elementos del layout
         this.spinnerSeleccionClub = (Spinner) findViewById(R.id.spinnerSeleccionClub);
         this.btnRegistrarClub = (Button) findViewById(R.id.btnRegistrarClub);
-        this.btnSiguiente = (Button) findViewById(R.id.btnSiguiente);
+        this.btnSiguiente = (Button) findViewById(R.id.btnSiguienteClub);
 
         //Acción pulsar boton registrar
         btnRegistrarClub.setOnClickListener(new View.OnClickListener() {
