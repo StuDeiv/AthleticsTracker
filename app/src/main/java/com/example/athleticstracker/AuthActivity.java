@@ -22,6 +22,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.apache.commons.lang3.StringUtils;
 
+import java.util.Locale;
+
 public class AuthActivity extends AppCompatActivity {
 
     //private final String TITULO_PANTALLA = "INICIO SESIÓN";
@@ -57,7 +59,7 @@ public class AuthActivity extends AppCompatActivity {
                     String mailUsuario = editTextMail.getText().toString();
                     String contrasenia = editTextContrasenia.getText().toString();
                     Intent intent = new Intent(getApplicationContext(), Registro2Activity.class);
-                    intent.putExtra("mailUsuario",mailUsuario);
+                    intent.putExtra("mailUsuario",mailUsuario.toLowerCase());
                     intent.putExtra("contrasenia",contrasenia);
                     startActivity(intent);
                 }else{
@@ -80,7 +82,7 @@ public class AuthActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()){
                                 //Si la autentificación se ha realizado correctamente, nos traemos de la BBDD el usuario con ese email
-                                mDatabase.collection("users").document(mailUsuario).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                mDatabase.collection("users").document(mailUsuario.toLowerCase()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Usuario user = documentSnapshot.toObject(Usuario.class);

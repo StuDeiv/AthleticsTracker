@@ -16,6 +16,8 @@ import android.widget.Toast;
 import org.apache.commons.lang3.StringUtils;
 
 import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 
 public class Registro2Activity extends AppCompatActivity {
 
@@ -28,7 +30,7 @@ public class Registro2Activity extends AppCompatActivity {
 
     private Bundle bundle;
 
-    private LocalDate fecha;
+    private Date fecha;
     private String mailUsuario;
     private String contrasenia;
 
@@ -75,7 +77,8 @@ public class Registro2Activity extends AppCompatActivity {
         DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                fecha = LocalDate.of(year, month, day);
+                LocalDate localDatePicker = LocalDate.of(year, month, day);
+                fecha = Date.from(localDatePicker.atStartOfDay(ZoneId.systemDefault()).toInstant());
                 editTextFechaNacimiento.setText(day+"-"+month+"-"+year);
             }
         }, LocalDate.now().getYear()-5, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth());
@@ -127,7 +130,7 @@ public class Registro2Activity extends AppCompatActivity {
             return false;
         }
         //Comprobamos que la fecha seleccionada no se encuentre después de la fecha actual
-        if(fecha.isAfter(LocalDate.now())){
+        if(fecha.after(new Date())){
             Toast.makeText(this, "Fecha de nacimiento debe ser anterior a la fecha actual...", Toast.LENGTH_LONG).show();
             return false;
         }
