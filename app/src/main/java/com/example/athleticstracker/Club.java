@@ -30,9 +30,7 @@ public class Club implements Serializable {
         return localidad;
     }
 
-    public void setLocalidad(String localidad) {
-        this.localidad = localidad;
-    }
+    public void setLocalidad(String localidad) {this.localidad = localidad;}
 
     public String getMail() {
         return mail;

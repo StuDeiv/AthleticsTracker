@@ -16,7 +16,7 @@
         android:textSize="@dimen/bienvenida"
         android:textAlignment="center"
         android:textColor="@color/design_default_color_primary"
-        android:text="@string/bienvenido" />
+        android:text="¡Completa tu registro!" />
 
     <TextView
         android:id="@+id/textViewUsuario"
@@ -33,7 +33,7 @@
         android:layout_height="40dp" />
 
     <Button
-        android:id="@+id/btnContinuar"
+        android:id="@+id/btnComenzar"
         android:layout_width="wrap_content"
         android:layout_gravity="center"
         android:layout_height="wrap_content"
