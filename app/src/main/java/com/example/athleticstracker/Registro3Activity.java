@@ -24,6 +24,10 @@ public class Registro3Activity extends AppCompatActivity {
     private Spinner spinnerSeleccionClub;
     private Button btnRegistrarClub;
     private Button btnSiguiente;
+    private Bundle bundle;
+    private String mailUsuario;
+    private String contrasenia;
+    private Usuario usuario;
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -32,20 +36,32 @@ public class Registro3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_registro3);
 
         //Recogemos los elementos del layout
-        this.spinnerSeleccionClub = (Spinner) findViewById(R.id.spinnerSeleccionClub);
-        this.btnRegistrarClub = (Button) findViewById(R.id.btnRegistrarClub);
-        this.btnSiguiente = (Button) findViewById(R.id.btnSiguienteClub);
+        iniciarDatos();
 
         //Acción pulsar boton registrar
         btnRegistrarClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),RegistroClubActivity.class);
+                intent.putExtra("mailUsuario",mailUsuario);
+                intent.putExtra("contrasenia",contrasenia);
+                intent.putExtra("usuario",usuario);
                 startActivity(intent);
+                finish();
             }
         });
 
         cargarDatosSpinner();
+    }
+
+    private void iniciarDatos() {
+        bundle = getIntent().getExtras();
+        mailUsuario = bundle.getString("mailUsuario");
+        mailUsuario = bundle.getString("contrasenia");
+        usuario = (Usuario) bundle.get("usuario");
+        this.spinnerSeleccionClub = (Spinner) findViewById(R.id.spinnerSeleccionClub);
+        this.btnRegistrarClub = (Button) findViewById(R.id.btnRegistrarClub);
+        this.btnSiguiente = (Button) findViewById(R.id.btnSiguienteClub);
     }
 
     private void cargarDatosSpinner(){

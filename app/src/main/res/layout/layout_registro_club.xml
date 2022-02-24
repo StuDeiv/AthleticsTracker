@@ -71,10 +71,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="elmejorclub@gmail.com"
+        android:hint="La ciudad del mejor club de la historia..."
         android:inputType="textPersonName"
-        android:focusable="false"
-        android:clickable="true"
         android:minHeight="48dp" />
 
     <Space
