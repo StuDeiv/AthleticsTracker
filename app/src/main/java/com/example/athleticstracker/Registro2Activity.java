@@ -47,6 +47,7 @@ public class Registro2Activity extends AppCompatActivity {
         bundle = getIntent().getExtras();
         this.mailUsuario = bundle.getString("mailUsuario");
         this.contrasenia = bundle.getString("contrasenia");
+        System.out.println(mailUsuario);
 
         //Capturamos los elementos del layout
         this.editTextNombre = (EditText) findViewById(R.id.editTextNombre);

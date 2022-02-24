@@ -38,14 +38,24 @@ public class Registro3Activity extends AppCompatActivity {
         //Recogemos los elementos del layout
         iniciarDatos();
 
+        //Acción pulsar botón Siguiente
+
+        btnSiguiente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),BienvenidaActivity.class);
+                intent.putExtra("mailUsuario",mailUsuario);
+                intent.putExtra("contrasenia",contrasenia);
+                intent.putExtra("usuario",usuario);
+                startActivity(intent);
+            }
+        });
+
         //Acción pulsar boton registrar
         btnRegistrarClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),RegistroClubActivity.class);
-                intent.putExtra("mailUsuario",mailUsuario);
-                intent.putExtra("contrasenia",contrasenia);
-                intent.putExtra("usuario",usuario);
                 startActivity(intent);
                 finish();
             }
@@ -56,12 +66,19 @@ public class Registro3Activity extends AppCompatActivity {
 
     private void iniciarDatos() {
         bundle = getIntent().getExtras();
-        mailUsuario = bundle.getString("mailUsuario");
-        mailUsuario = bundle.getString("contrasenia");
+        this.mailUsuario = bundle.getString("mailUsuario");
+        this.contrasenia = bundle.getString("contrasenia");
         usuario = (Usuario) bundle.get("usuario");
         this.spinnerSeleccionClub = (Spinner) findViewById(R.id.spinnerSeleccionClub);
         this.btnRegistrarClub = (Button) findViewById(R.id.btnRegistrarClub);
         this.btnSiguiente = (Button) findViewById(R.id.btnSiguienteClub);
+        comprobarRolBotonRegistrarClub();
+    }
+
+    private void comprobarRolBotonRegistrarClub() {
+        if (usuario.getRol().equals("Atleta")){
+            btnRegistrarClub.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void cargarDatosSpinner(){

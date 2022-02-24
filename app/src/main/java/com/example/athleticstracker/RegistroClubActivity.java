@@ -59,8 +59,9 @@ public class RegistroClubActivity extends AppCompatActivity {
                     Intent intent = new Intent(getApplicationContext(),Registro3Activity.class);
                     intent.putExtra("mailUsuario",mailUsuario);
                     intent.putExtra("contrasenia",contrasenia);
+                    //Antes de enviarlo, asociamos el club registrado al atleta
+                    usuario.setClub(club);
                     intent.putExtra("usuario",usuario);
-                    intent.putExtra("club",club);
                     startActivity(intent);
                     finish();
 
