@@ -9,12 +9,7 @@ public class Club implements Serializable {
     private String mail;
     ArrayList<Prueba> lPruebas;
 
-    public Club() {
-        this.nombre = "";
-        this.localidad = "";
-        this.mail = "";
-        this.lPruebas = new ArrayList<>();
-    }
+    public Club() {}
 
     public Club(String nombre, String localidad, String mail, ArrayList<Prueba> lPruebas) {
         this.nombre = nombre;
