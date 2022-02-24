@@ -5,7 +5,7 @@ import java.util.Date;
 
 public class Registro implements Serializable {
     private static final long serialVersionUID = 1L;
-    private double tiempo;
+    private long tiempo;
     private String localidad;
     private String prueba;
     private Date fecha;
@@ -17,7 +17,7 @@ public class Registro implements Serializable {
         this.fecha = new Date();
     }
 
-    public Registro(double tiempo, String localidad, String prueba, Date fecha){
+    public Registro(long tiempo, String localidad, String prueba, Date fecha){
         this.tiempo = tiempo;
         this.localidad = localidad;
         this.prueba = prueba;
@@ -25,11 +25,11 @@ public class Registro implements Serializable {
     }
 
 
-    public double getTiempo() {
+    public long getTiempo() {
         return tiempo;
     }
 
-    public void setTiempo(double tiempo) {
+    public void setTiempo(long tiempo) {
         this.tiempo = tiempo;
     }
 

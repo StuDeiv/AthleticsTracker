@@ -1,8 +1,8 @@
 package com.example.athleticstracker;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Usuario implements Serializable {
 
@@ -11,7 +11,7 @@ public class Usuario implements Serializable {
     private String email;
     private String sexo;
     private String rol;
-    private LocalDate fechaNac;
+    private Date fechaNac;
     private Club club;
     private ArrayList<Registro> registros;
 
@@ -21,12 +21,12 @@ public class Usuario implements Serializable {
         this.email = "";
         this.sexo = "";
         this.rol = "";
-        this.fechaNac = null;
+        this.fechaNac = new Date();
         this.club = new Club();
         this.registros = new ArrayList<>();
     }
 
-    public Usuario(String nombre, String apellidos, String email, String sexo, String rol, LocalDate fechaNac, Club club, ArrayList<Registro> registros) {
+    public Usuario(String nombre, String apellidos, String email, String sexo, String rol, Date fechaNac, Club club, ArrayList<Registro> registros) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
@@ -77,11 +77,11 @@ public class Usuario implements Serializable {
         this.rol = rol;
     }
 
-    public LocalDate getFechaNac() {
+    public Date getFechaNac() {
         return fechaNac;
     }
 
-    public void setFechaNac(LocalDate fechaNac) {
+    public void setFechaNac(Date fechaNac) {
         this.fechaNac = fechaNac;
     }
 
