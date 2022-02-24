@@ -3,6 +3,7 @@ package com.example.athleticstracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -66,11 +68,52 @@ public class BienvenidaActivity extends AppCompatActivity {
                         .addOnCompleteListener(new OnCompleteListener<SignInMethodQueryResult>() {
                             @Override
                             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
-                                boolean existeMail = task.getResult().getSignInMethods().isEmpty();
-                                if (existeMail) {
-                                    Toast.makeText(getApplicationContext(),"Hola "+mailUsuario,Toast.LENGTH_SHORT).show();
+                                boolean noExisteMail = task.getResult().getSignInMethods().isEmpty();
+                                if (noExisteMail) {
+                                    mAuth.createUserWithEmailAndPassword(mailUsuario, contrasenia).addOnCompleteListener(BienvenidaActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                Intent intent;
+                                                //Cogemos la sesión del usuario
+                                                FirebaseUser userSession = mAuth.getCurrentUser();
+
+                                                //Registro del usuario en la BBDD
+                                                mDatabase.collection("users").document(mailUsuario).set(usuario);
+                                                Toast.makeText(getApplicationContext(), "Registro completado con éxito", Toast.LENGTH_SHORT).show();
+
+                                                //Acceso a un layout dependiendo del rol del usuario
+
+                                                switch (usuario.getRol()) {
+                                                    case "Atleta":
+                                                        intent = new Intent(getApplicationContext(), MenuAtleta.class);
+                                                        intent.putExtra("usuario", usuario);
+                                                        intent.putExtra("sesionUsuario", userSession);
+                                                        startActivity(intent);
+                                                        break;
+                                                    case "Entrenador":
+                                                        intent = new Intent(getApplicationContext(), MenuEntrenador.class);
+                                                        intent.putExtra("usuario", usuario);
+                                                        intent.putExtra("sesionUsuario", userSession);
+                                                        startActivity(intent);
+                                                        break;
+                                                }
+
+                                            } else {
+                                                System.out.println(task.getException());
+                                            }
+                                        }
+                                    });
+//                                    mAuth.createUserWithEmailAndPassword(mailUsuario, contrasenia)
+//                                            .addOnCompleteListener(BienvenidaActivity.this, new OnCompleteListener<AuthResult>() {
+//                                                @Override
+//                                                public void onComplete(@NonNull Task<AuthResult> task) {
+//
+//
+//                                                }
+//                                            });
                                 } else {
-                                    Toast.makeText(getApplicationContext(),"Este mail ya se encuentra registrado en nuestro servidor",Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Este mail ya se encuentra registrado en nuestro servidor", Toast.LENGTH_SHORT).show();
                                     btnOlvidasteContrasenia.setVisibility(View.VISIBLE);
                                 }
 

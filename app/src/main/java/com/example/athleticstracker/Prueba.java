@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import java.util.HashMap;
 
 public class Prueba implements Serializable {
+
     private String tipo;
     private String localidad;
     private LocalDate fecha;
