@@ -12,7 +12,7 @@ public class Usuario implements Serializable {
     private String sexo;
     private String rol;
     private Date fechaNac;
-    private Club club;
+    private String club;
     private ArrayList<Registro> registros;
 
     public Usuario() {
@@ -22,11 +22,11 @@ public class Usuario implements Serializable {
         this.sexo = "";
         this.rol = "";
         this.fechaNac = new Date();
-        this.club = new Club();
+        this.club = "";
         this.registros = new ArrayList<>();
     }
 
-    public Usuario(String nombre, String apellidos, String email, String sexo, String rol, Date fechaNac, Club club, ArrayList<Registro> registros) {
+    public Usuario(String nombre, String apellidos, String email, String sexo, String rol, Date fechaNac, String club, ArrayList<Registro> registros) {
         this.nombre = nombre;
         this.apellidos = apellidos;
         this.email = email;
@@ -85,11 +85,11 @@ public class Usuario implements Serializable {
         this.fechaNac = fechaNac;
     }
 
-    public Club getClub() {
+    public String getClub() {
         return club;
     }
 
-    public void setClub(Club club) {
+    public void setClub(String club) {
         this.club = club;
     }
 
