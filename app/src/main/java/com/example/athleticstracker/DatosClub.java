@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -36,6 +37,13 @@ public class DatosClub extends AppCompatActivity {
 
         BaseAdapter adapter = crearAdapter();
         this.listViewCarreras.setAdapter(adapter);
+        this.listViewCarreras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                Prueba prueba = club.lPruebas.get(i);
+                System.out.println(prueba.getTipo());
+            }
+        });
     }
 
     private void recuperarDatos(){
@@ -73,7 +81,7 @@ public class DatosClub extends AppCompatActivity {
 
                 //Capturamos los elementos del layout
                 TextView txtTipoPrueba = (TextView) view.findViewById(R.id.txtTipoPrueba);
-                TextView txtPruebaCorredores = (TextView) view.findViewById(R.id.txtTipoPrueba);
+                TextView txtPruebaCorredores = (TextView) view.findViewById(R.id.txtPruebaCorredores);
                 TextView txtLocalidadPrueba = (TextView) view.findViewById(R.id.txtLocalidadPrueba);
                 TextView txtFechaPrueba = (TextView) view.findViewById(R.id.txtFechaPrueba);
 
@@ -90,7 +98,7 @@ public class DatosClub extends AppCompatActivity {
     }
 
     private String fechaToString(Date date){
-        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         return dateFormat.format(date);
     }
 }

@@ -10,7 +10,11 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Date;
+import java.util.HashMap;
 
 public class MenuAtleta extends AppCompatActivity {
 
@@ -43,7 +47,7 @@ public class MenuAtleta extends AppCompatActivity {
         this.btnDatosClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabase.collection("clubes").document(usuario.getClub()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+               mDatabase.collection("clubes").document(usuario.getClub()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Club club = documentSnapshot.toObject(Club.class);
@@ -52,6 +56,15 @@ public class MenuAtleta extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
+                /*Prueba prueba = new Prueba();
+                prueba.setTipo("100m");
+                prueba.setFecha(new Date());
+                prueba.setLocalidad("Plasencia");
+                HashMap<String, Long> mapaRegistros = new HashMap<>();
+                mapaRegistros.put("Jorge", new Long(12000));
+                mapaRegistros.put("David", new Long(13000));
+                prueba.setMapaRegistros(mapaRegistros);
+                mDatabase.collection("clubes").document(usuario.getClub()).update("lPruebas", FieldValue.arrayUnion(prueba));*/
 
             }
         });

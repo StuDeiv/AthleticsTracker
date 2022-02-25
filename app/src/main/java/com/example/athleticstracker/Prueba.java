@@ -11,7 +11,7 @@ public class Prueba implements Serializable{
     private String tipo;
     private String localidad;
     private Date fecha;
-    private HashMap<String, String> mapaRegistros;
+    private HashMap<String, Long> mapaRegistros;
 
     public Prueba() {
         this.tipo = "";
@@ -20,7 +20,7 @@ public class Prueba implements Serializable{
         this.mapaRegistros = new HashMap<>();
     }
 
-    public Prueba(String tipo, String localidad, Date fecha, HashMap<String, String> mapaRegistros) {
+    public Prueba(String tipo, String localidad, Date fecha, HashMap<String, Long> mapaRegistros) {
         this.tipo = tipo;
         this.localidad = localidad;
         this.fecha = fecha;
@@ -51,11 +51,11 @@ public class Prueba implements Serializable{
         this.fecha = fecha;
     }
 
-    public HashMap<String, String> getMapaRegistros() {
+    public HashMap<String, Long> getMapaRegistros() {
         return mapaRegistros;
     }
 
-    public void setMapaRegistros(HashMap<String, String> mapaRegistros) {
+    public void setMapaRegistros(HashMap<String, Long> mapaRegistros) {
         this.mapaRegistros = mapaRegistros;
     }
 }
