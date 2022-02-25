@@ -21,6 +21,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class MenuEntrenador extends AppCompatActivity {
 
@@ -28,6 +30,8 @@ public class MenuEntrenador extends AppCompatActivity {
     private Bundle bundle;
     private Usuario usuario;
     private FirebaseFirestore mDatabase;
+    private Map<String, Object> hashMapDocumentUsers;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,15 +50,16 @@ public class MenuEntrenador extends AppCompatActivity {
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
                                     for (QueryDocumentSnapshot document : task.getResult()) {
-                                        //TODO: REVISAR PORQUE SALTA QUE ES UN HASH MAP (java.lang.ClassCastException: java.util.HashMap cannot be cast to com.example.athleticstracker.Usuario)
-                                        //lUsuariosClub.add((Usuario) document.getData());
+                                        Usuario usuario = document.toObject(Usuario.class);
+                                        lUsuariosClub.add(usuario);
+                                        Intent intent = new Intent(getApplicationContext(),SeleccionAtletasPruebaActivity.class);
+                                        intent.putExtra("listaUsuarios",lUsuariosClub);
                                     }
                                 } else {
                                     Log.d("TAG", "Error getting documents: ", task.getException());
                                 }
                             }
                         });
-
             }
         });
 
