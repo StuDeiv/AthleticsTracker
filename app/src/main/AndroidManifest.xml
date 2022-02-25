@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AthleticsTracker">
         <activity
+            android:name=".DatosPrueba"
+            android:exported="true" />
+        <activity
             android:name=".DatosClub"
             android:exported="true" />
         <activity
