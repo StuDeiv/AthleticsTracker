@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -42,11 +43,11 @@ public class MenuAtleta extends AppCompatActivity {
         this.btnDatosClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabase.collection("clubs").document(usuario.getClub()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                mDatabase.collection("clubes").document(usuario.getClub()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Club club = documentSnapshot.toObject(Club.class);
-                        Intent intent = new Intent(getBaseContext(), DatosClub.class);
+                        Intent intent = new Intent(getApplicationContext(), DatosClub.class);
                         intent.putExtra("club", club);
                         startActivity(intent);
                     }
@@ -58,6 +59,6 @@ public class MenuAtleta extends AppCompatActivity {
     }
 
     private void recuperarDatos(){
-        this.usuario = (Usuario) getIntent().getExtras().getSerializable("user");
+        this.usuario = (Usuario) getIntent().getExtras().getSerializable("usuario");
     }
 }

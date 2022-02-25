@@ -92,12 +92,12 @@ public class AuthActivity extends AppCompatActivity {
                                         switch (user.getRol()){
                                             case "Atleta":
                                                 intent = new Intent(getApplicationContext(), MenuAtleta.class);
-                                                intent.putExtra("user", user);
+                                                intent.putExtra("usuario", user);
                                                 startActivity(intent);
                                                 break;
                                             case "Entrenador":
                                                 intent = new Intent(getApplicationContext(), MenuEntrenador.class);
-                                                intent.putExtra("user", user);
+                                                intent.putExtra("usuario", user);
                                                 startActivity(intent);
                                                 break;
                                         }

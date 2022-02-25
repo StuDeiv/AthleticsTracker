@@ -34,7 +34,9 @@ public class RegistrosAtleta extends AppCompatActivity {
 
     private void cargarDatos(){
         this.lRegistros = (ArrayList<Registro>) getIntent().getExtras().getSerializable("registros");
-
+        if(this.lRegistros.size() == 0){
+            Toast.makeText(getApplicationContext(), "Aún no tienes registros personales", Toast.LENGTH_LONG).show();
+        }
     }
 
     private BaseAdapter crearAdapter(){

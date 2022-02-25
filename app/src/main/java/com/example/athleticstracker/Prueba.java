@@ -1,10 +1,12 @@
 package com.example.athleticstracker;
 
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.Date;
 import java.util.HashMap;
 
-public class Prueba implements Serializable {
+public class Prueba implements Serializable{
 
     private String tipo;
     private String localidad;

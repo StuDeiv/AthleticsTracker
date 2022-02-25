@@ -47,7 +47,6 @@ public class Registro3Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 asignarClubSeleccionadoSpinner();
-                System.out.println(usuario.getClub().getMail());
                 Intent intent = new Intent(getApplicationContext(),BienvenidaActivity.class);
                 intent.putExtra("mailUsuario",mailUsuario);
                 intent.putExtra("contrasenia",contrasenia);
@@ -61,6 +60,9 @@ public class Registro3Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),RegistroClubActivity.class);
+                intent.putExtra("mailUsuario",mailUsuario);
+                intent.putExtra("contrasenia",contrasenia);
+                intent.putExtra("usuario",usuario);
                 startActivity(intent);
                 finish();
             }
@@ -79,15 +81,7 @@ public class Registro3Activity extends AppCompatActivity {
         if (uidPersonalizado.equals(null)){
             Toast.makeText(getApplicationContext(),"Selecciona un club, por favor",Toast.LENGTH_SHORT).show();
         }else{
-            mDatabase.collection("clubes").document(uidPersonalizado).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    //TODO: Configurar la selección del club en vez de como objeto como String según última configuración de Jorge
-                    Club clubSeleccionado = documentSnapshot.toObject(Club.class);
-                    usuario.setClub(clubSeleccionado);
-                }
-            });
-            System.out.println(usuario.getClub().getMail());
+            usuario.setClub(uidPersonalizado);
         }
     }
 
