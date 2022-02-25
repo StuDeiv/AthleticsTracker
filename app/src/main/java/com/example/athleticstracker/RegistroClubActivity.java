@@ -89,8 +89,9 @@ public class RegistroClubActivity extends AppCompatActivity {
     private void iniciarDatos(){
         bundle = getIntent().getExtras();
         mailUsuario = bundle.getString("mailUsuario");
-        mailUsuario = bundle.getString("contrasenia");
+        contrasenia = bundle.getString("contrasenia");
         usuario = (Usuario) bundle.get("usuario");
+        System.out.println(mailUsuario);
         this.editTextNombre = (EditText) findViewById(R.id.editTextNombre);
         this.editTextLocalidad = (EditText) findViewById(R.id.editTextLocalidad);
         this.editTextMail = (EditText) findViewById(R.id.editTextMail);

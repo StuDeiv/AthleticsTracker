@@ -90,6 +90,7 @@ public class Registro3Activity extends AppCompatActivity {
         bundle = getIntent().getExtras();
         this.mailUsuario = bundle.getString("mailUsuario");
         this.contrasenia = bundle.getString("contrasenia");
+        System.out.println(mailUsuario);
         usuario = (Usuario) bundle.get("usuario");
         this.spinnerSeleccionClub = (Spinner) findViewById(R.id.spinnerSeleccionClub);
         this.btnRegistrarClub = (Button) findViewById(R.id.btnRegistrarClub);

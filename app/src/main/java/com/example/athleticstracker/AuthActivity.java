@@ -48,25 +48,33 @@ public class AuthActivity extends AppCompatActivity {
     private void inicializarComponentes() {
         this.editTextMail = (EditText) findViewById(R.id.editTextTextEmail);
         this.editTextContrasenia = (EditText) findViewById(R.id.editTextTextContrasenia);
-        this.btnAcceder = (Button) findViewById(R.id.btnAcceder);
-        this.btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
-    }
+            this.btnAcceder = (Button) findViewById(R.id.btnAcceder);
+            this.btnRegistrar = (Button) findViewById(R.id.btnRegistrar);
+        }
 
-    private void registroUsuarios(){
-        this.btnRegistrar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (!StringUtils.isBlank(editTextMail.getText().toString()) && !StringUtils.isBlank(editTextContrasenia.getText().toString())){
-                    String mailUsuario = editTextMail.getText().toString();
-                    String contrasenia = editTextContrasenia.getText().toString();
-                    Intent intent = new Intent(getApplicationContext(), Registro2Activity.class);
-                    intent.putExtra("mailUsuario",mailUsuario.toLowerCase());
-                    intent.putExtra("contrasenia",contrasenia);
-                    startActivity(intent);
-                }else{
-                    Toast.makeText(getBaseContext(), "Campos no pueden estar vacíos", Toast.LENGTH_LONG).show();
+        private void registroUsuarios(){
+            this.btnRegistrar.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //TODO: Comprobar que el mail introducido es correcto. Ya comprobado si la contraseña tiene más de 6 caracteres
+                    if (!StringUtils.isBlank(editTextMail.getText().toString()) && !StringUtils.isBlank(editTextContrasenia.getText().toString()) && editTextContrasenia.getText().toString().length() >= 6){
+                        String mailUsuario = editTextMail.getText().toString();
+                        String contrasenia = editTextContrasenia.getText().toString();
+                        Intent intent = new Intent(getApplicationContext(), Registro2Activity.class);
+                        intent.putExtra("mailUsuario",mailUsuario.toLowerCase());
+                        intent.putExtra("contrasenia",contrasenia);
+                        startActivity(intent);
+                    }else{
+                        //Toast que aparece si los campos mail y contraseña están vacíos
+                        if (StringUtils.isBlank(editTextMail.getText().toString()) && StringUtils.isBlank(editTextContrasenia.getText().toString())){
+                            Toast.makeText(getBaseContext(), "Campos no pueden estar vacíos", Toast.LENGTH_LONG).show();
+                        }
+                        //Toast que aparece si la contraseña tiene menos de 6 caracteres. Problema Firebase
+                        if (editTextContrasenia.getText().toString().length() < 6){
+                            Toast.makeText(getBaseContext(), "La contraseña debe tener 6 caracteres como mínimo.\n", Toast.LENGTH_LONG).show();
+                        }
+                    }
                 }
-            }
         });
     }
 
