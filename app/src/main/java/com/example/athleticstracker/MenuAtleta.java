@@ -47,7 +47,7 @@ public class MenuAtleta extends AppCompatActivity {
         this.btnDatosClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               mDatabase.collection("clubes").document(usuario.getClub()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                mDatabase.collection("clubes").document(usuario.getClub()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Club club = documentSnapshot.toObject(Club.class);

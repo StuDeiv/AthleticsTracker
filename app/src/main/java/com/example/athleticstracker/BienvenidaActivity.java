@@ -74,6 +74,10 @@ public class BienvenidaActivity extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()) {
+
+                                                //Al logearse correctamente, asignamos este mail tambien al usuario en la BBDD
+                                                usuario.setEmail(mailUsuario);
+
                                                 Intent intent;
                                                 //Cogemos la sesión del usuario
                                                 FirebaseUser userSession = mAuth.getCurrentUser();
