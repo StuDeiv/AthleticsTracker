@@ -27,9 +27,9 @@ public class DatosClub extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_club);
 
-        this.txtNombreClub = (TextView) findViewById(R.id.txtNombreClub);
-        this.txtEmailClub = (TextView) findViewById(R.id.txtEmailClub);
-        this.txtLocationClub = (TextView) findViewById(R.id.txtLocationClub);
+        this.txtNombreClub = (TextView) findViewById(R.id.txtLocalidadVistaPrueba);
+        this.txtEmailClub = (TextView) findViewById(R.id.txtTipoDePrueba);
+        this.txtLocationClub = (TextView) findViewById(R.id.txtFechaVistaPrueba);
         this.listViewCarreras = (ListView) findViewById(R.id.listViewCarreras);
 
         recuperarDatos();
