@@ -79,14 +79,6 @@
             android:orientation="vertical"
             app:layout_constraintGuide_percent="0.16" />
 
-        <Spinner
-            android:id="@+id/spinnerCalle1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toTopOf="@+id/guideline1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline8" />
-
 
         <Spinner
             android:id="@+id/spinnerCalle2"
@@ -136,6 +128,16 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline7"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline8" />
+
+        <Button
+            android:id="@+id/btnSeleccionAtletaCalle1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccionar ATLETA CALLE 1"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline8" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

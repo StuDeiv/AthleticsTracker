@@ -13,8 +13,6 @@ import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
@@ -94,7 +92,7 @@ public class RegistroClubActivity extends AppCompatActivity {
         System.out.println(mailUsuario);
         this.editTextNombre = (EditText) findViewById(R.id.editTextNombre);
         this.editTextLocalidad = (EditText) findViewById(R.id.editTextLocalidad);
-        this.editTextMail = (EditText) findViewById(R.id.editTextMail);
+        this.editTextMail = (EditText) findViewById(R.id.editTextFechaPrueba);
         this.btnSiguienteClub = (Button) findViewById(R.id.btnSiguienteClub);
     }
 

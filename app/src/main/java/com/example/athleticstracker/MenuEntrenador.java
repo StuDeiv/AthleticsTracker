@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -29,8 +30,6 @@ public class MenuEntrenador extends AppCompatActivity {
     private Button btnIniciarPrueba;
     private Bundle bundle;
     private Usuario usuario;
-    private FirebaseFirestore mDatabase;
-    private Map<String, Object> hashMapDocumentUsers;
 
 
     @Override
@@ -41,25 +40,9 @@ public class MenuEntrenador extends AppCompatActivity {
         btnIniciarPrueba.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ArrayList<Usuario> lUsuariosClub = new ArrayList<>();
-                mDatabase.collection("users")
-                        .whereEqualTo("club", usuario.getClub())
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()) {
-                                    for (QueryDocumentSnapshot document : task.getResult()) {
-                                        Usuario usuario = document.toObject(Usuario.class);
-                                        lUsuariosClub.add(usuario);
-                                        Intent intent = new Intent(getApplicationContext(),SeleccionAtletasPruebaActivity.class);
-                                        intent.putExtra("listaUsuarios",lUsuariosClub);
-                                    }
-                                } else {
-                                    Log.d("TAG", "Error getting documents: ", task.getException());
-                                }
-                            }
-                        });
+                Intent intent = new Intent(getApplicationContext(),ActivitySeleccion.class);
+                intent.putExtra("usuario",usuario);
+                startActivity(intent);
             }
         });
 
@@ -69,7 +52,6 @@ public class MenuEntrenador extends AppCompatActivity {
         bundle = getIntent().getExtras();
         usuario = (Usuario) bundle.getSerializable("usuario");
         btnIniciarPrueba = (Button) findViewById(R.id.btnIniciarPrueba);
-        mDatabase = FirebaseFirestore.getInstance();
     }
 
 

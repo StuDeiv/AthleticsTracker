@@ -6,29 +6,30 @@
     android:layout_height="match_parent"
     android:background="@drawable/fondoseleccionpruebayatletas"
     android:orientation="vertical"
+    android:gravity="center_vertical"
     tools:context=".ActivitySeleccion" >
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewPrueba"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Prueba" />
 
     <Spinner
-        android:id="@+id/spinner2"
+        android:id="@+id/spinnerSeleccionPrueba"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:entries="@array/pruebas"
         />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewFechaPrueba"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Fecha" />
 
     <EditText
-        android:id="@+id/editTextMail"
+        android:id="@+id/editTextFechaPrueba"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
@@ -39,7 +40,7 @@
         android:minHeight="48dp" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewLocalidadPrueba"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Localidad" />
@@ -55,5 +56,5 @@
         android:id="@+id/btnElegirAtletas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Button" />
+        android:text="PASAR A SELECCIONAR ATLETAS" />
 </LinearLayout>

@@ -54,7 +54,7 @@ public class Registro2Activity extends AppCompatActivity {
         this.editTextApellidos = (EditText) findViewById(R.id.editTextLocalidad);
         this.spinnerSexo = (Spinner) findViewById(R.id.spinnerSexo);
         this.spinnerRol = (Spinner) findViewById(R.id.spinnerRol);
-        this.editTextFechaNacimiento = (EditText) findViewById(R.id.editTextMail);
+        this.editTextFechaNacimiento = (EditText) findViewById(R.id.editTextFechaPrueba);
         this.btnSiguiente = (Button) findViewById(R.id.btnSiguienteClub);
 
         //Asignamos los clicks listeners para el botón y para el EditText de la fecha
