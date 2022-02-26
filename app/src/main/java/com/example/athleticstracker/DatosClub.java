@@ -1,6 +1,8 @@
 package com.example.athleticstracker;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,7 +43,9 @@ public class DatosClub extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Prueba prueba = club.lPruebas.get(i);
-                System.out.println(prueba.getTipo());
+                Intent intent = new Intent(getApplicationContext(), DatosPrueba.class);
+                intent.putExtra("prueba", prueba);
+                startActivity(intent);
             }
         });
     }
