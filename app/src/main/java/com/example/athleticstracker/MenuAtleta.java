@@ -21,6 +21,7 @@ public class MenuAtleta extends AppCompatActivity {
     private Usuario usuario;
     private Button btnRegistros;
     private Button btnDatosClub;
+    private Button btnComparador;
     private FirebaseFirestore mDatabase;
 
     @Override
@@ -32,6 +33,7 @@ public class MenuAtleta extends AppCompatActivity {
 
         this.btnRegistros = (Button) findViewById(R.id.buttonRegistrosPersonales);
         this.btnDatosClub = (Button) findViewById(R.id.btnVerClubAtleta);
+        this.btnComparador = (Button) findViewById(R.id.btnComparador);
 
         recuperarDatos();
 
@@ -56,16 +58,14 @@ public class MenuAtleta extends AppCompatActivity {
                         startActivity(intent);
                     }
                 });
-                /*Prueba prueba = new Prueba();
-                prueba.setTipo("100m");
-                prueba.setFecha(new Date());
-                prueba.setLocalidad("Plasencia");
-                HashMap<String, Long> mapaRegistros = new HashMap<>();
-                mapaRegistros.put("Jorge", new Long(12000));
-                mapaRegistros.put("David", new Long(13000));
-                prueba.setMapaRegistros(mapaRegistros);
-                mDatabase.collection("clubes").document(usuario.getClub()).update("lPruebas", FieldValue.arrayUnion(prueba));*/
+            }
+        });
 
+        this.btnComparador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(), ComparadorActivity.class);
+                startActivity(intent);
             }
         });
 

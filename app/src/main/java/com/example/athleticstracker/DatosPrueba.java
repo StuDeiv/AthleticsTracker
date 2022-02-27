@@ -14,8 +14,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.LinkedHashMap;
 
 public class DatosPrueba extends AppCompatActivity {
 
@@ -54,8 +53,8 @@ public class DatosPrueba extends AppCompatActivity {
     }
 
     private BaseAdapter crearAdapter(){
-        ArrayList<Map.Entry> datos = new ArrayList<>();
-        datos.addAll(this.prueba.getMapaRegistros().entrySet());
+        ArrayList<LinkedHashMap.Entry> datos = new ArrayList<>();
+        datos.addAll(this.prueba.getMapaTiempos().entrySet());
         BaseAdapter adapter = new BaseAdapter() {
 
             @Override
@@ -64,7 +63,7 @@ public class DatosPrueba extends AppCompatActivity {
             }
 
             @Override
-            public Map.Entry<String, Long> getItem(int i) {
+            public LinkedHashMap.Entry<String, Long> getItem(int i) {
                 return datos.get(i);
             }
 
@@ -83,12 +82,10 @@ public class DatosPrueba extends AppCompatActivity {
                 TextView txtCorredor= (TextView) view.findViewById(R.id.txtCorredor);
                 TextView txtTiempo = (TextView) view.findViewById(R.id.txtTiempo);
 
-
                 //Ponemos los valores en los elementos
-                Map.Entry<String, Long> item = getItem(i);
+                LinkedHashMap.Entry<String, Long> item = getItem(i);
                 txtCorredor.setText(item.getKey());
                 txtTiempo.setText(tiempoToString(item.getValue()));
-
 
                 return view;
             }

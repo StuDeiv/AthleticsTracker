@@ -91,7 +91,7 @@ public class DatosClub extends AppCompatActivity {
 
                 //Ponemos los valores en los elementos
                 txtTipoPrueba.setText(club.getlPruebas().get(i).getTipo());
-                txtPruebaCorredores.setText(String.valueOf(club.getlPruebas().get(i).getMapaRegistros().size()));
+                txtPruebaCorredores.setText(String.valueOf(club.getlPruebas().get(i).getMapaTiempos().size()));
                 txtLocalidadPrueba.setText(club.getlPruebas().get(i).getLocalidad());
                 txtFechaPrueba.setText(fechaToString(club.getlPruebas().get(i).getFecha()));
 

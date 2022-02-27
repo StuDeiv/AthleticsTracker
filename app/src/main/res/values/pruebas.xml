@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <string-array name="pruebas">
         <item>60 m</item>
-        <item>100 m</item>
         <item>100 m</item>
         <item>200 m</item>
         <item>400 m</item>
@@ -18,5 +16,4 @@
         <item>400 mv</item>
         <item>3000 mo</item>
     </string-array>
-
 </resources>

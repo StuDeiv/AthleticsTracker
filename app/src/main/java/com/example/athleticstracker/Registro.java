@@ -3,7 +3,7 @@ package com.example.athleticstracker;
 import java.io.Serializable;
 import java.util.Date;
 
-public class Registro implements Serializable {
+public class Registro implements Serializable, Comparable<Registro> {
     private static final long serialVersionUID = 1L;
     private long tiempo;
     private String localidad;
@@ -56,4 +56,20 @@ public class Registro implements Serializable {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+
+    @Override
+    public int compareTo(Registro registro) {
+        if(this.tiempo > registro.getTiempo()){
+            return 1;
+        }
+        else{
+            if(this.tiempo < registro.getTiempo()){
+                return -1;
+            }
+            else{
+                return 0;
+            }
+        }
+    }
+
 }

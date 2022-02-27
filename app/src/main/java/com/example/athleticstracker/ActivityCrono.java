@@ -11,6 +11,7 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -76,12 +77,14 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
         this.entrenador = (Usuario) getIntent().getSerializableExtra("entrenador");
         this.club = (Club) getIntent().getSerializableExtra("club");
         this.prueba = (Prueba) getIntent().getSerializableExtra("prueba");*/
-        this.prueba = new Prueba("200mv", "Plasencia", new Date(), new HashMap<>());
+
+        /* CASOS DE PRUEBA - BORRAR EN EL FUTURO */
+        this.prueba = new Prueba("200mv", "Plasencia", new Date(), new LinkedHashMap<>());
 
         this.vUsuarios = new Usuario[7];
         this.vUsuarios[1] = new Usuario("Jorge","Fernández","jorgelfd14@gmail.com","Hombre","Atleta", new Date(), "atletismochinato", new ArrayList<>());
-        //this.vUsuarios[3] = new Usuario("Francisco","Sánchez","fransan@gmail.com","Hombre","Atleta", new Date(), "atletismochinato", new ArrayList<>());
-        //this.vUsuarios[4] = new Usuario("Pedro","Ramírez","pera@hotmail.com","Hombre","", new Date(), "atletismochinato", new ArrayList<>());
+        this.vUsuarios[3] = new Usuario("Francisco","Sánchez","fransan@gmail.com","Hombre","Atleta", new Date(), "atletismochinato", new ArrayList<>());
+        this.vUsuarios[4] = new Usuario("Pedro","Ramírez","pera@hotmail.com","Hombre","", new Date(), "atletismochinato", new ArrayList<>());
         this.vUsuarios[5] = new Usuario("Juan","Carmona","juanca@hotmail.com","Hombre","", new Date(), "atletismochinato", new ArrayList<>());
         /* Para calcular los corredores que hay en la Prueba, se mira el vector */
         for(int i = 0; i < vUsuarios.length; i++){
@@ -230,7 +233,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
     private void asignarTiempos(int posicion, long tiempo){
         /* Primero añadimos los datos de ese tiempo a la prueba */
         String nombre = vUsuarios[posicion].getNombre()+" "+vUsuarios[posicion].getApellidos(); //Cogemos el nombre del atleta
-        this.prueba.getMapaRegistros().put(nombre, tiempo); //Añadimos el registro a la prueba
+        this.prueba.getMapaTiempos().put(nombre, tiempo); //Añadimos el registro a la prueba
 
         /* Ahora creamos un objeto Registro individual y lo asociamos al email del atleta dentor de un mapa */
         String email = vUsuarios[posicion].getEmail(); // Cogemos el email del atleta, identificador único

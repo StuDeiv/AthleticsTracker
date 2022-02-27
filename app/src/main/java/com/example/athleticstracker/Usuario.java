@@ -1,5 +1,7 @@
 package com.example.athleticstracker;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,7 +36,7 @@ public class Usuario implements Serializable {
         this.rol = rol;
         this.fechaNac = fechaNac;
         this.club = club;
-        this.registros =registros;
+        this.registros = registros;
     }
 
     public String getNombre() {
@@ -99,5 +101,11 @@ public class Usuario implements Serializable {
 
     public void setRegistros(ArrayList<Registro> registros) {
         this.registros = registros;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return this.nombre+" "+this.apellidos;
     }
 }
