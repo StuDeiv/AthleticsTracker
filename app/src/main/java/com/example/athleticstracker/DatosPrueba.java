@@ -13,8 +13,11 @@ import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DatosPrueba extends AppCompatActivity {
 
@@ -53,8 +56,18 @@ public class DatosPrueba extends AppCompatActivity {
     }
 
     private BaseAdapter crearAdapter(){
-        ArrayList<LinkedHashMap.Entry> datos = new ArrayList<>();
+        ArrayList<HashMap.Entry<String, Long>> datos = new ArrayList<>();
         datos.addAll(this.prueba.getMapaTiempos().entrySet());
+        Comparator<HashMap.Entry<String, Long>> valueComparator = new Comparator<HashMap.Entry<String,Long>>() {
+            @Override
+            public int compare(HashMap.Entry<String, Long> e1, HashMap.Entry<String, Long> e2) {
+                Long v1 = e1.getValue();
+                Long v2 = e2.getValue();
+                return v1.compareTo(v2);
+            }
+        };
+        Collections.sort(datos, valueComparator);
+
         BaseAdapter adapter = new BaseAdapter() {
 
             @Override
@@ -63,7 +76,7 @@ public class DatosPrueba extends AppCompatActivity {
             }
 
             @Override
-            public LinkedHashMap.Entry<String, Long> getItem(int i) {
+            public HashMap.Entry<String, Long> getItem(int i) {
                 return datos.get(i);
             }
 
@@ -83,7 +96,7 @@ public class DatosPrueba extends AppCompatActivity {
                 TextView txtTiempo = (TextView) view.findViewById(R.id.txtTiempo);
 
                 //Ponemos los valores en los elementos
-                LinkedHashMap.Entry<String, Long> item = getItem(i);
+                HashMap.Entry<String, Long> item = getItem(i);
                 txtCorredor.setText(item.getKey());
                 txtTiempo.setText(tiempoToString(item.getValue()));
 

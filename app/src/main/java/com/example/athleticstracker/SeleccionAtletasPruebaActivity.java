@@ -93,6 +93,10 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity implements
 
 
 
+        Usuario usuario1 = new Usuario();
+        Usuario usuario2 = new Usuario();
+
+
     }
 
     private void inicializarListenerSpinners() {

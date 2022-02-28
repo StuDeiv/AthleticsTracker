@@ -2,23 +2,23 @@ package com.example.athleticstracker;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 
 public class Prueba implements Serializable{
 
     private String tipo;
     private String localidad;
     private Date fecha;
-    private LinkedHashMap<String, Long> mapaTiempos;
+    private HashMap<String, Long> mapaTiempos;
 
     public Prueba() {
         this.tipo = "";
         this.localidad = "";
         this.fecha = null;
-        this.mapaTiempos = new LinkedHashMap<>();
+        this.mapaTiempos = new HashMap<>();
     }
 
-    public Prueba(String tipo, String localidad, Date fecha, LinkedHashMap<String, Long> mapaTiempos) {
+    public Prueba(String tipo, String localidad, Date fecha, HashMap<String, Long> mapaTiempos) {
         this.tipo = tipo;
         this.localidad = localidad;
         this.fecha = fecha;
@@ -49,11 +49,11 @@ public class Prueba implements Serializable{
         this.fecha = fecha;
     }
 
-    public LinkedHashMap<String, Long> getMapaTiempos() {
+    public HashMap<String, Long> getMapaTiempos() {
         return mapaTiempos;
     }
 
-    public void setMapaTiempos(LinkedHashMap<String, Long> mapaRegistros) {
+    public void setMapaTiempos(HashMap<String, Long> mapaRegistros) {
         this.mapaTiempos = mapaRegistros;
     }
 }
