@@ -239,6 +239,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
                     Intent intent = new Intent(getApplicationContext(), DatosPrueba.class);
                     intent.putExtra("prueba", prueba);
                     startActivity(intent);
+                    finish();
                 }
             });
             builder.setNeutralButton("Reiniciar", new DialogInterface.OnClickListener() {
@@ -252,7 +253,10 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
             builder.setNegativeButton("Volver al inicio", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    //TODO: aquí hay que implementar un finish()
+                    Intent intent = new Intent(getApplicationContext(), MenuEntrenador.class);
+                    intent.putExtra("usuario", entrenador);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                 }
             });
             builder.show();
