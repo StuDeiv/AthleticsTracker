@@ -79,8 +79,6 @@ public class BienvenidaActivity extends AppCompatActivity {
                                                 usuario.setEmail(mailUsuario);
 
                                                 Intent intent;
-                                                //Cogemos la sesión del usuario
-                                                FirebaseUser userSession = mAuth.getCurrentUser();
 
                                                 //Registro del usuario en la BBDD
                                                 mDatabase.collection("users").document(mailUsuario).set(usuario);
@@ -92,13 +90,11 @@ public class BienvenidaActivity extends AppCompatActivity {
                                                     case "Atleta":
                                                         intent = new Intent(getApplicationContext(), MenuAtleta.class);
                                                         intent.putExtra("usuario", usuario);
-                                                        intent.putExtra("sesionUsuario", userSession);
                                                         startActivity(intent);
                                                         break;
                                                     case "Entrenador":
                                                         intent = new Intent(getApplicationContext(), MenuEntrenador.class);
                                                         intent.putExtra("usuario", usuario);
-                                                        intent.putExtra("sesionUsuario", userSession);
                                                         startActivity(intent);
                                                         break;
                                                 }

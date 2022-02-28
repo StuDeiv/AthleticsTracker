@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AjustesUsuarioActivity">
+
+    <TextView
+        android:id="@+id/txtViewHolaAjustes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="¡Hola!"
+        android:textColor="@color/black"
+        android:textSize="40sp"
+        android:textStyle="bold"
+        android:paddingBottom="20sp"
+        android:paddingTop="10sp"/>
+
+    <TextView
+        android:id="@+id/txtViewMailUsuarioAjustes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingBottom="20sp"
+        android:text="¡Hola!"
+        android:textColor="@color/black"
+        android:textSize="20sp" />
+
+    <Button
+        android:id="@+id/btnActualizarMail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="ACTUALIZAR MAIL"></Button>
+
+    <Button
+        android:id="@+id/btnEnviarMensajeVerificacion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Verifica tu dirección mail"></Button>
+
+    <Button
+        android:id="@+id/btnReestablecerContraseña"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="REESTABLECER CONTRASEÑA"></Button>
+
+</LinearLayout>

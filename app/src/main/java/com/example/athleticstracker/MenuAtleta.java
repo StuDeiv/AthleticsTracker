@@ -1,14 +1,19 @@
 package com.example.athleticstracker;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -16,7 +21,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.Date;
 import java.util.HashMap;
 
-public class MenuAtleta extends AppCompatActivity {
+public class MenuAtleta extends AppCompatActivity{
 
     private Usuario usuario;
     private Button btnRegistros;
@@ -30,7 +35,6 @@ public class MenuAtleta extends AppCompatActivity {
         setContentView(R.layout.layout_menu_atleta);
 
         mDatabase = FirebaseFirestore.getInstance();
-
         this.btnRegistros = (Button) findViewById(R.id.buttonRegistrosPersonales);
         this.btnDatosClub = (Button) findViewById(R.id.btnVerClubAtleta);
         this.btnComparador = (Button) findViewById(R.id.btnComparador);
@@ -73,5 +77,23 @@ public class MenuAtleta extends AppCompatActivity {
 
     private void recuperarDatos(){
         this.usuario = (Usuario) getIntent().getExtras().getSerializable("usuario");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_principal,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.perfilUsuario:
+                Intent intent = new Intent(getApplicationContext(),AjustesUsuarioActivity.class);
+                startActivity(intent);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
