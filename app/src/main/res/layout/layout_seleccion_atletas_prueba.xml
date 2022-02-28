@@ -7,13 +7,25 @@
     android:orientation="vertical"
     tools:context=".SeleccionAtletasPruebaActivity">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutCesped"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/grasstexture"
-        android:orientation="vertical"/>
+        android:background="@drawable/grasstexture">
+
+        <Button
+            android:id="@+id/btnImportarCorredores"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="INICIAR/REINICIAR CONVOCATORIA"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.496" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/layoutPista"
@@ -81,6 +93,14 @@
 
 
         <Spinner
+            android:id="@+id/spinnerCalle1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/guideline1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline8" />
+
+        <Spinner
             android:id="@+id/spinnerCalle2"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -129,14 +149,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/guideline8" />
 
-        <Button
-            android:id="@+id/btnSeleccionAtletaCalle1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Seleccionar ATLETA CALLE 1"
-            app:layout_constraintBottom_toTopOf="@+id/guideline1"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/guideline8" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -152,7 +165,7 @@
             android:id="@+id/btnComenzarPrueba"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="COMENZAR PRUEBA"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
