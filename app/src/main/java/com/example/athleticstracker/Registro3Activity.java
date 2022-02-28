@@ -47,10 +47,10 @@ public class Registro3Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 asignarClubSeleccionadoSpinner();
-                Intent intent = new Intent(getApplicationContext(),BienvenidaActivity.class);
-                intent.putExtra("mailUsuario",mailUsuario);
-                intent.putExtra("contrasenia",contrasenia);
-                intent.putExtra("usuario",usuario);
+                Intent intent = new Intent(getApplicationContext(), BienvenidaActivity.class);
+                intent.putExtra("mailUsuario", mailUsuario);
+                intent.putExtra("contrasenia", contrasenia);
+                intent.putExtra("usuario", usuario);
                 startActivity(intent);
             }
         });
@@ -59,10 +59,10 @@ public class Registro3Activity extends AppCompatActivity {
         btnRegistrarClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),RegistroClubActivity.class);
-                intent.putExtra("mailUsuario",mailUsuario);
-                intent.putExtra("contrasenia",contrasenia);
-                intent.putExtra("usuario",usuario);
+                Intent intent = new Intent(getApplicationContext(), RegistroClubActivity.class);
+                intent.putExtra("mailUsuario", mailUsuario);
+                intent.putExtra("contrasenia", contrasenia);
+                intent.putExtra("usuario", usuario);
                 startActivity(intent);
                 finish();
             }
@@ -75,12 +75,12 @@ public class Registro3Activity extends AppCompatActivity {
      * Buscamos el club seleccionado en el Spinner en nuestra BBDD y lo asignamos al usuario
      */
     private void asignarClubSeleccionadoSpinner() {
-        String uidPersonalizado = spinnerSeleccionClub.getSelectedItem().toString().replaceAll("\\s+","").toLowerCase();
+        String uidPersonalizado = spinnerSeleccionClub.getSelectedItem().toString().replaceAll("\\s+", "").toLowerCase();
 
         //Comprobamos que se ha seleccionado un articulo. Por defecto, si no seleccionas una opción del Spinner, saldría null.
-        if (uidPersonalizado.equals(null)){
-            Toast.makeText(getApplicationContext(),"Selecciona un club, por favor",Toast.LENGTH_SHORT).show();
-        }else{
+        if (uidPersonalizado.equals(null)) {
+            Toast.makeText(getApplicationContext(), "Selecciona un club, por favor", Toast.LENGTH_SHORT).show();
+        } else {
             usuario.setClub(uidPersonalizado);
         }
     }
@@ -99,12 +99,12 @@ public class Registro3Activity extends AppCompatActivity {
     }
 
     private void comprobarRolBotonRegistrarClub() {
-        if (usuario.getRol().equals("Atleta")){
+        if (usuario.getRol().equals("Atleta")) {
             btnRegistrarClub.setVisibility(View.INVISIBLE);
         }
     }
 
-    private void cargarDatosSpinner(){
+    private void cargarDatosSpinner() {
         ArrayList<String> nombreClubes = new ArrayList<>();
         mDatabase.collection("clubes")
                 .get()
@@ -114,11 +114,11 @@ public class Registro3Activity extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 nombreClubes.add((String) document.getData().get("nombre"));
-                                String[] nombreClubesArray = nombreClubes.toArray(new String[0]);
-                                ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,nombreClubesArray);
-                                adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                                spinnerSeleccionClub.setAdapter(adaptador);
                             }
+                            String[] nombreClubesArray = nombreClubes.toArray(new String[0]);
+                            ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, nombreClubesArray);
+                            adaptador.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                            spinnerSeleccionClub.setAdapter(adaptador);
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());
                         }
