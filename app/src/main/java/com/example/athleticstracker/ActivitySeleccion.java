@@ -6,6 +6,7 @@ import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -25,13 +26,10 @@ public class ActivitySeleccion extends AppCompatActivity {
 
     private Bundle bundle;
     private Usuario usuario;
-    private ArrayList<Usuario> listaAtletasClub;
 
     private Spinner spinnerSeleccionPrueba;
-    private EditText editTextFechaPrueba;
     private EditText editTextLocalidadPrueba;
     private Button btnElegirAtletas;
-    private Date fechaPrueba;
 
 
     @Override
@@ -52,7 +50,7 @@ public class ActivitySeleccion extends AppCompatActivity {
                     Prueba prueba = new Prueba(
                             spinnerSeleccionPrueba.getSelectedItem().toString(),
                             editTextLocalidadPrueba.getText().toString(),
-                            fechaPrueba,
+                            new Date(),
                             new HashMap<>()
                             );
 
@@ -66,35 +64,16 @@ public class ActivitySeleccion extends AppCompatActivity {
 
             }
         });
-
-        this.editTextFechaPrueba.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dialogoFecha();
-            }
-        });
     }
 
     private void iniciarDatos() {
         bundle = getIntent().getExtras();
         spinnerSeleccionPrueba = (Spinner) findViewById(R.id.spinnerSeleccionPrueba);
-        editTextFechaPrueba = (EditText) findViewById(R.id.editTextFechaPrueba);
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.spinner_item, getResources().getStringArray(R.array.pruebas));
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerSeleccionPrueba.setAdapter(adapter);
         editTextLocalidadPrueba = (EditText) findViewById(R.id.editTextLocalidadPrueba);
         btnElegirAtletas = (Button) findViewById(R.id.btnElegirAtletas);
-    }
-
-    /* Este método crea un Dialogo de selección de fecha. Le asigna el valor a una variable y además
-       escribe la fecha en el EditText. */
-    private void dialogoFecha(){
-        DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker datePicker, int year, int month, int day) {
-                LocalDate localDatePicker = LocalDate.of(year, month, day);
-                fechaPrueba = Date.from(localDatePicker.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                editTextFechaPrueba.setText(day+"-"+month+"-"+year);
-            }
-        }, LocalDate.now().getYear(), LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth());
-        dpd.show();
     }
 
     private boolean verificarCampos() {
@@ -104,10 +83,6 @@ public class ActivitySeleccion extends AppCompatActivity {
         }
         if (StringUtils.isBlank(editTextLocalidadPrueba.getText().toString())){
             Toast.makeText(getApplicationContext(),"Selecciona una localidad por favor",Toast.LENGTH_SHORT).show();
-            return false;
-        }
-        if (StringUtils.isBlank(editTextFechaPrueba.getText().toString())){
-            Toast.makeText(getApplicationContext(),"Selecciona una fecha para la prueba por favor",Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
