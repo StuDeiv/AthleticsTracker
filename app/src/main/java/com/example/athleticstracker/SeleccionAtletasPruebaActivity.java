@@ -2,8 +2,10 @@ package com.example.athleticstracker;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,8 +15,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -24,7 +28,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class SeleccionAtletasPruebaActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
+public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
 
     private Club club;
     private Bundle bundle;
@@ -40,7 +44,13 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity implements
     private Spinner spinnerCalle5;
     private Spinner spinnerCalle6;
     private Spinner spinnerCalle7;
-    private int[] vItemsSeleccionados;
+    private int itemSeleccionadoSpinner1;
+    private int itemSeleccionadoSpinner2;
+    private int itemSeleccionadoSpinner3;
+    private int itemSeleccionadoSpinner4;
+    private int itemSeleccionadoSpinner5;
+    private int itemSeleccionadoSpinner6;
+    private int itemSeleccionadoSpinner7;
     private Usuario[] vCorredores;
     private FirebaseFirestore mDatabase;
 
@@ -63,50 +73,153 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity implements
         this.btnComenzarPrueba.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                comprobarEstadoCalles();
-                Intent intent = new Intent(getApplicationContext(),ActivityCrono.class);
-                intent.putExtra("usuario",usuario);
-                intent.putExtra("prueba",prueba);
-                intent.putExtra("vCorredores",vCorredores);
-                startActivity(intent);
-                finish();
+                asignarCorredoresCalles();
+                if (comprobarEstadoCalles()){
+                    Intent intent = new Intent(getApplicationContext(), ActivityCrono.class);
+                    intent.putExtra("usuario", usuario);
+                    intent.putExtra("prueba", prueba);
+                    intent.putExtra("vCorredores", vCorredores);
+                    startActivity(intent);
+                    finish();
+                }else{
+                    Toast.makeText(getApplicationContext(),"Todas las calles están vacías",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
     }
 
-    private void comprobarEstadoCalles() {
-
-        //TODO: CORREGIR IMPORTACIÓN DATOS ACORDE AL ITEM SELECCIONADO
-
-        for (int i = 0; i < vItemsSeleccionados.length; i++) {
-            switch (vItemsSeleccionados[i]) {
-                case 0:
-                    vCorredores[i] = null;
-                    break;
-                default:
-                    vCorredores[i] = listaAtletasClubBD.get(vItemsSeleccionados[i] - 1);
-                    break;
+    private boolean comprobarEstadoCalles(){
+        for (int i = 0; i < vCorredores.length; i++) {
+            if (vCorredores[i] != null){
+                return true;
             }
         }
+        return false;
+    }
 
+    private void asignarCorredoresCalles() {
 
-
-
-        Usuario usuario1 = new Usuario();
-        Usuario usuario2 = new Usuario();
-
+        if (itemSeleccionadoSpinner1 == 0){
+            vCorredores[0] = null;
+        }else{
+            vCorredores[0] = listaAtletasClubBD.get(itemSeleccionadoSpinner1-1);
+        }
+        if (itemSeleccionadoSpinner2 == 0){
+            vCorredores[1] = null;
+        }else{
+            vCorredores[1] = listaAtletasClubBD.get(itemSeleccionadoSpinner2-1);
+        }
+        if (itemSeleccionadoSpinner3 == 0){
+            vCorredores[2] = null;
+        }else{
+            vCorredores[2] = listaAtletasClubBD.get(itemSeleccionadoSpinner3-1);
+        }
+        if (itemSeleccionadoSpinner4 == 0){
+            vCorredores[3] = null;
+        }else{
+            vCorredores[3] = listaAtletasClubBD.get(itemSeleccionadoSpinner4-1);
+        }
+        if (itemSeleccionadoSpinner5 == 0){
+            vCorredores[4] = null;
+        }else{
+            vCorredores[4] = listaAtletasClubBD.get(itemSeleccionadoSpinner5-1);
+        }
+        if (itemSeleccionadoSpinner6 == 0){
+            vCorredores[5] = null;
+        }else{
+            vCorredores[5] = listaAtletasClubBD.get(itemSeleccionadoSpinner6-1);
+        }
+        if (itemSeleccionadoSpinner7 == 0){
+            vCorredores[6] = null;
+        }else{
+            vCorredores[6] = listaAtletasClubBD.get(itemSeleccionadoSpinner7-1);
+        }
 
     }
 
     private void inicializarListenerSpinners() {
-        spinnerCalle1.setOnItemSelectedListener(this);
-        spinnerCalle2.setOnItemSelectedListener(this);
-        spinnerCalle3.setOnItemSelectedListener(this);
-        spinnerCalle4.setOnItemSelectedListener(this);
-        spinnerCalle5.setOnItemSelectedListener(this);
-        spinnerCalle6.setOnItemSelectedListener(this);
-        spinnerCalle7.setOnItemSelectedListener(this);
+
+        spinnerCalle1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                itemSeleccionadoSpinner1 = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        spinnerCalle2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                itemSeleccionadoSpinner2 = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        spinnerCalle3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                itemSeleccionadoSpinner3 = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+            }
+        });
+
+        spinnerCalle4.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                itemSeleccionadoSpinner4 = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerCalle5.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                itemSeleccionadoSpinner5 = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerCalle6.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                itemSeleccionadoSpinner6 = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        spinnerCalle7.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                itemSeleccionadoSpinner7 = i;
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
     }
 
     private void iniciarDatos() {
@@ -123,7 +236,6 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity implements
 
         //Iniciamos componentes extras
         listaAtletasClubBD = new ArrayList<>();
-        vItemsSeleccionados = new int[7];
         vCorredores = new Usuario[7];
         bundle = getIntent().getExtras();
         mDatabase = FirebaseFirestore.getInstance();
@@ -152,14 +264,11 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity implements
         ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, nombreAtletasArrayAdapter) {
             @Override
             public boolean isEnabled(int position) {
-                for (int i = 0; i < vItemsSeleccionados.length; i++) {
-                    if (position == vItemsSeleccionados[i]) {
-                        return false;
-                    } else {
-                        return true;
-                    }
+                if (position == itemSeleccionadoSpinner1 || position == itemSeleccionadoSpinner2 || position == itemSeleccionadoSpinner3 || position == itemSeleccionadoSpinner4 || position == itemSeleccionadoSpinner5 || position == itemSeleccionadoSpinner6 || position == itemSeleccionadoSpinner7) {
+                    return false;
+                } else {
+                    return true;
                 }
-                return false;
             }
 
             @Override
@@ -167,12 +276,10 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity implements
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView textView = (TextView) view;
 
-                for (int i = 0; i < vItemsSeleccionados.length; i++) {
-                    if (position == vItemsSeleccionados[i]) {
-                        textView.setTextColor(Color.GRAY);
-                    } else {
-                        textView.setTextColor(Color.BLACK);
-                    }
+                if (position == itemSeleccionadoSpinner1 || position == itemSeleccionadoSpinner2 || position == itemSeleccionadoSpinner3 || position == itemSeleccionadoSpinner4 || position == itemSeleccionadoSpinner5 || position == itemSeleccionadoSpinner6 || position == itemSeleccionadoSpinner7) {
+                    textView.setTextColor(Color.GRAY);
+                }else{
+                    textView.setTextColor(Color.BLACK);
                 }
                 return view;
             }
@@ -210,37 +317,4 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity implements
                 });
     }
 
-    @Override
-    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        switch (adapterView.getId()) {
-            case R.id.spinnerCalle1:
-                vItemsSeleccionados[0] = i;
-                break;
-            case R.id.spinnerCalle2:
-                vItemsSeleccionados[1] = i;
-                break;
-            case R.id.spinnerCalle3:
-                vItemsSeleccionados[2] = i;
-                break;
-            case R.id.spinnerCalle4:
-                vItemsSeleccionados[3] = i;
-                break;
-            case R.id.spinnerCalle5:
-                vItemsSeleccionados[4] = i;
-                break;
-            case R.id.spinnerCalle6:
-                vItemsSeleccionados[5] = i;
-                break;
-            case R.id.spinnerCalle7:
-                vItemsSeleccionados[6] = i;
-                break;
-
-
-        }
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> adapterView) {
-
-    }
 }

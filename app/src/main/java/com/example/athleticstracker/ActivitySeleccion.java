@@ -18,6 +18,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 
 public class ActivitySeleccion extends AppCompatActivity {
@@ -52,7 +53,7 @@ public class ActivitySeleccion extends AppCompatActivity {
                             spinnerSeleccionPrueba.getSelectedItem().toString(),
                             editTextLocalidadPrueba.getText().toString(),
                             fechaPrueba,
-                            new LinkedHashMap<>()
+                            new HashMap<>()
                             );
 
                     //Enviamos los objetos a la siguiente activity
@@ -60,7 +61,7 @@ public class ActivitySeleccion extends AppCompatActivity {
                     intent.putExtra("usuario",usuario);
                     intent.putExtra("prueba",prueba);
                     startActivity(intent);
-
+                    finish();
                 }
 
             }
