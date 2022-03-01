@@ -93,7 +93,7 @@ public class RegistrosAtleta extends AppCompatActivity {
     }
 
     private String fechaToString(Date date){
-        DateFormat dateFormat = new SimpleDateFormat("dd-mm-yyyy hh:mm:ss");
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         return dateFormat.format(date);
     }
 }

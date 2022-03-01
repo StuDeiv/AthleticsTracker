@@ -12,10 +12,10 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:text="@string/titulo_club"
         android:textColor="@color/design_default_color_primary"
         android:textSize="@dimen/auth_texts"
-        android:textStyle="bold"
-        android:text="@string/titulo_club" />
+        android:textStyle="bold" />
 
     <Space
         android:layout_width="match_parent"
@@ -26,9 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nombre"
+        android:textColor="@color/colorOnSecondary"
         android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editTextNombre"
@@ -44,8 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Localidad"
+        android:textColor="@color/colorOnSecondary"
         android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <EditText
@@ -62,8 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Mail del club"
+        android:textColor="@color/colorOnSecondary"
         android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <EditText

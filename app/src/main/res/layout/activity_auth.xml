@@ -13,7 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.6"
-        tools:layout="@layout/fragment_publi"/>
+        tools:layout="@layout/fragment_publi"
+        />
 
     <ImageView
         android:id="@+id/imageView3"
@@ -33,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/prompt_email"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/colorOnSecondary"
             android:textSize="@dimen/auth_texts"
             android:layout_marginHorizontal="5dp"
             android:textStyle="bold" />
@@ -54,7 +55,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/prompt_password"
-            android:textColor="@color/design_default_color_primary"
+            android:textColor="@color/colorSecondaryVariant"
             android:textSize="@dimen/auth_texts"
             android:layout_marginHorizontal="5dp"
             android:textStyle="bold" />
@@ -85,7 +86,7 @@
         android:text="¿Aún no tienes cuenta?"
         android:gravity="end"
         android:layout_marginHorizontal="5dp"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/colorOnSecondary"
         android:textSize="20sp"/>
 
     <Button

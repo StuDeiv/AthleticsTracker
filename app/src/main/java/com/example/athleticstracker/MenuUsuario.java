@@ -19,6 +19,7 @@ import com.example.athleticstracker.visualizaciondatos.ComparadorActivity;
 import com.example.athleticstracker.visualizaciondatos.DatosClub;
 import com.example.athleticstracker.visualizaciondatos.RegistrosAtleta;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -30,6 +31,14 @@ public class MenuUsuario extends AppCompatActivity{
     private Button btnComparador;
     private Button btnIniciarPrueba;
     private FirebaseFirestore mDatabase;
+
+    @Override
+    public void onBackPressed() {
+        FirebaseAuth.getInstance().signOut();
+        Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

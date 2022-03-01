@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_vertical"
+    android:orientation="vertical"
     android:theme="@style/Theme.AppCompat"
     tools:context=".gestion.AjustesUsuarioActivity">
 
@@ -14,12 +14,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:text="¡Hola!"
-        android:textColor="@color/black"
-        android:textSize="40sp"
-        android:textStyle="bold"
+        android:paddingTop="10sp"
         android:paddingBottom="20sp"
-        android:paddingTop="10sp"/>
+        android:text="¡Hola!"
+        android:textColor="@color/colorOnSecondary"
+        android:textSize="40sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/txtViewMailUsuarioAjustes"
@@ -28,7 +28,7 @@
         android:gravity="center"
         android:paddingBottom="20sp"
         android:text="¡Hola!"
-        android:textColor="@color/black"
+        android:textColor="@color/colorPrimaryVariant"
         android:textSize="20sp" />
 
     <Button
@@ -54,8 +54,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_red_dark"
-        android:text="@string/titulo_alert_dialog_cerrar_sesion"></Button>
-
+        android:text="@string/titulo_alert_dialog_cerrar_sesion"
+        android:textColor="@android:color/white"></Button>
 
 
 </LinearLayout>

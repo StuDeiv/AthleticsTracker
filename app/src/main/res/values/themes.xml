@@ -2,13 +2,13 @@
     <!-- Base application theme. -->
     <style name="Theme.AthleticsTracker" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">#3C3F56</item>
-        <item name="colorPrimaryVariant">#666B92</item>
-        <item name="colorOnPrimary">#A7A9B8</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryVariant">@color/colorPrimaryVariant</item>
+        <item name="colorOnPrimary">@color/colorOnPrimary</item>
         <!-- Secondary brand color. -->
-        <item name="colorSecondary">#FBCF92</item>
-        <item name="colorSecondaryVariant">#666B92</item>
-        <item name="colorOnSecondary">#363951</item>
+        <item name="colorSecondary">@color/colorOnPrimary</item>
+        <item name="colorSecondaryVariant">@color/colorSecondaryVariant</item>
+        <item name="colorOnSecondary">@color/colorOnSecondary</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->

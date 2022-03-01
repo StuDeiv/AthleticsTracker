@@ -4,29 +4,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:gravity="center_vertical"
+    android:orientation="vertical"
     tools:context=".registro.BienvenidaActivity">
 
     <TextView
         android:id="@+id/textViewBienvenido"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="@dimen/bienvenida"
+        android:text="@string/titulo_bienvenida_activity"
         android:textAlignment="center"
-        android:textColor="@color/design_default_color_primary"
-        android:text="@string/bienvenido" />
+        android:textColor="@color/colorOnSecondary"
+        android:textSize="@dimen/bienvenida"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textViewUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="@dimen/bienvenida_2"
+        android:text="TextView"
         android:textAlignment="center"
-        android:textColor="@color/design_default_color_secondary"
-        android:text="TextView" />
+        android:textColor="@color/colorSecondaryVariant"
+        android:textSize="@dimen/bienvenida_2"
+        android:textStyle="bold" />
 
     <Space
         android:layout_width="match_parent"
@@ -35,16 +35,17 @@
     <Button
         android:id="@+id/btnComenzar"
         android:layout_width="wrap_content"
-        android:layout_gravity="center"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
         android:text="@string/btnBienvenida_text" />
 
     <Button
         android:id="@+id/btnOlvidasteContrasenia"
-        android:backgroundTint="@color/design_default_color_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/olvidaste_contrasenia" />
+        android:backgroundTint="@color/design_default_color_error"
+        android:text="@string/olvidaste_contrasenia"
+        android:textColor="@android:color/white" />
 
 </LinearLayout>

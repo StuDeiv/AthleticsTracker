@@ -98,7 +98,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
     private void alertDialogEnviarMensajeVerificacion() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.titulo_alert_dialog_enviar_mensaje_verificacion);
-        builder.setMessage(R.string.mensaje_alert_dialog_enviar_mensaje_verificacion + sesionUsuario.getEmail());
+        builder.setMessage(getResources().getString(R.string.mensaje_alert_dialog_enviar_mensaje_verificacion) + sesionUsuario.getEmail());
         builder.setNegativeButton(R.string.cerrar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

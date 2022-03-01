@@ -63,11 +63,11 @@ public class AuthActivity extends AppCompatActivity {
                     }else{
                         //Toast que aparece si los campos mail y contraseña están vacíos
                         if (StringUtils.isBlank(editTextMail.getText().toString()) && StringUtils.isBlank(editTextContrasenia.getText().toString())){
-                            Toast.makeText(getBaseContext(), "Campos no pueden estar vacíos", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), R.string.mensaje_error_mail, Toast.LENGTH_LONG).show();
                         }
                         //Toast que aparece si la contraseña tiene menos de 6 caracteres. Problema Firebase
                         if (editTextContrasenia.getText().toString().length() < 6){
-                            Toast.makeText(getBaseContext(), "La contraseña debe tener 6 caracteres como mínimo.\n", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getBaseContext(), R.string.invalid_password, Toast.LENGTH_LONG).show();
                         }
                     }
                 }
@@ -102,7 +102,7 @@ public class AuthActivity extends AppCompatActivity {
                         }
                     });
                 }else{
-                    Toast.makeText(getBaseContext(), "Campos no pueden estar vacíos", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getBaseContext(), R.string.campos_vacios, Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -110,9 +110,9 @@ public class AuthActivity extends AppCompatActivity {
 
     private void mostrarAlertaRegistroUsuario(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Error en el inicio de sesión");
-        builder.setMessage("Ha habido un error al iniciar sesión con este mail y contraseña");
-        builder.setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.error_iniciar_sesion);
+        builder.setMessage(R.string.mensaje_iniciar_sesion);
+        builder.setPositiveButton(R.string.aceptar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.cancel();

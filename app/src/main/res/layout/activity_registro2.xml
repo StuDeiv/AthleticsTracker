@@ -12,10 +12,10 @@
         android:id="@+id/textViewTitulo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/design_default_color_primary"
+        android:text="@string/titulo_registro2"
+        android:textColor="@color/colorOnSecondary"
         android:textSize="@dimen/auth_texts"
-        android:textStyle="bold"
-        android:text="@string/titulo_registro2" />
+        android:textStyle="bold" />
 
     <Space
         android:layout_width="match_parent"
@@ -26,9 +26,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/nombre"
+        android:textColor="@color/colorSecondaryVariant"
         android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
-        android:textStyle="bold"/>
+        android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editTextNombre"
@@ -44,8 +44,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/apellidos"
+        android:textColor="@color/colorSecondaryVariant"
         android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <EditText
@@ -62,19 +62,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/fecha_nacimiento"
+        android:textColor="@color/colorSecondaryVariant"
         android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <EditText
         android:id="@+id/editTextFechaPrueba"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:clickable="true"
         android:ems="10"
+        android:focusable="false"
         android:hint="@string/hint_fechanacimiento"
         android:inputType="textPersonName"
-        android:focusable="false"
-        android:clickable="true"
         android:minHeight="48dp" />
 
     <TextView
@@ -82,8 +82,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/sexo"
+        android:textColor="@color/colorSecondaryVariant"
         android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <Spinner
@@ -98,8 +98,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/pregunta_rol"
+        android:textColor="@color/colorSecondaryVariant"
         android:textSize="@dimen/register_layout"
-        android:textColor="@color/black"
         android:textStyle="bold" />
 
     <Spinner
