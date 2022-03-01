@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">AthleticsTracker</string>
+    <string name="app_name">Athletics Tracker</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Contraseña</string>
@@ -82,4 +82,8 @@
     <string name="pasar_seleccion_atletas">PASAR A SELECCIONAR ATLETAS</string>
     <string name="iniciar_reiniciar_convocatoria">INICIAR/REINICIAR CONVOCATORIA</string>
     <string name="comenzar_prueba">COMENZAR PRUEBA</string>
+    <string name="carrera_finalizada">¡Carrera finalizada!</string>
+    <string name="mensaje_carrera_finalizada">¿Qué desea hacer?</string>
+    <string name="guardar">Guardar</string>
+    <string name="volver_iniciar">Volver al inicio</string>
 </resources>

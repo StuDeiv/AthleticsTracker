@@ -234,9 +234,9 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
             this.future.cancel(true);
             this.stpe.shutdown();
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle("¡Carrera finalizada!");
-            builder.setMessage("¿Qué desea hacer?");
-            builder.setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
+            builder.setTitle(R.string.carrera_finalizada);
+            builder.setMessage(R.string.mensaje_carrera_finalizada);
+            builder.setPositiveButton(R.string.guardar, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     persistirDatos();
@@ -246,7 +246,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
                     finish();
                 }
             });
-            builder.setNeutralButton("Reiniciar", new DialogInterface.OnClickListener() {
+            builder.setNeutralButton(R.string.reiniciar, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     txtTiempoGeneral.setText(getResources().getText(R.string._0_00_0));
@@ -254,7 +254,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
                     reiniciarTextosYBotones();
                 }
             });
-            builder.setNegativeButton("Volver al inicio", new DialogInterface.OnClickListener() {
+            builder.setNegativeButton(R.string.volver_iniciar, new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     Intent intent = new Intent(getApplicationContext(), MenuUsuario.class);
