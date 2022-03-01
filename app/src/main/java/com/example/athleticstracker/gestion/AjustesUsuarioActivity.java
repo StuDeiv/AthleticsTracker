@@ -74,7 +74,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
     }
 
     private void alertDialogCerrarSesion() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Cerrar sesión");
         builder.setMessage("¿Estás seguro de que quieres cerrar sesión?");
         builder.setPositiveButton("CERRAR SESIÓN", new DialogInterface.OnClickListener() {
@@ -97,7 +97,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
     }
 
     private void alertDialogEnviarMensajeVerificacion() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Envíado mensaje de verificación");
         builder.setMessage("Se ha enviado un mensaje de verificación a la siguiente dirección de correo: " + sesionUsuario.getEmail());
         builder.setPositiveButton("Enviar mail", new DialogInterface.OnClickListener() {
@@ -125,7 +125,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
     }
 
     private void alertDialogReestablecerContrasenia() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Reestablecer contraseña");
         builder.setMessage("¿Estás seguro de que deseas reestablecer tu contraseña? Pulsa OK para confirmarlo");
 
