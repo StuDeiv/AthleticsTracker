@@ -22,6 +22,10 @@ import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
 
+/**
+ * Clase que permite mostrar en nuestra aplicación los datos albergados en nuestra base de datos
+ * y relativos a la prueba consultada por el usuario.
+ */
 public class DatosPrueba extends AppCompatActivity {
 
     private Prueba prueba;
@@ -29,12 +33,13 @@ public class DatosPrueba extends AppCompatActivity {
     private TextView txtTipoDePrueba;
     private TextView txtFechaVistaPrueba;
     private ListView listViewTiempos;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_prueba);
-
+        bundle = getIntent().getExtras();
         this.txtLocalidadVistaPrueba = (TextView) findViewById(R.id.txtLocalidadVistaPrueba);
         this.txtTipoDePrueba = (TextView) findViewById(R.id.txtTipoDePrueba);
         this.txtFechaVistaPrueba = (TextView) findViewById(R.id.txtFechaVistaPrueba);
@@ -47,21 +52,30 @@ public class DatosPrueba extends AppCompatActivity {
         this.listViewTiempos.setAdapter(adapter);
     }
 
-
-    private void recuperarDatos(){
-        this.prueba = (Prueba) getIntent().getExtras().getSerializable("prueba");
+    /**
+     * Recuperamos los datos procedentes de la activity origen
+     */
+    private void recuperarDatos() {
+        this.prueba = (Prueba) bundle.getSerializable("prueba");
     }
 
-    private void cargarDatos(){
+    /**
+     * Cargamos los datos en el layout correspondiente a esta clase
+     */
+    private void cargarDatos() {
         this.txtLocalidadVistaPrueba.setText(this.prueba.getLocalidad());
         this.txtTipoDePrueba.setText(this.prueba.getTipo());
         this.txtFechaVistaPrueba.setText(fechaToString(this.prueba.getFecha()));
     }
 
-    private BaseAdapter crearAdapter(){
+    /**
+     * Método que permite generar el adapter con su layout personalizado y mostrar los datos
+     * @return BaseAdapter, devuelve el adaptador ya elaborado
+     */
+    private BaseAdapter crearAdapter() {
         ArrayList<HashMap.Entry<String, Long>> datos = new ArrayList<>();
         datos.addAll(this.prueba.getMapaTiempos().entrySet());
-        Comparator<HashMap.Entry<String, Long>> valueComparator = new Comparator<HashMap.Entry<String,Long>>() {
+        Comparator<HashMap.Entry<String, Long>> valueComparator = new Comparator<HashMap.Entry<String, Long>>() {
             @Override
             public int compare(HashMap.Entry<String, Long> e1, HashMap.Entry<String, Long> e2) {
                 Long v1 = e1.getValue();
@@ -95,7 +109,7 @@ public class DatosPrueba extends AppCompatActivity {
                 view = inflater.inflate(R.layout.item_lista_tiempo, viewGroup, false);
 
                 //Capturamos los elementos del layout
-                TextView txtCorredor= (TextView) view.findViewById(R.id.txtCorredor);
+                TextView txtCorredor = (TextView) view.findViewById(R.id.txtCorredor);
                 TextView txtTiempo = (TextView) view.findViewById(R.id.txtTiempo);
 
                 //Ponemos los valores en los elementos
@@ -109,18 +123,28 @@ public class DatosPrueba extends AppCompatActivity {
         return adapter;
     }
 
-    private String fechaToString(Date date){
+    /**
+     * Método que convierte la fecha que pasa por parametro a String y formatea el tiempo que se le pasa por parámetro
+     * @param date Tiempo que quiere formatearse y convertirlo a cadena
+     * @return String, cadena de texto con el tiempo formateado
+     */
+    private String fechaToString(Date date) {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         return dateFormat.format(date);
     }
 
-    private String tiempoToString(long tiempo){
+    /**
+     * Método que convierte el tiempo de la prueba a String y formatea el tiempo que se le pasa por parámetro
+     * @param tiempo Tiempo que quiere formatearse y convertirlo a cadena
+     * @return String, cadena de texto con el tiempo formateado
+     */
+    private String tiempoToString(long tiempo) {
         DecimalFormat fS = new DecimalFormat("00");
-        long decimas = (tiempo%1000)/100;
-        long segundos = tiempo/1000;
-        long minutos = (segundos/60);
-        segundos = segundos%60;
-        return String.valueOf(minutos)+":"+fS.format(segundos)+":"+String.valueOf(decimas);
+        long decimas = (tiempo % 1000) / 100;
+        long segundos = tiempo / 1000;
+        long minutos = (segundos / 60);
+        segundos = segundos % 60;
+        return String.valueOf(minutos) + ":" + fS.format(segundos) + ":" + String.valueOf(decimas);
     }
 
 }

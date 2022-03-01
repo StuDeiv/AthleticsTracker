@@ -23,7 +23,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-public class MenuUsuario extends AppCompatActivity{
+/**
+ * Clase que muestra el menú principal de nuestra aplicación así como el
+ * manejo de las acciones dentro del menú
+ */
+public class MenuUsuario extends AppCompatActivity {
 
     private Usuario usuario;
     private Button btnRegistros;
@@ -31,9 +35,14 @@ public class MenuUsuario extends AppCompatActivity{
     private Button btnComparador;
     private Button btnIniciarPrueba;
     private FirebaseFirestore mDatabase;
+    private Bundle bundle;
 
     @Override
     public void onBackPressed() {
+        /*
+        En el caso de volver hacia atrás, evitamos que el usuario vuelva a realizar el registro, cerrando así su sesión
+        y volviendo a la activity de registro y/o acceso
+         */
         FirebaseAuth.getInstance().signOut();
         Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
@@ -44,7 +53,7 @@ public class MenuUsuario extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_menu_atleta);
-
+        bundle = getIntent().getExtras();
         mDatabase = FirebaseFirestore.getInstance();
         this.btnRegistros = (Button) findViewById(R.id.buttonRegistrosPersonales);
         this.btnDatosClub = (Button) findViewById(R.id.btnVerClubAtleta);
@@ -85,36 +94,48 @@ public class MenuUsuario extends AppCompatActivity{
             }
         });
 
-        if(usuario.getRol().equals("Entrenador")){
+        if (usuario.getRol().equals("Entrenador")) {
             btnIniciarPrueba.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(), ActivitySeleccion.class);
-                    intent.putExtra("usuario",usuario);
+                    intent.putExtra("usuario", usuario);
                     startActivity(intent);
                 }
             });
-        }
-        else{
+        } else {
             this.btnIniciarPrueba.setVisibility(View.INVISIBLE);
         }
 
     }
 
-    private void recuperarDatos(){
-        this.usuario = (Usuario) getIntent().getExtras().getSerializable("usuario");
+    /**
+     * Recuperamos los datos procedentes de la activity origen
+     */
+    private void recuperarDatos() {
+        this.usuario = (Usuario) bundle.getSerializable("usuario");
     }
 
+    /**
+     * Método que nos permite mostrar un ActionBar con acceso a las configuraciones del usuario
+     * @param menu Menú a mostrar
+     * @return
+     */
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_principal,menu);
+        inflater.inflate(R.menu.menu_principal, menu);
         return true;
     }
 
+    /**
+     * Método que controla las opciones de nuestro ActionBar en función del item pulsado
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case R.id.perfilUsuario:
                 Intent intent = new Intent(getApplicationContext(), AjustesUsuarioActivity.class);
                 startActivity(intent);

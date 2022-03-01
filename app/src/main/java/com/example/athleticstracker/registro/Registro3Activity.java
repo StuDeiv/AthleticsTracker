@@ -22,6 +22,10 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+/**
+ * Clase correspondiente al paso 3 del registro donde se realiza la selección o creación del Club por parte del Usuario.
+ * En el caso de crear un Club, solo está habilitado para Usuarios con el rol Entrenador.
+ */
 public class Registro3Activity extends AppCompatActivity {
 
     private Spinner spinnerSeleccionClub;
@@ -85,6 +89,10 @@ public class Registro3Activity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método que obtiene los datos correspondientes del layout así como los provenientes de otras
+     * activities a través del Bundle
+     */
     private void iniciarDatos() {
         mDatabase = FirebaseFirestore.getInstance();
         bundle = getIntent().getExtras();
@@ -98,12 +106,19 @@ public class Registro3Activity extends AppCompatActivity {
         comprobarRolBotonRegistrarClub();
     }
 
+    /**
+     * Comprueba el rol que se encuentra registrado el atleta para mostrar la opción de registrar club
+     */
     private void comprobarRolBotonRegistrarClub() {
         if (usuario.getRol().equals("Atleta")) {
             btnRegistrarClub.setVisibility(View.INVISIBLE);
         }
     }
 
+    /**
+     * Obtenemos los clubes que están registrados en nuestra BD y los mostramos en el Spinner para que el
+     * Usuario pueda seleccionarlo.
+     */
     private void cargarDatosSpinner() {
         ArrayList<String> nombreClubes = new ArrayList<>();
         mDatabase.collection("clubes")

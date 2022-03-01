@@ -20,6 +20,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.SignInMethodQueryResult;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+/**
+ * Clase Bienvenida que formaliza el completo de registro de usuarios en la aplicación
+ */
 public class BienvenidaActivity extends AppCompatActivity {
 
     private TextView textViewUsuario;
@@ -42,6 +45,9 @@ public class BienvenidaActivity extends AppCompatActivity {
         iniciarSiguienteActivity();
     }
 
+    /**
+     * Obtenemos los datos del layout y recogemos los datos a través del Bundle
+     */
     private void obtenerDatos() {
         this.textViewUsuario = (TextView) findViewById(R.id.textViewUsuario);
         this.btnComenzar = (Button) findViewById(R.id.btnComenzar);
@@ -63,6 +69,9 @@ public class BienvenidaActivity extends AppCompatActivity {
         textViewUsuario.setText(usuario.getNombre());
     }
 
+    /**
+     * Método que nos permite enviar al usuario a través del mail indicado, la posibilidad de reestablecer la contraseña
+     */
     public void olvidarContraseña() {
         FirebaseAuth.getInstance().sendPasswordResetEmail(mailUsuario)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -74,6 +83,11 @@ public class BienvenidaActivity extends AppCompatActivity {
                     }
                 });
     }
+
+    /**
+     * Método que permite al usuario acceder a la aplicación y completar su proceso de registro,
+     * realizando las comprobaciones necesarias.
+     */
     private void iniciarSiguienteActivity() {
         this.btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override

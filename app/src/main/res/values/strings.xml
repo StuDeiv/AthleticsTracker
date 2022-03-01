@@ -23,7 +23,7 @@
     <string name="btnBienvenida_text">CONTINUA CON EL REGISTRO</string>
     <string name="siguiente">SIGUIENTE</string>
     <string name="nombre">Nombre</string>
-    <string name="apellidos">Apellidos</string>
+    <string name="apellidos">Apellido</string>
     <string name="fecha_nacimiento">Fecha de nacimiento</string>
     <string name="sexo">Sexo</string>
     <string name="hint_fechanacimiento">Formato (DD-MM-AAAA)</string>

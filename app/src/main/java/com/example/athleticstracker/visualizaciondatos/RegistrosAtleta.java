@@ -20,29 +20,43 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Clase que permite mostrar en nuestra aplicación los datos albergados en nuestra base de datos
+ * y relativos al atleta que tiene la sesión activa.
+ */
 public class RegistrosAtleta extends AppCompatActivity {
 
     private ArrayList<Registro> lRegistros;
     private ListView listViewRegistros;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_registros_atleta);
+        bundle = getIntent().getExtras();
         this.listViewRegistros = (ListView) findViewById(R.id.listViewRegistros);
         cargarDatos();
         BaseAdapter adapter = crearAdapter();
         this.listViewRegistros.setAdapter(adapter);
     }
 
-    private void cargarDatos(){
-        this.lRegistros = (ArrayList<Registro>) getIntent().getExtras().getSerializable("registros");
-        if(this.lRegistros.size() == 0){
+    /**
+     * Cargamos los datos en el layout correspondiente a esta clase
+     */
+    private void cargarDatos() {
+        this.lRegistros = (ArrayList<Registro>) bundle.getSerializable("registros");
+        if (this.lRegistros.size() == 0) {
             Toast.makeText(getApplicationContext(), R.string.mensaje_falta_registro_personales, Toast.LENGTH_LONG).show();
         }
     }
 
-    private BaseAdapter crearAdapter(){
+    /**
+     * Método que permite generar el adapter con su layout personalizado y mostrar los datos
+     *
+     * @return BaseAdapter, devuelve el adaptador ya elaborado
+     */
+    private BaseAdapter crearAdapter() {
         BaseAdapter adapter = new BaseAdapter() {
             @Override
             public int getCount() {
@@ -83,16 +97,28 @@ public class RegistrosAtleta extends AppCompatActivity {
         return adapter;
     }
 
-    private String tiempoToString(long tiempo){
+    /**
+     * Método que convierte el tiempo de la prueba a String y formatea el tiempo que se le pasa por parámetro
+     *
+     * @param tiempo Tiempo que quiere formatearse y convertirlo a cadena
+     * @return String, cadena de texto con el tiempo formateado
+     */
+    private String tiempoToString(long tiempo) {
         DecimalFormat fS = new DecimalFormat("00");
-        long decimas = (tiempo%1000)/100;
-        long segundos = tiempo/1000;
-        long minutos = (segundos/60);
-        segundos = segundos%60;
-        return String.valueOf(minutos)+":"+fS.format(segundos)+":"+String.valueOf(decimas);
+        long decimas = (tiempo % 1000) / 100;
+        long segundos = tiempo / 1000;
+        long minutos = (segundos / 60);
+        segundos = segundos % 60;
+        return String.valueOf(minutos) + ":" + fS.format(segundos) + ":" + String.valueOf(decimas);
     }
 
-    private String fechaToString(Date date){
+    /**
+     * Método que convierte la fecha que pasa por parametro a String y formatea el tiempo que se le pasa por parámetro
+     *
+     * @param date Tiempo que quiere formatearse y convertirlo a cadena
+     * @return String, cadena de texto con el tiempo formateado
+     */
+    private String fechaToString(Date date) {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         return dateFormat.format(date);
     }

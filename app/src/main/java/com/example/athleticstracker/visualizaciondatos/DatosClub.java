@@ -19,6 +19,10 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+/**
+ * Clase que permite mostrar en nuestra aplicación los datos albergados en nuestra base de datos
+ * y relativos al club del usuario que realiza la consulta en la aplicación
+ */
 public class DatosClub extends AppCompatActivity {
 
     private Club club;
@@ -26,12 +30,13 @@ public class DatosClub extends AppCompatActivity {
     private TextView txtEmailClub;
     private TextView txtLocationClub;
     private ListView listViewCarreras;
+    private Bundle bundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datos_club);
-
+        bundle = getIntent().getExtras();
         this.txtNombreClub = (TextView) findViewById(R.id.txtLocalidadVistaPrueba);
         this.txtEmailClub = (TextView) findViewById(R.id.txtTipoDePrueba);
         this.txtLocationClub = (TextView) findViewById(R.id.txtFechaVistaPrueba);
@@ -40,6 +45,7 @@ public class DatosClub extends AppCompatActivity {
         recuperarDatos();
         cargarDatos();
 
+        //Generamos el adaptador del ListView de Carreras/Registros
         BaseAdapter adapter = crearAdapter();
         this.listViewCarreras.setAdapter(adapter);
         this.listViewCarreras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -53,16 +59,26 @@ public class DatosClub extends AppCompatActivity {
         });
     }
 
+    /**
+     * Recuperamos los datos procedentes de la activity origen
+     */
     private void recuperarDatos(){
-        this.club = (Club) getIntent().getExtras().getSerializable("club");
+        this.club = (Club) bundle.getSerializable("club");
     }
 
+    /**
+     * Cargamos los datos en el layout correspondiente a esta clase
+     */
     private void cargarDatos(){
         this.txtNombreClub.setText(this.club.getNombre());
         this.txtEmailClub.setText(this.club.getMail());
         this.txtLocationClub.setText(this.club.getLocalidad());
     }
 
+    /**
+     * Método que permite generar el adapter con su layout personalizado y mostrar los datos
+     * @return BaseAdapter, devuelve el adaptador ya elaborado
+     */
     private BaseAdapter crearAdapter(){
         BaseAdapter adapter = new BaseAdapter() {
             @Override
@@ -104,6 +120,11 @@ public class DatosClub extends AppCompatActivity {
         return adapter;
     }
 
+    /**
+     * Método que convierte a String y formatea el tiempo que se le pasa por parámetro
+     * @param date Tiempo que quiere formatearse y convertirlo a cadena
+     * @return String, cadena de texto con el tiempo formateado
+     */
     private String fechaToString(Date date){
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
         return dateFormat.format(date);

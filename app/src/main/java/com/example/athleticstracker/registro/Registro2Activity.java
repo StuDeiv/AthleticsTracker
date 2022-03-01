@@ -22,6 +22,10 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 
+/**
+ * Clase correspondiente al Paso 2 del registro, en donde se recogen los campos nombre,
+ * apellidos, fecha nacimiento, sexo y rol (Entrenador/Atleta)
+ */
 public class Registro2Activity extends AppCompatActivity {
 
     private EditText editTextNombre;
@@ -45,7 +49,11 @@ public class Registro2Activity extends AppCompatActivity {
 
     }
 
-    private void iniciarDatos(){
+    /**
+     * Método que obtiene los datos correspondientes del layout así como los provenientes de otras
+     * activities a través del Bundle
+     */
+    private void iniciarDatos() {
         // Recogemos los datos de la activity anterior
         bundle = getIntent().getExtras();
         this.mailUsuario = bundle.getString("mailUsuario");
@@ -75,29 +83,33 @@ public class Registro2Activity extends AppCompatActivity {
         });
     }
 
-    /* Este método crea un Dialogo de selección de fecha. Le asigna el valor a una variable y además
-       escribe la fecha en el EditText. */
-    private void dialogoFecha(){
+    /**
+     * Este método crea un Dialogo de selección de fecha. Le asigna el valor a una variable y además
+     * escribe la fecha en el EditText.
+     */
+    private void dialogoFecha() {
         DatePickerDialog dpd = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker datePicker, int year, int month, int day) {
                 LocalDate localDatePicker = LocalDate.of(year, month, day);
                 fecha = Date.from(localDatePicker.atStartOfDay(ZoneId.systemDefault()).toInstant());
-                editTextFechaNacimiento.setText(day+"-"+month+"-"+year);
+                editTextFechaNacimiento.setText(day + "-" + month + "-" + year);
             }
-        }, LocalDate.now().getYear()-5, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth());
+        }, LocalDate.now().getYear() - 5, LocalDate.now().getMonthValue(), LocalDate.now().getDayOfMonth());
         dpd.show();
     }
 
-    /* Recogemos los valores del formulario y, previa comprobación, creamos un objeto usuario y le
-       añadimos sus atributos (nombre, apellidos, etc). Creamos un intent nuevo y le pasamos los datos. */
+    /**
+     * Recogemos los valores del formulario y, previa comprobación, creamos un objeto usuario y le
+     * añadimos sus atributos (nombre, apellidos, etc). Creamos un intent nuevo y le pasamos los datos.
+     */
     private void continuarRegistro() {
         String nombre;
         String apellidos;
         String rol;
         String sexo;
         Usuario usuario;
-        if(verificarCampos()){
+        if (verificarCampos()) {
             nombre = this.editTextNombre.getText().toString();
             apellidos = this.editTextApellidos.getText().toString();
             rol = this.spinnerRol.getSelectedItem().toString();
@@ -118,24 +130,28 @@ public class Registro2Activity extends AppCompatActivity {
         }
     }
 
-    /* Este método comprueba que los campos nombre, apellidos y fecha no estén vacíos. */
-    private boolean verificarCampos(){
+    /**
+     * Este método comprueba que los campos nombre, apellidos y fecha no estén vacíos.
+     *
+     * @return Devuelve true, si todos los campos están correctamente y false, si hay algún campo erroneo
+     */
+    private boolean verificarCampos() {
         String nombre = this.editTextNombre.getText().toString();
         String apellidos = this.editTextApellidos.getText().toString();
-        if(StringUtils.isBlank(nombre)){
-            Toast.makeText(this,R.string.mensaje_error_nombre_registro, Toast.LENGTH_LONG).show();
+        if (StringUtils.isBlank(nombre)) {
+            Toast.makeText(this, R.string.mensaje_error_nombre_registro, Toast.LENGTH_LONG).show();
             return false;
         }
-        if(StringUtils.isBlank(apellidos)){
+        if (StringUtils.isBlank(apellidos)) {
             Toast.makeText(this, R.string.mensaje_error_apellidos_registro, Toast.LENGTH_LONG).show();
             return false;
         }
-        if(fecha == null){
+        if (fecha == null) {
             Toast.makeText(this, R.string.mensaje_error_fecha_nacimiento_registro, Toast.LENGTH_LONG).show();
             return false;
         }
         //Comprobamos que la fecha seleccionada no se encuentre después de la fecha actual
-        if(fecha.after(new Date())){
+        if (fecha.after(new Date())) {
             Toast.makeText(this, R.string.mensaje_error_fecha_superior_actual, Toast.LENGTH_LONG).show();
             return false;
         }

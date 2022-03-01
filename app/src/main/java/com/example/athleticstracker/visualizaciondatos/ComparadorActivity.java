@@ -33,6 +33,10 @@ import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Clase que nos permite implementar en nuestra aplicación un Comparador de tiempos entre Atletas, así como
+ * su interfaz.
+ */
 public class ComparadorActivity extends AppCompatActivity {
 
     private Spinner spinnerClub1;
@@ -68,6 +72,10 @@ public class ComparadorActivity extends AppCompatActivity {
         this.listViewComparador.setAdapter(this.adapterListView);
     }
 
+    /**
+     * Método que obtiene los datos correspondientes del layout así como los provenientes de otras
+     * activities a través del Bundle
+     */
     private void capturarElementos(){
         this.spinnerClub1 = (Spinner) findViewById(R.id.spinnerClub1);
         this.spinnerClub2 = (Spinner) findViewById(R.id.spinnerClub2);
@@ -79,6 +87,9 @@ public class ComparadorActivity extends AppCompatActivity {
         this.imgBtnComparar = (ImageButton) findViewById(R.id.imgBtnComparar);
     }
 
+    /**
+     * Método que obtiene los datos de los clubes registrados en la base de datos
+     */
     private void cargarDatosSpinnerClubes(){
         ArrayList<String> nombreClubes = new ArrayList<>();
         // Buscamos todos los clubes de nuestra base de datos
@@ -112,7 +123,7 @@ public class ComparadorActivity extends AppCompatActivity {
 
     /**
      * En este método programamos lo que ocurrirá cuando seleccionemos un elemento del spinner.
-     * @param spinnerClub
+     * @param spinnerClub Spinner del club a personalizar
      */
     private void programarListenerSpinnerClub(Spinner spinnerClub) {
         spinnerClub.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -196,6 +207,11 @@ public class ComparadorActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Método que nos permite calcular la edad del Usuario respecto a la fecha actual
+     * @param usuario Usuario del cual se quiere calcular su edad
+     * @return String, con el resultado del cálculo
+     */
     public String calcularEdad(Usuario usuario){
         LocalDate hoy = LocalDate.now();
         LocalDate fechaNac = usuario.getFechaNac().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
@@ -203,6 +219,9 @@ public class ComparadorActivity extends AppCompatActivity {
         return String.valueOf(edad)+" años";
     }
 
+    /**
+     * Método que nos permite inicializar y programas los listeners de los botones presentes en la interfaz
+     */
     public void programarClickListenerBoton(){
         this.imgBtnComparar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -218,6 +237,9 @@ public class ComparadorActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Método que carga y ordena el listado de registro de los atletas que se encuentran en el comparador.
+     */
     private void cargarListaDeTiempos(){
         // Ordenamos la lista de registros de los atletas, de menor tiempo a mayor.
         // Así nos aseguramos que el primer registro que encuentra es el mejor tiempo siempre.
@@ -277,6 +299,10 @@ public class ComparadorActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Método que permite generar el adapter con su layout personalizado y mostrar los datos
+     * @return BaseAdapter, devuelve el adaptador ya elaborado
+     */
     private BaseAdapter crearAdapter(){
         BaseAdapter adapter = new BaseAdapter() {
 
@@ -318,6 +344,11 @@ public class ComparadorActivity extends AppCompatActivity {
         return adapter;
     }
 
+    /**
+     * Método que convierte a String y formatea el tiempo que se le pasa por parámetro
+     * @param tiempo Tiempo que quiere formatearse y convertirlo a cadena
+     * @return String, cadena de texto con el tiempo formateado
+     */
     private String tiempoToString(long tiempo){
         DecimalFormat fS = new DecimalFormat("00");
         long decimas = (tiempo%1000)/100;
