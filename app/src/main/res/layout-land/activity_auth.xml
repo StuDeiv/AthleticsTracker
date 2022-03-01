@@ -6,17 +6,39 @@
     android:layout_height="match_parent"
     tools:context=".AuthActivity">
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:src="@drawable/at_logo250" />
+        android:orientation="vertical"
+        android:layout_weight="4">
+
+        <fragment
+            android:id="@+id/fragmentContainerView"
+            android:name="com.example.athleticstracker.fragments.PubliFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2"
+            tools:layout="@layout/fragment_publi"/>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="8"
+            android:src="@drawable/at_logo250" />
+    </LinearLayout>
+
+    <Space
+        android:id="@+id/spaceLand"
+        android:layout_width="10dp"
+        android:layout_height="wrap_content" />
 
     <LinearLayout
         android:id="@+id/layoutDatos"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:layout_weight="6">
 
         <TextView
             android:id="@+id/textViewEmail"
