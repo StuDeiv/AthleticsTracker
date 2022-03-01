@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AthleticsTracker">
         <activity
+            android:name=".CambioDatosUsuarioActivity"
+            android:exported="false" />
+        <activity
             android:name=".AjustesUsuarioActivity"
             android:exported="false" />
         <activity

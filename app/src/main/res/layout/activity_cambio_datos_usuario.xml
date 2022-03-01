@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    tools:context=".CambioDatosUsuarioActivity">
+
+    <TextView
+        android:id="@+id/textViewNuevoMailUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Introduce tu nuevo mail: " />
+
+    <EditText
+        android:id="@+id/editTextNuevoMailUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress" />
+
+    <TextView
+        android:id="@+id/textViewNuevaContrasenia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Introduce tu nueva contraseña: " />
+
+    <EditText
+        android:id="@+id/editTextNuevaContrasenia"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnCambiarDatosUsuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cambiar datos" />
+
+    <Button
+        android:id="@+id/btnCancelar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="Cancelar" />
+</LinearLayout>

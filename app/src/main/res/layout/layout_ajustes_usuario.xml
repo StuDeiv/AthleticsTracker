@@ -5,6 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:gravity="center_vertical"
+    android:theme="@style/Theme.AppCompat"
     tools:context=".AjustesUsuarioActivity">
 
     <TextView
@@ -30,10 +32,10 @@
         android:textSize="20sp" />
 
     <Button
-        android:id="@+id/btnActualizarMail"
+        android:id="@+id/btnActualizarDatosUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ACTUALIZAR MAIL"></Button>
+        android:text="ACTUALIZAR DATOS USUARIO"></Button>
 
     <Button
         android:id="@+id/btnEnviarMensajeVerificacion"
@@ -42,9 +44,18 @@
         android:text="Verifica tu dirección mail"></Button>
 
     <Button
-        android:id="@+id/btnReestablecerContraseña"
+        android:id="@+id/btnReestablecerContrasenia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="REESTABLECER CONTRASEÑA"></Button>
+
+    <Button
+        android:id="@+id/btnCerrarSesión"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@android:color/holo_red_dark"
+        android:text="Cerrar sesión"></Button>
+
+
 
 </LinearLayout>
