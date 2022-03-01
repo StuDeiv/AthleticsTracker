@@ -73,8 +73,7 @@ public class ComparadorActivity extends AppCompatActivity {
     }
 
     /**
-     * Método que obtiene los datos correspondientes del layout así como los provenientes de otras
-     * activities a través del Bundle
+     * Método que obtiene los datos correspondientes del layout
      */
     private void capturarElementos(){
         this.spinnerClub1 = (Spinner) findViewById(R.id.spinnerClub1);
@@ -100,7 +99,7 @@ public class ComparadorActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                nombreClubes.add((String) document.getData().get(getResources().getString(R.string.nombre))); //Añadimos los nombres a la lista.
+                                nombreClubes.add((String) document.getData().get(getResources().getString(R.string.nombre).toLowerCase())); //Añadimos los nombres a la lista.
                             }
                             // Una vez tenemos la lista con los nombres de los clubs, creamos los adapter de los spinners
                             String[] nombreClubesArray = nombreClubes.toArray(new String[0]);

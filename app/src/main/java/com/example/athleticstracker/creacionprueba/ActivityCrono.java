@@ -73,7 +73,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
         bundle = getIntent().getExtras();
         this.vUsuarios = (Usuario[]) bundle.getSerializable(getResources().getString(R.string.vCorredores));
         this.entrenador = (Usuario) bundle.getSerializable(getResources().getString(R.string.usuario));
-        this.prueba = (Prueba) bundle.getSerializable(getResources().getString(R.string.prueba).toLowerCase());
+        this.prueba = (Prueba) bundle.getSerializable(getResources().getString(R.string.prueba));
         this.club = entrenador.getClub();
 
         /* Para calcular los corredores que hay en la Prueba, se mira el vector */
