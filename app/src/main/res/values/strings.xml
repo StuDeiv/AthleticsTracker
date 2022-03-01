@@ -90,7 +90,7 @@
     <string name="error_iniciar_sesion">Error en el inicio de sesión</string>
     <string name="mensaje_iniciar_sesion">Ha habido un error al iniciar sesión con este mail y contraseña</string>
     <string name="aceptar">Aceptar</string>
-    <string name="vCorredores">\"vCorredores\"</string>
+    <string name="vCorredores">vCorredores</string>
     <string name="usuario">usuario</string>
     <string name="espacio">" "</string>
     <string name="clubes">clubes</string>
@@ -99,4 +99,8 @@
     <string name="registros">registros</string>
     <string name="club">club</string>
     <string name="webAdidas">https://www.adidas.es/</string>
+    <string name="mailUsuario">mailUsuario</string>
+    <string name="contrasenia">contrasenia</string>
+    <string name="atleta">Atleta</string>
+    <string name="entrenador">Entrenador</string>
 </resources>

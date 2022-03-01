@@ -56,8 +56,8 @@ public class Registro2Activity extends AppCompatActivity {
     private void iniciarDatos() {
         // Recogemos los datos de la activity anterior
         bundle = getIntent().getExtras();
-        this.mailUsuario = bundle.getString("mailUsuario");
-        this.contrasenia = bundle.getString("contrasenia");
+        this.mailUsuario = bundle.getString(getResources().getString(R.string.mailUsuario));
+        this.contrasenia = bundle.getString(getResources().getString(R.string.contrasenia));
         System.out.println(mailUsuario);
 
         //Capturamos los elementos del layout
@@ -123,9 +123,9 @@ public class Registro2Activity extends AppCompatActivity {
             usuario.setRol(rol);
 
             Intent intent = new Intent(getApplicationContext(), Registro3Activity.class);
-            intent.putExtra("mailUsuario", mailUsuario);
-            intent.putExtra("contrasenia", contrasenia);
-            intent.putExtra("usuario", usuario);
+            intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario);
+            intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
+            intent.putExtra(getResources().getString(R.string.usuario), usuario);
             startActivity(intent);
         }
     }

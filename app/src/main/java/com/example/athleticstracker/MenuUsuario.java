@@ -66,7 +66,7 @@ public class MenuUsuario extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getBaseContext(), RegistrosAtleta.class);
-                intent.putExtra("registros", usuario.getRegistros());
+                intent.putExtra(getResources().getString(R.string.registros), usuario.getRegistros());
                 startActivity(intent);
             }
         });
@@ -74,12 +74,12 @@ public class MenuUsuario extends AppCompatActivity {
         this.btnDatosClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mDatabase.collection("clubes").document(usuario.getClub()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                mDatabase.collection(getResources().getString(R.string.clubes)).document(usuario.getClub()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Club club = documentSnapshot.toObject(Club.class);
                         Intent intent = new Intent(getApplicationContext(), DatosClub.class);
-                        intent.putExtra("club", club);
+                        intent.putExtra(getResources().getString(R.string.club), club);
                         startActivity(intent);
                     }
                 });
@@ -94,12 +94,12 @@ public class MenuUsuario extends AppCompatActivity {
             }
         });
 
-        if (usuario.getRol().equals("Entrenador")) {
+        if (usuario.getRol().equals(getResources().getString(R.string.entrenador))) {
             btnIniciarPrueba.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     Intent intent = new Intent(getApplicationContext(), ActivitySeleccion.class);
-                    intent.putExtra("usuario", usuario);
+                    intent.putExtra(getResources().getString(R.string.usuario), usuario);
                     startActivity(intent);
                 }
             });

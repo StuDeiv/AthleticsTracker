@@ -56,7 +56,7 @@ public class DatosPrueba extends AppCompatActivity {
      * Recuperamos los datos procedentes de la activity origen
      */
     private void recuperarDatos() {
-        this.prueba = (Prueba) bundle.getSerializable("prueba");
+        this.prueba = (Prueba) bundle.getSerializable(getResources().getString(R.string.prueba));
     }
 
     /**

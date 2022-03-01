@@ -64,9 +64,9 @@ public class Registro3Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(), RegistroClubActivity.class);
-                intent.putExtra("mailUsuario", mailUsuario);
-                intent.putExtra("contrasenia", contrasenia);
-                intent.putExtra("usuario", usuario);
+                intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario);
+                intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
+                intent.putExtra(getResources().getString(R.string.usuario), usuario);
                 startActivity(intent);
                 finish();
             }
@@ -96,10 +96,10 @@ public class Registro3Activity extends AppCompatActivity {
     private void iniciarDatos() {
         mDatabase = FirebaseFirestore.getInstance();
         bundle = getIntent().getExtras();
-        this.mailUsuario = bundle.getString("mailUsuario");
-        this.contrasenia = bundle.getString("contrasenia");
+        this.mailUsuario = bundle.getString(getResources().getString(R.string.mailUsuario));
+        this.contrasenia = bundle.getString(getResources().getString(R.string.contrasenia));
         System.out.println(mailUsuario);
-        usuario = (Usuario) bundle.get("usuario");
+        usuario = (Usuario) bundle.get(getResources().getString(R.string.usuario));
         this.spinnerSeleccionClub = (Spinner) findViewById(R.id.spinnerSeleccionClub);
         this.btnRegistrarClub = (Button) findViewById(R.id.btnRegistrarClub);
         this.btnSiguiente = (Button) findViewById(R.id.btnSiguienteClub);
@@ -110,7 +110,7 @@ public class Registro3Activity extends AppCompatActivity {
      * Comprueba el rol que se encuentra registrado el atleta para mostrar la opción de registrar club
      */
     private void comprobarRolBotonRegistrarClub() {
-        if (usuario.getRol().equals("Atleta")) {
+        if (usuario.getRol().equals(getResources().getString(R.string.atleta))) {
             btnRegistrarClub.setVisibility(View.INVISIBLE);
         }
     }
@@ -121,14 +121,14 @@ public class Registro3Activity extends AppCompatActivity {
      */
     private void cargarDatosSpinner() {
         ArrayList<String> nombreClubes = new ArrayList<>();
-        mDatabase.collection("clubes")
+        mDatabase.collection(getResources().getString(R.string.clubes))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                nombreClubes.add((String) document.getData().get("nombre"));
+                                nombreClubes.add((String) document.getData().get(getResources().getString(R.string.nombre).toLowerCase()));
                             }
                             String[] nombreClubesArray = nombreClubes.toArray(new String[0]);
                             ArrayAdapter<String> adaptador = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, nombreClubesArray);

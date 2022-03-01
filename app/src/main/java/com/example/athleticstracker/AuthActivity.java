@@ -70,8 +70,8 @@ public class AuthActivity extends AppCompatActivity {
                     String mailUsuario = editTextMail.getText().toString();
                     String contrasenia = editTextContrasenia.getText().toString();
                     Intent intent = new Intent(getApplicationContext(), Registro2Activity.class);
-                    intent.putExtra("mailUsuario", mailUsuario.toLowerCase());
-                    intent.putExtra("contrasenia", contrasenia);
+                    intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario.toLowerCase());
+                    intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
                     startActivity(intent);
                 } else {
                     //Toast que aparece si los campos mail y contraseña están vacíos
@@ -104,12 +104,12 @@ public class AuthActivity extends AppCompatActivity {
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
                                 //Si la autentificación se ha realizado correctamente, nos traemos de la BBDD el usuario con ese email
-                                mDatabase.collection("users").document(mailUsuario.toLowerCase()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                mDatabase.collection(getResources().getString(R.string.users)).document(mailUsuario.toLowerCase()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Usuario user = documentSnapshot.toObject(Usuario.class);
                                         Intent intent = new Intent(getApplicationContext(), MenuUsuario.class);
-                                        intent.putExtra("usuario", user);
+                                        intent.putExtra(getResources().getString(R.string.usuario), user);
                                         startActivity(intent);
                                     }
                                 });

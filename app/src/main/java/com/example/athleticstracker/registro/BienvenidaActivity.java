@@ -63,9 +63,9 @@ public class BienvenidaActivity extends AppCompatActivity {
         });
 
         bundle = getIntent().getExtras();
-        this.mailUsuario = bundle.getString("mailUsuario");
-        this.contrasenia = bundle.getString("contrasenia");
-        this.usuario = (Usuario) bundle.get("usuario");
+        this.mailUsuario = bundle.getString(getResources().getString(R.string.mailUsuario));
+        this.contrasenia = bundle.getString(getResources().getString(R.string.contrasenia));
+        this.usuario = (Usuario) bundle.get(getResources().getString(R.string.usuario));
         textViewUsuario.setText(usuario.getNombre());
     }
 
@@ -110,12 +110,12 @@ public class BienvenidaActivity extends AppCompatActivity {
                                                 Intent intent;
 
                                                 //Registro del usuario en la BBDD
-                                                mDatabase.collection("users").document(mailUsuario).set(usuario);
+                                                mDatabase.collection(getResources().getString(R.string.users)).document(mailUsuario).set(usuario);
                                                 Toast.makeText(getApplicationContext(), R.string.registro_exito, Toast.LENGTH_SHORT).show();
 
                                                 //Acceso a un menu
                                                 intent = new Intent(getApplicationContext(), MenuUsuario.class);
-                                                intent.putExtra("usuario", usuario);
+                                                intent.putExtra(getResources().getString(R.string.usuario), usuario);
                                                 startActivity(intent);
 
 

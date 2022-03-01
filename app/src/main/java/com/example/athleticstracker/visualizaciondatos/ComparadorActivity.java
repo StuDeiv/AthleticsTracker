@@ -93,14 +93,14 @@ public class ComparadorActivity extends AppCompatActivity {
     private void cargarDatosSpinnerClubes(){
         ArrayList<String> nombreClubes = new ArrayList<>();
         // Buscamos todos los clubes de nuestra base de datos
-        mDatabase.collection("clubes")
+        mDatabase.collection(getResources().getString(R.string.clubes))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                nombreClubes.add((String) document.getData().get("nombre")); //Añadimos los nombres a la lista.
+                                nombreClubes.add((String) document.getData().get(getResources().getString(R.string.nombre))); //Añadimos los nombres a la lista.
                             }
                             // Una vez tenemos la lista con los nombres de los clubs, creamos los adapter de los spinners
                             String[] nombreClubesArray = nombreClubes.toArray(new String[0]);
@@ -132,7 +132,7 @@ public class ComparadorActivity extends AppCompatActivity {
                 // Buscamos los usuarios del club en la base de datos, a través de su UID personalizado
                 String uidPersonalizado = spinnerClub.getSelectedItem().toString().replaceAll("\\s+","").toLowerCase();
                 ArrayList<Usuario> lUsuariosClub = new ArrayList<>();
-                mDatabase.collection("users").whereEqualTo("club", uidPersonalizado).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                mDatabase.collection(getResources().getString(R.string.users)).whereEqualTo(getResources().getString(R.string.club), uidPersonalizado).get().addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {

@@ -68,18 +68,18 @@ public class RegistroClubActivity extends AppCompatActivity {
                     );
 
                     //Acceso a la base de datos
-                    db.collection("clubes").document(uidPersonalizado).set(club);
+                    db.collection(getResources().getString(R.string.clubes)).document(uidPersonalizado).set(club);
                     Toast.makeText(getApplicationContext(), R.string.mensaje_registro_club_exito, Toast.LENGTH_SHORT).show();
 
                     //Volvemos al paso 3 del registro
                     Intent intent = new Intent(getApplicationContext(), Registro3Activity.class);
 
-                    intent.putExtra("mailUsuario", mailUsuario);
-                    intent.putExtra("contrasenia", contrasenia);
+                    intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario);
+                    intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
 
                     //Antes de enviarlo, asociamos el club registrado al atleta
                     usuario.setClub(uidPersonalizado);
-                    intent.putExtra("usuario", usuario);
+                    intent.putExtra(getResources().getString(R.string.usuario), usuario);
 
                     startActivity(intent);
                     finish();
@@ -116,10 +116,9 @@ public class RegistroClubActivity extends AppCompatActivity {
      */
     private void iniciarDatos() {
         bundle = getIntent().getExtras();
-        mailUsuario = bundle.getString("mailUsuario");
-        contrasenia = bundle.getString("contrasenia");
-        usuario = (Usuario) bundle.get("usuario");
-        System.out.println(mailUsuario);
+        mailUsuario = bundle.getString(getResources().getString(R.string.mailUsuario));
+        contrasenia = bundle.getString(getResources().getString(R.string.contrasenia));
+        usuario = (Usuario) bundle.get(getResources().getString(R.string.usuario));
         this.editTextNombre = (EditText) findViewById(R.id.editTextNombre);
         this.editTextLocalidad = (EditText) findViewById(R.id.editTextLocalidad);
         this.editTextMail = (EditText) findViewById(R.id.editTextFechaPrueba);
@@ -136,14 +135,14 @@ public class RegistroClubActivity extends AppCompatActivity {
      */
     private ArrayList<String> obtenerClubesBD() {
         ArrayList<String> nombreClubes = new ArrayList<>();
-        db.collection("clubes")
+        db.collection(getResources().getString(R.string.clubes))
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                nombreClubes.add((String) document.getData().get("nombre"));
+                                nombreClubes.add((String) document.getData().get(getResources().getString(R.string.nombre)));
                             }
                         } else {
                             Log.d("TAG", "Error getting documents: ", task.getException());

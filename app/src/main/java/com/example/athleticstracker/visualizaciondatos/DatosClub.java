@@ -53,7 +53,7 @@ public class DatosClub extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Prueba prueba = club.getlPruebas().get(i);
                 Intent intent = new Intent(getApplicationContext(), DatosPrueba.class);
-                intent.putExtra("prueba", prueba);
+                intent.putExtra(getResources().getString(R.string.prueba), prueba);
                 startActivity(intent);
             }
         });
@@ -63,7 +63,7 @@ public class DatosClub extends AppCompatActivity {
      * Recuperamos los datos procedentes de la activity origen
      */
     private void recuperarDatos(){
-        this.club = (Club) bundle.getSerializable("club");
+        this.club = (Club) bundle.getSerializable(getResources().getString(R.string.club));
     }
 
     /**
