@@ -22,12 +22,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 public class ActivityCrono extends AppCompatActivity implements View.OnClickListener{
 
+    private Bundle bundle;
     private Button btnIniciar;
     private Button btnReiniciar;
     private TextView txtPrueba;
@@ -53,44 +55,25 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_crono);
 
-        /* Inicializamos los textos, los botones, y ponemos a 0 los corredores que han llegado a la meta */
+        /* Iniciamos los datos, textos y botones */
         this.mDatabase = FirebaseFirestore.getInstance();
         this.mapaRegistros = new HashMap<>();
         this.meta = 0;
-        cargarDatos();
+        iniciarDatos();
         capturarTextos();
         capturarBotones();
-
-        /* Método que se llamará cuando hagamos click en el botón INICIAR */
-        this.btnIniciar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                cambiarEstadoBotones();
-                iniciarCrono();
-            }
-        });
-
-        /* Método que se llamará cuando hagamos click en el botón REINICIAR */
-        this.btnReiniciar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                future.cancel(true);
-                stpe.shutdown();
-                txtTiempoGeneral.setText(getResources().getText(R.string._0_00_0));
-                meta = 0;
-                reiniciarTextosYBotones();
-            }
-        });
+        anadirListenersIniciarReiniciar();
 
     }
 
     /**
      * Recogemos los datos del intent
      */
-    private void cargarDatos(){
-        this.vUsuarios = (Usuario[]) getIntent().getSerializableExtra("vCorredores");
-        this.entrenador = (Usuario) getIntent().getSerializableExtra("usuario");
-        this.prueba = (Prueba) getIntent().getSerializableExtra("prueba");
+    private void iniciarDatos(){
+        bundle = getIntent().getExtras();
+        this.vUsuarios = (Usuario[]) bundle.getSerializable(getResources().getString(R.string.vCorredores));
+        this.entrenador = (Usuario) bundle.getSerializable(getResources().getString(R.string.usuario));
+        this.prueba = (Prueba) bundle.getSerializable(getResources().getString(R.string.prueba).toLowerCase());
         this.club = entrenador.getClub();
 
         /* Para calcular los corredores que hay en la Prueba, se mira el vector */
@@ -113,10 +96,10 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
         for(int i = 0; i < vUsuarios.length; i++){
             this.vTxtTiempos[i] = (TextView) findViewById(vRecursos[i]);
             if(vUsuarios[i] != null){
-                this.vTxtTiempos[i].setText(this.vUsuarios[i].getNombre());
-                this.vTxtTiempos[i].setVisibility(View.VISIBLE);
+                this.vTxtTiempos[i].setText(this.vUsuarios[i].getNombre()); //Ponemos el nombre del corredor
+                this.vTxtTiempos[i].setVisibility(View.VISIBLE); // Hacemos visible el texto
             }else{
-                this.vTxtTiempos[i].setVisibility(View.INVISIBLE);
+                this.vTxtTiempos[i].setVisibility(View.INVISIBLE); //Si no hay corredor en esa calle, se oculta el texto
             }
         }
     }
@@ -136,14 +119,40 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
             this.vBtnCalles[i].setOnClickListener(this);
             this.vBtnCalles[i].setEnabled(false);
             if(vUsuarios[i] == null){
-                this.vBtnCalles[i].setVisibility(View.INVISIBLE);
+                this.vBtnCalles[i].setVisibility(View.INVISIBLE); //Si no hay corredor en esa calle, se oculta el botón
             }
         }
     }
 
     /**
+     *  Les añadimos un listener personalizado al botón de Iniciar y al de Reiniciar.
+     */
+    private void anadirListenersIniciarReiniciar(){
+        /* Método que se llamará cuando hagamos click en el botón INICIAR */
+        this.btnIniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                cambiarEstadoBotones();
+                iniciarCrono();
+            }
+        });
+
+        /* Método que se llamará cuando hagamos click en el botón REINICIAR */
+        this.btnReiniciar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                future.cancel(true);
+                stpe.shutdown();
+                txtTiempoGeneral.setText(getResources().getText(R.string._0_00_0));
+                meta = 0;
+                reiniciarTextosYBotones();
+            }
+        });
+    }
+
+    /**
      * Método que cambia el estado de los botones. Deshabilita el botón de iniciar y habilita los
-     * botones de STOP de todas las calles. Se llamará cuando se inicie el crono.
+     * botones de STOP de las calles donde hay corredores. Se llamará cuando se inicie el crono.
      */
     private void cambiarEstadoBotones(){
         this.btnIniciar.setEnabled(false);
@@ -155,13 +164,16 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
         }
     }
 
+    /**
+     * Método que reinicia el estado inicial de los botones.
+     */
     private void reiniciarTextosYBotones(){
         this.btnIniciar.setEnabled(true);
         this.btnReiniciar.setEnabled(false);
         for(int i = 0; i < this.vBtnCalles.length; i++){
             if(this.vUsuarios[i] != null) {
-                this.vBtnCalles[i].setEnabled(true);
-                this.vTxtTiempos[i].setText(vUsuarios[i].getNombre());
+                this.vBtnCalles[i].setEnabled(true); //Se activa el botón
+                this.vTxtTiempos[i].setText(vUsuarios[i].getNombre()); //Se vuelve a poner el nombre del corredor, por si se había cambiado
             }
         }
     }
@@ -190,18 +202,19 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
                         minutos = segundos/60;
                         segundos = segundos%60;
                         txtTiempoGeneral.setText(String.valueOf(minutos)+":"+fS.format(segundos)+":"+String.valueOf(decimas));
+                        //No llamo al método Utilidad.tiempoToString ni creo recursos para ":" para que no se vea afectado el rendimiento
                     }
                 });
             }
         }, 0, 100, TimeUnit.MILLISECONDS);
     }
 
+
     /**
      * Método que se llamará cuando pulsemos click sobre uno delos botones de STOP de las calles.
-     * Comprueba de qué calle es el botón para grabar el tiempo en el TextViewCorrespondiente.
-     * La idea es coger el valor del tiempo que haya en ese instante en el TiempoGeneral y copiarlo,
-     * hacer visible el text view e inhabilitar el botón.
-     * @param view
+     * Captura el tiempo que haya en ese instante la variable global "tiempo". Luego se evalúa desde
+     * que calle se ha pulsado el botón y asignamos los tiempos.
+     * @param view la vista que representa el botón donde se ha pulsado
      */
     @Override
     public void onClick(View view) {
@@ -231,50 +244,61 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
         }
         /* Cuando todos los corredores han llegado a la meta, le pedimos al usuario qué quiere hacer */
         if(this.meta == this.corredores){
-            this.future.cancel(true);
-            this.stpe.shutdown();
-            AlertDialog.Builder builder = new AlertDialog.Builder(this);
-            builder.setTitle(R.string.carrera_finalizada);
-            builder.setMessage(R.string.mensaje_carrera_finalizada);
-            builder.setPositiveButton(R.string.guardar, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    persistirDatos();
-                    Intent intent = new Intent(getApplicationContext(), DatosPrueba.class);
-                    intent.putExtra("prueba", prueba);
-                    startActivity(intent);
-                    finish();
-                }
-            });
-            builder.setNeutralButton(R.string.reiniciar, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    txtTiempoGeneral.setText(getResources().getText(R.string._0_00_0));
-                    meta = 0;
-                    reiniciarTextosYBotones();
-                }
-            });
-            builder.setNegativeButton(R.string.volver_iniciar, new DialogInterface.OnClickListener() {
-                @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(getApplicationContext(), MenuUsuario.class);
-                    intent.putExtra("usuario", entrenador);
-                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                    startActivity(intent);
-                }
-            });
-            builder.show();
+            finalDeLaPrueba();
         }
     }
 
     /**
-     * Este método registra los tiempos de cada atleta
+     * Método que se llamará cuando se termine la carrera.
+     */
+    private void finalDeLaPrueba(){
+        this.future.cancel(true);
+        this.stpe.shutdown();
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle(R.string.carrera_finalizada);
+        builder.setMessage(R.string.mensaje_carrera_finalizada);
+        /* Un botón para guardar los resultados y mostrarlos */
+        builder.setPositiveButton(R.string.guardar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                persistirDatos();
+                Intent intent = new Intent(getApplicationContext(), DatosPrueba.class);
+                intent.putExtra(getResources().getString(R.string.prueba), prueba);
+                startActivity(intent);
+                finish();
+            }
+        });
+        /* Otro botón para reiniciar la competición */
+        builder.setNeutralButton(R.string.reiniciar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                txtTiempoGeneral.setText(getResources().getText(R.string._0_00_0));
+                meta = 0;
+                reiniciarTextosYBotones();
+            }
+        });
+        /* Otro botón para cerrar y volver a la pantalla de inicio */
+        builder.setNegativeButton(R.string.volver_iniciar, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(getApplicationContext(), MenuUsuario.class);
+                intent.putExtra(getResources().getString(R.string.usuario), entrenador);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+            }
+        });
+        builder.show();
+    }
+
+
+    /**
+     * Este método registra los tiempos de cada atleta.
      * @param posicion
      * @param tiempo
      */
     private void asignarTiempos(int posicion, long tiempo){
         /* Primero añadimos los datos de ese tiempo a la prueba */
-        String nombre = vUsuarios[posicion].getNombre()+" "+vUsuarios[posicion].getApellidos(); //Cogemos el nombre del atleta
+        String nombre = vUsuarios[posicion].getNombre()+getResources().getString(R.string.espacio)+vUsuarios[posicion].getApellidos(); //Cogemos el nombre del atleta
         this.prueba.getMapaTiempos().put(nombre, tiempo); //Añadimos el registro a la prueba
 
         /* Ahora creamos un objeto Registro individual y lo asociamos al email del atleta dentor de un mapa */
@@ -291,10 +315,13 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
 
     }
 
+    /**
+     * Este método persiste los datos en la bbdd
+     */
     public void persistirDatos(){
-        mDatabase.collection("clubes").document(this.club).update("lPruebas", FieldValue.arrayUnion(this.prueba));
+        mDatabase.collection(getResources().getString(R.string.clubes)).document(this.club).update(getResources().getString(R.string.lpruebas), FieldValue.arrayUnion(this.prueba));
         for(HashMap.Entry<String, Registro> entry : this.mapaRegistros.entrySet()){
-            mDatabase.collection("users").document(entry.getKey()).update("registros", FieldValue.arrayUnion(entry.getValue()));
+            mDatabase.collection(getResources().getString(R.string.users)).document(entry.getKey()).update(getResources().getString(R.string.registros), FieldValue.arrayUnion(entry.getValue()));
         }
     }
 

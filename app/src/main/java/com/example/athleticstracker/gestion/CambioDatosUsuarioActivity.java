@@ -2,20 +2,17 @@ package com.example.athleticstracker.gestion;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.athleticstracker.AuthActivity;
 import com.example.athleticstracker.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
-
 import org.apache.commons.lang3.StringUtils;
 
 public class CambioDatosUsuarioActivity extends AppCompatActivity {
@@ -88,6 +85,9 @@ public class CambioDatosUsuarioActivity extends AppCompatActivity {
 
     }
 
+    /**
+     * Este método se capturan los elementos del layout
+     */
     private void iniciarDatos() {
         editTextNuevoMailUsuario = (EditText) findViewById(R.id.editTextNuevoMailUsuario);
         editTextNuevaContrasenia = (EditText) findViewById(R.id.editTextNuevaContrasenia);

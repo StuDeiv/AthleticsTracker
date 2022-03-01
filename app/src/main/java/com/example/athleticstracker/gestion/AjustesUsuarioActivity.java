@@ -37,13 +37,10 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
         inicializarListeners();
     }
 
-    private void inicializarListeners() {
-        btnActualizarDatosUsuario.setOnClickListener(this);
-        btnReestablecerContrasenia.setOnClickListener(this);
-        btnEnviarMensajeVerificacion.setOnClickListener(this);
-        btnCerrarSesión.setOnClickListener(this);
-    }
 
+    /**
+     * Este método inicia los datos y captura los elementos del layout
+      */
     private void iniciarDatos() {
         sesionUsuario = FirebaseAuth.getInstance().getCurrentUser();
         txtViewMailUsuarioAjustes = (TextView) findViewById(R.id.txtViewMailUsuarioAjustes);
@@ -54,6 +51,21 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
         btnCerrarSesión = (Button) findViewById(R.id.btnCerrarSesión);
     }
 
+
+    /**
+     * Método que añade los listeners de los botones
+     */
+    private void inicializarListeners() {
+        btnActualizarDatosUsuario.setOnClickListener(this);
+        btnReestablecerContrasenia.setOnClickListener(this);
+        btnEnviarMensajeVerificacion.setOnClickListener(this);
+        btnCerrarSesión.setOnClickListener(this);
+    }
+
+    /**
+     * El método on click se llamará cuando se pulsen cualquiera de los botones.
+     * @param view
+     */
     @Override
     public void onClick(View view) {
         switch (view.getId()) {
@@ -62,7 +74,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
                 startActivity(intent);
                 break;
             case R.id.btnEnviarMensajeVerificacion:
-                alertDialogEnviarMensajeVerificacion();
+                enviarMensajeVerificacion();
                 break;
             case R.id.btnReestablecerContrasenia:
                 alertDialogReestablecerContrasenia();
@@ -73,6 +85,9 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
         }
     }
 
+    /**
+     * Se muestra un diálogo donde una de las opciones es cerrar la sesión
+     */
     private void alertDialogCerrarSesion() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.titulo_alert_dialog_cerrar_sesion);
@@ -80,7 +95,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
         builder.setPositiveButton(R.string.titulo_alert_dialog_cerrar_sesion, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                FirebaseAuth.getInstance().signOut();
+                FirebaseAuth.getInstance().signOut();  //Cerramos sesión
                 Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
@@ -95,7 +110,27 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
         builder.show();
     }
 
-    private void alertDialogEnviarMensajeVerificacion() {
+    /**
+     * Este método envía al usuario un enlace de verificación al correo
+     */
+    private void enviarMensajeVerificacion() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            alertDialogMensajeVerificacion(); //Mostramos la alerta
+                        }
+                    }
+                });
+
+    }
+
+    /**
+     *  Muestra un diálogo de alerta de que se ha enviado el mail de verificación
+     */
+    private void alertDialogMensajeVerificacion(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.titulo_alert_dialog_enviar_mensaje_verificacion);
         builder.setMessage(getResources().getString(R.string.mensaje_alert_dialog_enviar_mensaje_verificacion) + sesionUsuario.getEmail());
@@ -109,6 +144,9 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
         builder.show();
     }
 
+    /**
+     * En este alert dialog se da la opción de poder cambiar la contraseña.
+     */
     private void alertDialogReestablecerContrasenia() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle(R.string.titulo_alert_dialog_reestablecer_contrasenia);

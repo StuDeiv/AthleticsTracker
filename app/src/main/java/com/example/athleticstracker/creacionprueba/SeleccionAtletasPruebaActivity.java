@@ -61,7 +61,40 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_seleccion_atletas_prueba);
         iniciarDatos();
+        anadirListenersBotones();
+        inicializarListenerSpinners();
 
+    }
+
+    /**
+     * Método que inicia los datos y captura los componentes del layout.
+     */
+    private void iniciarDatos() {
+        //Inicializamos componentes layout
+        btnComenzarPrueba = (Button) findViewById(R.id.btnComenzarPrueba);
+        btnImportarCorredores = (Button) findViewById(R.id.btnImportarCorredores);
+        spinnerCalle1 = (Spinner) findViewById(R.id.spinnerCalle1);
+        spinnerCalle2 = (Spinner) findViewById(R.id.spinnerCalle2);
+        spinnerCalle3 = (Spinner) findViewById(R.id.spinnerCalle3);
+        spinnerCalle4 = (Spinner) findViewById(R.id.spinnerCalle4);
+        spinnerCalle5 = (Spinner) findViewById(R.id.spinnerCalle5);
+        spinnerCalle6 = (Spinner) findViewById(R.id.spinnerCalle6);
+        spinnerCalle7 = (Spinner) findViewById(R.id.spinnerCalle7);
+
+        //Iniciamos componentes extras
+        listaAtletasClubBD = new ArrayList<>();
+        vCorredores = new Usuario[7];
+        bundle = getIntent().getExtras();
+        mDatabase = FirebaseFirestore.getInstance();
+        usuario = (Usuario) bundle.getSerializable(getResources().getString(R.string.usuario));
+        prueba = (Prueba) bundle.getSerializable(getResources().getString(R.string.prueba));
+        obtenerDatosAtletasBDporClub();
+    }
+
+    /**
+     * Este método añade los listeners a los botones de CrearConvocatoria y Comenzar prueba
+     */
+    private void anadirListenersBotones(){
         this.btnImportarCorredores.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -69,17 +102,15 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
             }
         });
 
-        inicializarListenerSpinners();
-
         this.btnComenzarPrueba.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 asignarCorredoresCalles();
                 if (comprobarEstadoCalles()){
                     Intent intent = new Intent(getApplicationContext(), ActivityCrono.class);
-                    intent.putExtra("usuario", usuario);
-                    intent.putExtra("prueba", prueba);
-                    intent.putExtra("vCorredores", vCorredores);
+                    intent.putExtra(getResources().getString(R.string.usuario), usuario);
+                    intent.putExtra(getResources().getString(R.string.prueba), prueba);
+                    intent.putExtra(getResources().getString(R.string.vCorredores), vCorredores);
                     startActivity(intent);
                     finish();
                 }else{
@@ -87,58 +118,11 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
                 }
             }
         });
-
     }
 
-    private boolean comprobarEstadoCalles(){
-        for (int i = 0; i < vCorredores.length; i++) {
-            if (vCorredores[i] != null){
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private void asignarCorredoresCalles() {
-
-        if (itemSeleccionadoSpinner1 == 0){
-            vCorredores[0] = null;
-        }else{
-            vCorredores[0] = listaAtletasClubBD.get(itemSeleccionadoSpinner1-1);
-        }
-        if (itemSeleccionadoSpinner2 == 0){
-            vCorredores[1] = null;
-        }else{
-            vCorredores[1] = listaAtletasClubBD.get(itemSeleccionadoSpinner2-1);
-        }
-        if (itemSeleccionadoSpinner3 == 0){
-            vCorredores[2] = null;
-        }else{
-            vCorredores[2] = listaAtletasClubBD.get(itemSeleccionadoSpinner3-1);
-        }
-        if (itemSeleccionadoSpinner4 == 0){
-            vCorredores[3] = null;
-        }else{
-            vCorredores[3] = listaAtletasClubBD.get(itemSeleccionadoSpinner4-1);
-        }
-        if (itemSeleccionadoSpinner5 == 0){
-            vCorredores[4] = null;
-        }else{
-            vCorredores[4] = listaAtletasClubBD.get(itemSeleccionadoSpinner5-1);
-        }
-        if (itemSeleccionadoSpinner6 == 0){
-            vCorredores[5] = null;
-        }else{
-            vCorredores[5] = listaAtletasClubBD.get(itemSeleccionadoSpinner6-1);
-        }
-        if (itemSeleccionadoSpinner7 == 0){
-            vCorredores[6] = null;
-        }else{
-            vCorredores[6] = listaAtletasClubBD.get(itemSeleccionadoSpinner7-1);
-        }
-
-    }
-
+    /**
+     * Iniciamos el ItemSelectedItem de cada spinner
+     */
     private void inicializarListenerSpinners() {
 
         spinnerCalle1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -223,28 +207,64 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
         });
     }
 
-    private void iniciarDatos() {
-        //Inicializamos componentes layout
-        btnComenzarPrueba = (Button) findViewById(R.id.btnComenzarPrueba);
-        btnImportarCorredores = (Button) findViewById(R.id.btnImportarCorredores);
-        spinnerCalle1 = (Spinner) findViewById(R.id.spinnerCalle1);
-        spinnerCalle2 = (Spinner) findViewById(R.id.spinnerCalle2);
-        spinnerCalle3 = (Spinner) findViewById(R.id.spinnerCalle3);
-        spinnerCalle4 = (Spinner) findViewById(R.id.spinnerCalle4);
-        spinnerCalle5 = (Spinner) findViewById(R.id.spinnerCalle5);
-        spinnerCalle6 = (Spinner) findViewById(R.id.spinnerCalle6);
-        spinnerCalle7 = (Spinner) findViewById(R.id.spinnerCalle7);
-
-        //Iniciamos componentes extras
-        listaAtletasClubBD = new ArrayList<>();
-        vCorredores = new Usuario[7];
-        bundle = getIntent().getExtras();
-        mDatabase = FirebaseFirestore.getInstance();
-        usuario = (Usuario) bundle.getSerializable("usuario");
-        prueba = (Prueba) bundle.getSerializable("prueba");
-        obtenerDatosAtletasBDporClub();
+    /**
+     * Este método comprueba que haya al menos un atleta en la prueba
+     * @return true si hay, false si todas las calles están vacías.
+     */
+    private boolean comprobarEstadoCalles(){
+        for (int i = 0; i < vCorredores.length; i++) {
+            if (vCorredores[i] != null){
+                return true;
+            }
+        }
+        return false;
     }
 
+    /**
+     * Este método comprueba los itemes que hay seleccionados en cada spinner y añade el atleta correspondiente
+     * al vector de Corredores que pasaremos al siguiente intent.
+     */
+    private void asignarCorredoresCalles() {
+        if (itemSeleccionadoSpinner1 == 0){
+            vCorredores[0] = null;
+        }else{
+            vCorredores[0] = listaAtletasClubBD.get(itemSeleccionadoSpinner1-1);
+        }
+        if (itemSeleccionadoSpinner2 == 0){
+            vCorredores[1] = null;
+        }else{
+            vCorredores[1] = listaAtletasClubBD.get(itemSeleccionadoSpinner2-1);
+        }
+        if (itemSeleccionadoSpinner3 == 0){
+            vCorredores[2] = null;
+        }else{
+            vCorredores[2] = listaAtletasClubBD.get(itemSeleccionadoSpinner3-1);
+        }
+        if (itemSeleccionadoSpinner4 == 0){
+            vCorredores[3] = null;
+        }else{
+            vCorredores[3] = listaAtletasClubBD.get(itemSeleccionadoSpinner4-1);
+        }
+        if (itemSeleccionadoSpinner5 == 0){
+            vCorredores[4] = null;
+        }else{
+            vCorredores[4] = listaAtletasClubBD.get(itemSeleccionadoSpinner5-1);
+        }
+        if (itemSeleccionadoSpinner6 == 0){
+            vCorredores[5] = null;
+        }else{
+            vCorredores[5] = listaAtletasClubBD.get(itemSeleccionadoSpinner6-1);
+        }
+        if (itemSeleccionadoSpinner7 == 0){
+            vCorredores[6] = null;
+        }else{
+            vCorredores[6] = listaAtletasClubBD.get(itemSeleccionadoSpinner7-1);
+        }
+    }
+
+    /**
+     * Método que inicializa los spinners
+     */
     private void inicializarSpinners() {
         //Obtenemos los datos que nos interesan y los pasamos a un ArrayList
 
@@ -299,9 +319,13 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
         spinnerCalle7.setAdapter(adaptador);
     }
 
+    /**
+     * Este método consulta en la base de datos los usuarios que pertenecen al club y los guarda en
+     * una lista.
+     */
     private void obtenerDatosAtletasBDporClub() {
-        mDatabase.collection("users")
-                .whereEqualTo("club", usuario.getClub())
+        mDatabase.collection(getResources().getString(R.string.users))
+                .whereEqualTo(getResources().getString(R.string.club), usuario.getClub())
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -311,8 +335,6 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
                                 Usuario usuario = document.toObject(Usuario.class);
                                 listaAtletasClubBD.add(usuario);
                             }
-                        } else {
-                            Log.d("TAG", "Error getting documents: ", task.getException());
                         }
                     }
                 });

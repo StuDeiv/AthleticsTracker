@@ -42,10 +42,11 @@ public class PubliFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_publi, container, false);
+        /* Cada vez que se pulse el fragment, redigirá a la web del anunciante */
         view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String url = "https://www.adidas.es/";
+                String url = getResources().getString(R.string.webAdidas);
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse(url));
                 startActivity(intent);
