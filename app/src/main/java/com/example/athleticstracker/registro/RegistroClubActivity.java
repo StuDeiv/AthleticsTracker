@@ -57,7 +57,7 @@ public class RegistroClubActivity extends AppCompatActivity {
                             new ArrayList<>()
                     );
                     db.collection("clubes").document(uidPersonalizado).set(club);
-                    Toast.makeText(getApplicationContext(),"Club registrado oon éxito",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.mensaje_registro_club_exito,Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), Registro3Activity.class);
                     intent.putExtra("mailUsuario",mailUsuario);
                     intent.putExtra("contrasenia",contrasenia);
@@ -68,7 +68,7 @@ public class RegistroClubActivity extends AppCompatActivity {
                     finish();
 
                 }else{
-                    Toast.makeText(getApplicationContext(),"Ese club ya existe",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.mensaje_error_club_duplicado,Toast.LENGTH_SHORT).show();
                 }
             }
         });

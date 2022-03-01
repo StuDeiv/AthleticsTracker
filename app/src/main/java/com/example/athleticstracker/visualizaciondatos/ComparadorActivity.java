@@ -212,7 +212,7 @@ public class ComparadorActivity extends AppCompatActivity {
                     adapterListView.notifyDataSetChanged();
                 }
                 else{
-                    Toast.makeText(getApplicationContext(), "Tiene que seleccionar 2 atletas", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), R.string.mensaje_error_comparador_numero_atletas, Toast.LENGTH_LONG).show();
                 }
             }
         });

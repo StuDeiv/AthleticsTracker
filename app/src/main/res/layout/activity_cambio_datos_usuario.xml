@@ -12,7 +12,7 @@
         android:id="@+id/textViewNuevoMailUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Introduce tu nuevo mail: " />
+        android:text="@string/introduce_nuevo_mail" />
 
     <EditText
         android:id="@+id/editTextNuevoMailUsuario"
@@ -25,7 +25,7 @@
         android:id="@+id/textViewNuevaContrasenia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Introduce tu nueva contraseña: " />
+        android:text="@string/introduce_nueva_contrasenia" />
 
     <EditText
         android:id="@+id/editTextNuevaContrasenia"
@@ -38,12 +38,12 @@
         android:id="@+id/btnCambiarDatosUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Cambiar datos" />
+        android:text="@string/btn_cambiar_datos" />
 
     <Button
         android:id="@+id/btnCancelar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_red_dark"
-        android:text="Cancelar" />
+        android:text="@string/cancelar" />
 </LinearLayout>
