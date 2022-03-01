@@ -65,4 +65,21 @@
     <string name="mensaje_error_club_duplicado">Ese club ya existe</string>
     <string name="mensaje_error_comparador_numero_atletas">Tiene que seleccionar 2 atletas</string>
     <string name="mensaje_falta_registro_personales">Aún no tienes registros personales</string>
+    <string name="introduce_nuevo_mail">"Introduce tu nuevo mail: "</string>
+    <string name="introduce_nueva_contrasenia">"Introduce tu nueva contraseña: "</string>
+    <string name="btn_cambiar_datos">Cambiar datos</string>
+    <string name="titulo_bienvenida_activity">¡Completa tu registro!</string>
+    <string name="comenzar">Comenzar</string>
+    <string name="club_1">Club 1</string>
+    <string name="atleta_1">Atleta 1</string>
+    <string name="club_2">Club 2</string>
+    <string name="atleta_2">Atleta 2</string>
+    <string name="edad">EDAD</string>
+    <string name="actualizar_datos_usuario">ACTUALIZAR DATOS USUARIO</string>
+    <string name="verificar_mail">Verifica tu dirección mail</string>
+    <string name="prueba">Prueba</string>
+    <string name="localidad">Localidad</string>
+    <string name="pasar_seleccion_atletas">PASAR A SELECCIONAR ATLETAS</string>
+    <string name="iniciar_reiniciar_convocatoria">INICIAR/REINICIAR CONVOCATORIA</string>
+    <string name="comenzar_prueba">COMENZAR PRUEBA</string>
 </resources>

@@ -35,26 +35,26 @@
         android:id="@+id/btnActualizarDatosUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ACTUALIZAR DATOS USUARIO"></Button>
+        android:text="@string/actualizar_datos_usuario"></Button>
 
     <Button
         android:id="@+id/btnEnviarMensajeVerificacion"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Verifica tu dirección mail"></Button>
+        android:text="@string/verificar_mail"></Button>
 
     <Button
         android:id="@+id/btnReestablecerContrasenia"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="REESTABLECER CONTRASEÑA"></Button>
+        android:text="@string/titulo_alert_dialog_reestablecer_contrasenia"></Button>
 
     <Button
         android:id="@+id/btnCerrarSesión"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@android:color/holo_red_dark"
-        android:text="Cerrar sesión"></Button>
+        android:text="@string/titulo_alert_dialog_cerrar_sesion"></Button>
 
 
 
