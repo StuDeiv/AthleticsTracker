@@ -90,7 +90,7 @@
     <string name="error_iniciar_sesion">Error en el inicio de sesión</string>
     <string name="mensaje_iniciar_sesion">Ha habido un error al iniciar sesión con este mail y contraseña</string>
     <string name="aceptar">Aceptar</string>
-    <string name="vCorredores">vCorredores</string>
+    <string name="vCorredores">\"vCorredores\"</string>
     <string name="usuario">usuario</string>
     <string name="espacio">" "</string>
     <string name="clubes">clubes</string>
@@ -103,4 +103,15 @@
     <string name="contrasenia">contrasenia</string>
     <string name="atleta">Atleta</string>
     <string name="entrenador">Entrenador</string>
+    <string name="la_ciudad_del_mejor_club_de_la_historia">La ciudad del mejor club de la historia...</string>
+    <string name="mail_del_club">Mail del club</string>
+    <string name="el_mail_de_tu_club">El mail de tu club</string>
+    <string name="corredor">Corredor</string>
+    <string name="tiempo">Tiempo</string>
+    <string name="corredores">Corredores</string>
+    <string name="_0">0</string>
+    <string name="fecha">Fecha</string>
+    <string name="fecha_y_hora">Fecha y hora</string>
+    <string name="mejor_marca">Mejor Marca</string>
+    <string name="tipo_de_prueba">Tipo de prueba</string>
 </resources>

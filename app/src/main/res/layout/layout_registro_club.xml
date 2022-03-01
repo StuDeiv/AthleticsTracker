@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/titulo_club"
-        android:textColor="@color/design_default_color_primary"
+        android:textColor="@color/colorPrimaryVariant"
         android:textSize="@dimen/auth_texts"
         android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
         android:id="@+id/textViewLocalidad"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Localidad"
+        android:text="@string/localidad"
         android:textColor="@color/colorOnSecondary"
         android:textSize="@dimen/register_layout"
         android:textStyle="bold" />
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="La ciudad del mejor club de la historia..."
+        android:hint="@string/la_ciudad_del_mejor_club_de_la_historia"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
@@ -61,7 +61,7 @@
         android:id="@+id/textViewMail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Mail del club"
+        android:text="@string/mail_del_club"
         android:textColor="@color/colorOnSecondary"
         android:textSize="@dimen/register_layout"
         android:textStyle="bold" />
@@ -71,7 +71,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="La ciudad del mejor club de la historia..."
+        android:hint="@string/el_mail_de_tu_club"
         android:inputType="textPersonName"
         android:minHeight="48dp" />
 
