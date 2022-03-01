@@ -3,7 +3,6 @@ package com.example.athleticstracker;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,19 +10,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
+import com.example.athleticstracker.entidades.Usuario;
+import com.example.athleticstracker.registro.Registro2Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.apache.commons.lang3.StringUtils;
-
-import java.util.Locale;
 
 public class AuthActivity extends AppCompatActivity {
 
@@ -56,7 +53,6 @@ public class AuthActivity extends AppCompatActivity {
             this.btnRegistrar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    //TODO: Comprobar que el mail introducido es correcto. Ya comprobado si la contraseña tiene más de 6 caracteres
                     if (!StringUtils.isBlank(editTextMail.getText().toString()) && !StringUtils.isBlank(editTextContrasenia.getText().toString()) && editTextContrasenia.getText().toString().length() >= 6){
                         String mailUsuario = editTextMail.getText().toString();
                         String contrasenia = editTextContrasenia.getText().toString();
@@ -95,20 +91,9 @@ public class AuthActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Usuario user = documentSnapshot.toObject(Usuario.class);
-                                        Intent intent;
-                                        //Evaluamos su rol y dependiendo de él, cargamos la siguiente activity
-                                        switch (user.getRol()){
-                                            case "Atleta":
-                                                intent = new Intent(getApplicationContext(), MenuAtleta.class);
-                                                intent.putExtra("usuario", user);
-                                                startActivity(intent);
-                                                break;
-                                            case "Entrenador":
-                                                intent = new Intent(getApplicationContext(), MenuEntrenador.class);
-                                                intent.putExtra("usuario", user);
-                                                startActivity(intent);
-                                                break;
-                                        }
+                                        Intent intent= new Intent(getApplicationContext(), MenuUsuario.class);
+                                        intent.putExtra("usuario", user);
+                                        startActivity(intent);
                                     }
                                 });
                             }else{

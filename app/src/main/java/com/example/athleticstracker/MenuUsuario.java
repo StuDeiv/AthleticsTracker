@@ -10,23 +10,25 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
+import com.example.athleticstracker.creacionprueba.ActivitySeleccion;
+import com.example.athleticstracker.entidades.Club;
+import com.example.athleticstracker.entidades.Usuario;
+import com.example.athleticstracker.gestion.AjustesUsuarioActivity;
+import com.example.athleticstracker.visualizaciondatos.ComparadorActivity;
+import com.example.athleticstracker.visualizaciondatos.DatosClub;
+import com.example.athleticstracker.visualizaciondatos.RegistrosAtleta;
 import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.util.Date;
-import java.util.HashMap;
-
-public class MenuAtleta extends AppCompatActivity{
+public class MenuUsuario extends AppCompatActivity{
 
     private Usuario usuario;
     private Button btnRegistros;
     private Button btnDatosClub;
     private Button btnComparador;
+    private Button btnIniciarPrueba;
     private FirebaseFirestore mDatabase;
 
     @Override
@@ -38,6 +40,7 @@ public class MenuAtleta extends AppCompatActivity{
         this.btnRegistros = (Button) findViewById(R.id.buttonRegistrosPersonales);
         this.btnDatosClub = (Button) findViewById(R.id.btnVerClubAtleta);
         this.btnComparador = (Button) findViewById(R.id.btnComparador);
+        btnIniciarPrueba = (Button) findViewById(R.id.btnIniciarPrueba);
 
         recuperarDatos();
 
@@ -73,6 +76,20 @@ public class MenuAtleta extends AppCompatActivity{
             }
         });
 
+        if(usuario.getRol().equals("Entrenador")){
+            btnIniciarPrueba.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(getApplicationContext(), ActivitySeleccion.class);
+                    intent.putExtra("usuario",usuario);
+                    startActivity(intent);
+                }
+            });
+        }
+        else{
+            this.btnIniciarPrueba.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     private void recuperarDatos(){
@@ -90,7 +107,7 @@ public class MenuAtleta extends AppCompatActivity{
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
             case R.id.perfilUsuario:
-                Intent intent = new Intent(getApplicationContext(),AjustesUsuarioActivity.class);
+                Intent intent = new Intent(getApplicationContext(), AjustesUsuarioActivity.class);
                 startActivity(intent);
                 break;
         }

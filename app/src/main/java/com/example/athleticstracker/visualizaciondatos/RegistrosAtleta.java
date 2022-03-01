@@ -1,4 +1,4 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.visualizaciondatos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -10,6 +10,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.athleticstracker.R;
+import com.example.athleticstracker.entidades.Registro;
 
 import java.text.DateFormat;
 import java.text.DecimalFormat;

@@ -1,4 +1,4 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.registro;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -11,6 +11,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.athleticstracker.R;
+import com.example.athleticstracker.entidades.Club;
+import com.example.athleticstracker.entidades.Usuario;
+import com.example.athleticstracker.registro.Registro3Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -54,7 +58,7 @@ public class RegistroClubActivity extends AppCompatActivity {
                     );
                     db.collection("clubes").document(uidPersonalizado).set(club);
                     Toast.makeText(getApplicationContext(),"Club registrado oon éxito",Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(getApplicationContext(),Registro3Activity.class);
+                    Intent intent = new Intent(getApplicationContext(), Registro3Activity.class);
                     intent.putExtra("mailUsuario",mailUsuario);
                     intent.putExtra("contrasenia",contrasenia);
                     //Antes de enviarlo, asociamos el club registrado al atleta

@@ -1,4 +1,4 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.registro;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.athleticstracker.R;
+import com.example.athleticstracker.entidades.Usuario;
 
 import org.apache.commons.lang3.StringUtils;
 
@@ -107,7 +110,7 @@ public class Registro2Activity extends AppCompatActivity {
             usuario.setSexo(sexo);
             usuario.setRol(rol);
 
-            Intent intent = new Intent(getApplicationContext(),Registro3Activity.class);
+            Intent intent = new Intent(getApplicationContext(), Registro3Activity.class);
             intent.putExtra("mailUsuario", mailUsuario);
             intent.putExtra("contrasenia", contrasenia);
             intent.putExtra("usuario", usuario);

@@ -1,4 +1,4 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.visualizaciondatos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -12,6 +12,9 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.athleticstracker.R;
+import com.example.athleticstracker.entidades.Club;
+import com.example.athleticstracker.entidades.Prueba;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -42,7 +45,7 @@ public class DatosClub extends AppCompatActivity {
         this.listViewCarreras.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Prueba prueba = club.lPruebas.get(i);
+                Prueba prueba = club.getlPruebas().get(i);
                 Intent intent = new Intent(getApplicationContext(), DatosPrueba.class);
                 intent.putExtra("prueba", prueba);
                 startActivity(intent);
@@ -64,12 +67,12 @@ public class DatosClub extends AppCompatActivity {
         BaseAdapter adapter = new BaseAdapter() {
             @Override
             public int getCount() {
-                return club.lPruebas.size();
+                return club.getlPruebas().size();
             }
 
             @Override
             public Object getItem(int i) {
-                return club.lPruebas.get(i);
+                return club.getlPruebas().get(i);
             }
 
             @Override

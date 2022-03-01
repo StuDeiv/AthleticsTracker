@@ -1,4 +1,4 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.entidades;
 
 import java.io.Serializable;
 import java.util.Date;

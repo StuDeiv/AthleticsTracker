@@ -1,7 +1,6 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.entidades;
 
 import androidx.annotation.NonNull;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;

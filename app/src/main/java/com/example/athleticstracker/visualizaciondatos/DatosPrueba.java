@@ -1,4 +1,4 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.visualizaciondatos;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.athleticstracker.R;
+import com.example.athleticstracker.entidades.Prueba;
+
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
@@ -17,7 +21,6 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Map;
 
 public class DatosPrueba extends AppCompatActivity {
 

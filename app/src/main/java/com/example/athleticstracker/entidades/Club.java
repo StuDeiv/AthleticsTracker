@@ -1,13 +1,14 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.entidades;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Club implements Serializable {
+
     private String nombre;
     private String localidad;
     private String mail;
-    ArrayList<Prueba> lPruebas;
+    private ArrayList<Prueba> lPruebas;
 
     public Club() {
         this.nombre = "";

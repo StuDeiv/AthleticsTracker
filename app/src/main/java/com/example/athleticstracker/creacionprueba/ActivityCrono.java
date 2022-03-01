@@ -1,4 +1,4 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.creacionprueba;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,8 +10,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentSnapshot;
+import com.example.athleticstracker.MenuUsuario;
+import com.example.athleticstracker.R;
+import com.example.athleticstracker.entidades.Prueba;
+import com.example.athleticstracker.entidades.Registro;
+import com.example.athleticstracker.entidades.Usuario;
+import com.example.athleticstracker.visualizaciondatos.DatosPrueba;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -253,7 +257,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
             builder.setNegativeButton("Volver al inicio", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
-                    Intent intent = new Intent(getApplicationContext(), MenuEntrenador.class);
+                    Intent intent = new Intent(getApplicationContext(), MenuUsuario.class);
                     intent.putExtra("usuario", entrenador);
                     intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);

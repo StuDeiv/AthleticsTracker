@@ -1,10 +1,10 @@
-package com.example.athleticstracker;
+package com.example.athleticstracker.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
 
 public class Registro implements Serializable, Comparable<Registro> {
-    private static final long serialVersionUID = 1L;
+
     private long tiempo;
     private String localidad;
     private String prueba;

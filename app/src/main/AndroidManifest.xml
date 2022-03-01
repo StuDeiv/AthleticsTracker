@@ -10,55 +10,58 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AthleticsTracker">
         <activity
-            android:name=".CambioDatosUsuarioActivity"
+            android:name=".gestion.CambioDatosUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".AjustesUsuarioActivity"
+            android:name=".gestion.AjustesUsuarioActivity"
             android:exported="false" />
         <activity
-            android:name=".ComparadorActivity"
+            android:name=".visualizaciondatos.ComparadorActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".DatosPrueba"
+            android:name=".visualizaciondatos.DatosPrueba"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name=".DatosClub"
+            android:name=".visualizaciondatos.DatosClub"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="true" />
         <activity
-            android:name=".RegistrosAtleta"
+            android:name=".visualizaciondatos.RegistrosAtleta"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".ResultadosActivity"
+            android:name=".creacionprueba.SeleccionAtletasPruebaActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".SeleccionAtletasPruebaActivity"
+            android:name=".registro.RegistroClubActivity"
             android:exported="false" />
         <activity
-            android:name=".RegistroClubActivity"
+            android:name=".registro.Registro3Activity"
             android:exported="false" />
         <activity
-            android:name=".Registro3Activity"
+            android:name=".registro.Registro2Activity"
             android:exported="false" />
         <activity
-            android:name=".Registro2Activity"
+            android:name=".registro.BienvenidaActivity"
             android:exported="false" />
         <activity
-            android:name=".BienvenidaActivity"
+            android:name=".creacionprueba.ActivityCrono"
             android:exported="false" />
         <activity
-            android:name=".ActivityCrono"
+            android:name=".creacionprueba.ActivitySeleccion"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false" />
-        <activity
-            android:name=".MenuEntrenador"
-            android:exported="false" />
-        <activity
-            android:name=".ActivitySeleccion"
-            android:exported="false" />
-        <activity
-            android:name=".MenuAtleta"
+            android:name=".MenuUsuario"
             android:exported="false" />
         <activity
             android:name=".AuthActivity"
