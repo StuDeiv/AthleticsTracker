@@ -7,6 +7,14 @@
     android:orientation="vertical"
     tools:context=".AuthActivity">
 
+    <fragment
+        android:id="@+id/fragmentContainerView"
+        android:name="com.example.athleticstracker.fragments.PubliFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6"
+        tools:layout="@layout/fragment_publi"/>
+
     <ImageView
         android:id="@+id/imageView3"
         android:layout_width="match_parent"
