@@ -118,7 +118,7 @@ public class ActivityRegistro2 extends AppCompatActivity {
             usuario.setNombre(nombre);
             usuario.setApellidos(apellidos);
 
-            //usuario.setFechaNac(this.fecha);
+            usuario.setFechaNac(this.fecha);
             usuario.setSexo(sexo);
             usuario.setRol(rol);
 

@@ -52,9 +52,9 @@ public class ActivityRegistro3 extends AppCompatActivity {
             public void onClick(View view) {
                 asignarClubSeleccionadoSpinner();
                 Intent intent = new Intent(getApplicationContext(), ActivityBienvenida.class);
-                intent.putExtra("mailUsuario", mailUsuario);
-                intent.putExtra("contrasenia", contrasenia);
-                intent.putExtra("usuario", usuario);
+                intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario);
+                intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
+                intent.putExtra(getResources().getString(R.string.usuario), usuario);
                 startActivity(intent);
             }
         });

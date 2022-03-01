@@ -215,7 +215,7 @@ public class ActivityComparador extends AppCompatActivity {
         LocalDate hoy = LocalDate.now();
         LocalDate fechaNac = usuario.getFechaNac().toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
         int edad = (int) ChronoUnit.YEARS.between(fechaNac, hoy);
-        return String.valueOf(edad)+" años";
+        return String.valueOf(edad)+getResources().getString(R.string.anios);
     }
 
     /**
@@ -288,10 +288,10 @@ public class ActivityComparador extends AppCompatActivity {
             //Finalmente, si cualquiera de los dos atletas tiene un registro de esa prueba, lo añadimos a la lista de datos
             if(encontrado1||encontrado2){
                 if(dato[0] == null){
-                    dato[0] = "S/R";
+                    dato[0] = getResources().getString(R.string.sr);
                 }
                 if(dato[2] == null){
-                    dato[2] = "S/R";
+                    dato[2] = getResources().getString(R.string.sr);
                 }
                 lDatos.add(dato);
             }

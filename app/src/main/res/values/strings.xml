@@ -61,7 +61,7 @@
     <string name="mensaje_error_fecha_nacimiento_registro">Debe seleccionar una fecha de nacimiento</string>
     <string name="mensaje_error_fecha_superior_actual">Fecha de nacimiento debe ser anterior a la fecha actual...</string>
     <string name="mensaje_error_club_no_seleccionado_spinner_registro">Selecciona un club, por favor</string>
-    <string name="mensaje_registro_club_exito">Club registrado oon éxito</string>
+    <string name="mensaje_registro_club_exito">Club registrado con éxito</string>
     <string name="mensaje_error_club_duplicado">Ese club ya existe</string>
     <string name="mensaje_error_comparador_numero_atletas">Tiene que seleccionar 2 atletas</string>
     <string name="mensaje_falta_registro_personales">Aún no tienes registros personales</string>
@@ -114,4 +114,6 @@
     <string name="fecha_y_hora">Fecha y hora</string>
     <string name="mejor_marca">Mejor Marca</string>
     <string name="tipo_de_prueba">Tipo de prueba</string>
+    <string name="anios">" años"</string>
+    <string name="sr">S/R</string>
 </resources>
