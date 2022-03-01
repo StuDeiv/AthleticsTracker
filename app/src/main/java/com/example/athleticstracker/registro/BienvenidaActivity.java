@@ -49,6 +49,12 @@ public class BienvenidaActivity extends AppCompatActivity {
         //Lo obtenemos y lo ocultamos
         this.btnOlvidasteContrasenia = (Button) findViewById(R.id.btnOlvidasteContrasenia);
         btnOlvidasteContrasenia.setVisibility(View.INVISIBLE);
+        this.btnOlvidasteContrasenia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                olvidarContraseña();
+            }
+        });
 
         bundle = getIntent().getExtras();
         this.mailUsuario = bundle.getString("mailUsuario");
@@ -57,6 +63,17 @@ public class BienvenidaActivity extends AppCompatActivity {
         textViewUsuario.setText(usuario.getNombre());
     }
 
+    public void olvidarContraseña() {
+        FirebaseAuth.getInstance().sendPasswordResetEmail(mailUsuario)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Mail enviado.Revisa tu bandeja de entrada", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
     private void iniciarSiguienteActivity() {
         this.btnComenzar.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -80,10 +80,9 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
         builder.setPositiveButton("CERRAR SESIÓN", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                //TODO: REVISAR ON DESTROY()
                 FirebaseAuth.getInstance().signOut();
-                //onDestroy();
                 Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }
         });
@@ -100,20 +99,6 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Envíado mensaje de verificación");
         builder.setMessage("Se ha enviado un mensaje de verificación a la siguiente dirección de correo: " + sesionUsuario.getEmail());
-        builder.setPositiveButton("Enviar mail", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialogInterface, int i) {
-                sesionUsuario.sendEmailVerification()
-                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                            @Override
-                            public void onComplete(@NonNull Task<Void> task) {
-                                if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Mail enviado.Revisa tu bandeja de entrada", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
-        });
         builder.setNegativeButton("CERRAR", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {

@@ -3,12 +3,14 @@ package com.example.athleticstracker.gestion;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.athleticstracker.AuthActivity;
 import com.example.athleticstracker.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -54,8 +56,14 @@ public class CambioDatosUsuarioActivity extends AppCompatActivity {
                                     }
                                 }
                             });
-                    //TODO: Revisar si merece la pena realizar aquí finish()
-                    finish();
+
+                    //Cerramos la sesión actual
+
+                    FirebaseAuth.getInstance().signOut();
+                    Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+
                 }else{
                     if (editTextNuevaContrasenia.getText().toString().length() < 6){
                         Toast.makeText(getApplicationContext(),"La contraseña debe tener al menos 6 caracteres",Toast.LENGTH_SHORT).show();
