@@ -14,10 +14,10 @@ import android.widget.Button;
 import com.example.athleticstracker.creacionprueba.ActivitySeleccion;
 import com.example.athleticstracker.entidades.Club;
 import com.example.athleticstracker.entidades.Usuario;
-import com.example.athleticstracker.gestion.AjustesUsuarioActivity;
-import com.example.athleticstracker.visualizaciondatos.ComparadorActivity;
-import com.example.athleticstracker.visualizaciondatos.DatosClub;
-import com.example.athleticstracker.visualizaciondatos.RegistrosAtleta;
+import com.example.athleticstracker.gestion.ActivityAjustesUsuario;
+import com.example.athleticstracker.visualizaciondatos.ActivityComparador;
+import com.example.athleticstracker.visualizaciondatos.ActivityDatosClub;
+import com.example.athleticstracker.visualizaciondatos.ActivityRegistrosAtleta;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,7 +27,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
  * Clase que muestra el menú principal de nuestra aplicación así como el
  * manejo de las acciones dentro del menú
  */
-public class MenuUsuario extends AppCompatActivity {
+public class ActivityMenuUsuario extends AppCompatActivity {
 
     private Usuario usuario;
     private Button btnRegistros;
@@ -37,6 +37,7 @@ public class MenuUsuario extends AppCompatActivity {
     private FirebaseFirestore mDatabase;
     private Bundle bundle;
 
+
     @Override
     public void onBackPressed() {
         /*
@@ -44,7 +45,7 @@ public class MenuUsuario extends AppCompatActivity {
         y volviendo a la activity de registro y/o acceso
          */
         FirebaseAuth.getInstance().signOut();
-        Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
+        Intent intent = new Intent(getApplicationContext(), ActivityAuth.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
@@ -52,7 +53,7 @@ public class MenuUsuario extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_menu_atleta);
+        setContentView(R.layout.activity_menu_usuario);
         bundle = getIntent().getExtras();
         mDatabase = FirebaseFirestore.getInstance();
         this.btnRegistros = (Button) findViewById(R.id.buttonRegistrosPersonales);
@@ -65,9 +66,18 @@ public class MenuUsuario extends AppCompatActivity {
         this.btnRegistros.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getBaseContext(), RegistrosAtleta.class);
-                intent.putExtra(getResources().getString(R.string.registros), usuario.getRegistros());
-                startActivity(intent);
+                /* Refrescamos el usuario */
+                mDatabase = FirebaseFirestore.getInstance();
+                mDatabase.collection(getResources().getString(R.string.users)).document(usuario.getEmail().toLowerCase()).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                    @Override
+                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                        usuario = documentSnapshot.toObject(Usuario.class);
+                        Intent intent = new Intent(getBaseContext(), ActivityRegistrosAtleta.class);
+                        intent.putExtra(getResources().getString(R.string.registros), usuario.getRegistros());
+                        startActivity(intent);
+                    }
+                });
+
             }
         });
 
@@ -78,7 +88,7 @@ public class MenuUsuario extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                         Club club = documentSnapshot.toObject(Club.class);
-                        Intent intent = new Intent(getApplicationContext(), DatosClub.class);
+                        Intent intent = new Intent(getApplicationContext(), ActivityDatosClub.class);
                         intent.putExtra(getResources().getString(R.string.club), club);
                         startActivity(intent);
                     }
@@ -89,7 +99,7 @@ public class MenuUsuario extends AppCompatActivity {
         this.btnComparador.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), ComparadorActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityComparador.class);
                 startActivity(intent);
             }
         });
@@ -113,7 +123,7 @@ public class MenuUsuario extends AppCompatActivity {
      * Recuperamos los datos procedentes de la activity origen
      */
     private void recuperarDatos() {
-        this.usuario = (Usuario) bundle.getSerializable("usuario");
+        this.usuario = (Usuario) bundle.getSerializable(getResources().getString(R.string.usuario));
     }
 
     /**
@@ -137,7 +147,7 @@ public class MenuUsuario extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.perfilUsuario:
-                Intent intent = new Intent(getApplicationContext(), AjustesUsuarioActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityAjustesUsuario.class);
                 startActivity(intent);
                 break;
         }

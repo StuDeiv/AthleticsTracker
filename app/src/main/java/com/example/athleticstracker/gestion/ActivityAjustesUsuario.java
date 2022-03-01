@@ -12,14 +12,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.athleticstracker.AuthActivity;
+import com.example.athleticstracker.ActivityAuth;
 import com.example.athleticstracker.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class AjustesUsuarioActivity extends AppCompatActivity implements View.OnClickListener {
+public class ActivityAjustesUsuario extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseUser sesionUsuario;
     private TextView txtViewMailUsuarioAjustes;
@@ -32,7 +32,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_ajustes_usuario);
+        setContentView(R.layout.activity_ajustes_usuario);
         iniciarDatos();
         inicializarListeners();
     }
@@ -70,7 +70,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnActualizarDatosUsuario:
-                Intent intent = new Intent(getApplicationContext(), CambioDatosUsuarioActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityCambioDatosUsuario.class);
                 startActivity(intent);
                 break;
             case R.id.btnEnviarMensajeVerificacion:
@@ -96,7 +96,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 FirebaseAuth.getInstance().signOut();  //Cerramos sesión
-                Intent intent = new Intent(getApplicationContext(), AuthActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityAuth.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);
             }

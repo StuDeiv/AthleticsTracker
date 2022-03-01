@@ -26,7 +26,7 @@ import java.util.HashMap;
  * Clase que permite mostrar en nuestra aplicación los datos albergados en nuestra base de datos
  * y relativos a la prueba consultada por el usuario.
  */
-public class DatosPrueba extends AppCompatActivity {
+public class ActivityDatosPrueba extends AppCompatActivity {
 
     private Prueba prueba;
     private TextView txtLocalidadVistaPrueba;
@@ -65,7 +65,7 @@ public class DatosPrueba extends AppCompatActivity {
     private void cargarDatos() {
         this.txtLocalidadVistaPrueba.setText(this.prueba.getLocalidad());
         this.txtTipoDePrueba.setText(this.prueba.getTipo());
-        this.txtFechaVistaPrueba.setText(fechaToString(this.prueba.getFecha()));
+        this.txtFechaVistaPrueba.setText(Utilidades.fechaToString(this.prueba.getFecha()));
     }
 
     /**
@@ -115,36 +115,12 @@ public class DatosPrueba extends AppCompatActivity {
                 //Ponemos los valores en los elementos
                 HashMap.Entry<String, Long> item = getItem(i);
                 txtCorredor.setText(item.getKey());
-                txtTiempo.setText(tiempoToString(item.getValue()));
+                txtTiempo.setText(Utilidades.tiempoToString(item.getValue()));
 
                 return view;
             }
         };
         return adapter;
-    }
-
-    /**
-     * Método que convierte la fecha que pasa por parametro a String y formatea el tiempo que se le pasa por parámetro
-     * @param date Tiempo que quiere formatearse y convertirlo a cadena
-     * @return String, cadena de texto con el tiempo formateado
-     */
-    private String fechaToString(Date date) {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        return dateFormat.format(date);
-    }
-
-    /**
-     * Método que convierte el tiempo de la prueba a String y formatea el tiempo que se le pasa por parámetro
-     * @param tiempo Tiempo que quiere formatearse y convertirlo a cadena
-     * @return String, cadena de texto con el tiempo formateado
-     */
-    private String tiempoToString(long tiempo) {
-        DecimalFormat fS = new DecimalFormat("00");
-        long decimas = (tiempo % 1000) / 100;
-        long segundos = tiempo / 1000;
-        long minutos = (segundos / 60);
-        segundos = segundos % 60;
-        return String.valueOf(minutos) + ":" + fS.format(segundos) + ":" + String.valueOf(decimas);
     }
 
 }

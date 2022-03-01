@@ -24,7 +24,7 @@ import java.util.Date;
  * Clase que permite mostrar en nuestra aplicación los datos albergados en nuestra base de datos
  * y relativos al atleta que tiene la sesión activa.
  */
-public class RegistrosAtleta extends AppCompatActivity {
+public class ActivityRegistrosAtleta extends AppCompatActivity {
 
     private ArrayList<Registro> lRegistros;
     private ListView listViewRegistros;
@@ -33,7 +33,7 @@ public class RegistrosAtleta extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_registros_atleta);
+        setContentView(R.layout.activity_registros_atleta);
         bundle = getIntent().getExtras();
         this.listViewRegistros = (ListView) findViewById(R.id.listViewRegistros);
         cargarDatos();
@@ -45,7 +45,7 @@ public class RegistrosAtleta extends AppCompatActivity {
      * Cargamos los datos en el layout correspondiente a esta clase
      */
     private void cargarDatos() {
-        this.lRegistros = (ArrayList<Registro>) bundle.getSerializable("registros");
+        this.lRegistros = (ArrayList<Registro>) bundle.getSerializable(getResources().getString(R.string.registros));
         if (this.lRegistros.size() == 0) {
             Toast.makeText(getApplicationContext(), R.string.mensaje_falta_registro_personales, Toast.LENGTH_LONG).show();
         }
@@ -86,40 +86,14 @@ public class RegistrosAtleta extends AppCompatActivity {
                 TextView pruebaRegistro = view.findViewById(R.id.txtPruebaRegistro);
 
                 //Ponemos los valores en los elementos
-                tiempoRegistro.setText(tiempoToString(lRegistros.get(i).getTiempo()));
+                tiempoRegistro.setText(Utilidades.tiempoToString(lRegistros.get(i).getTiempo()));
                 localidadRegistro.setText(lRegistros.get(i).getLocalidad());
-                fechaRegistro.setText(fechaToString(lRegistros.get(i).getFecha()));
+                fechaRegistro.setText(Utilidades.fechaToString(lRegistros.get(i).getFecha()));
                 pruebaRegistro.setText(lRegistros.get(i).getPrueba());
 
                 return view;
             }
         };
         return adapter;
-    }
-
-    /**
-     * Método que convierte el tiempo de la prueba a String y formatea el tiempo que se le pasa por parámetro
-     *
-     * @param tiempo Tiempo que quiere formatearse y convertirlo a cadena
-     * @return String, cadena de texto con el tiempo formateado
-     */
-    private String tiempoToString(long tiempo) {
-        DecimalFormat fS = new DecimalFormat("00");
-        long decimas = (tiempo % 1000) / 100;
-        long segundos = tiempo / 1000;
-        long minutos = (segundos / 60);
-        segundos = segundos % 60;
-        return String.valueOf(minutos) + ":" + fS.format(segundos) + ":" + String.valueOf(decimas);
-    }
-
-    /**
-     * Método que convierte la fecha que pasa por parametro a String y formatea el tiempo que se le pasa por parámetro
-     *
-     * @param date Tiempo que quiere formatearse y convertirlo a cadena
-     * @return String, cadena de texto con el tiempo formateado
-     */
-    private String fechaToString(Date date) {
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        return dateFormat.format(date);
     }
 }

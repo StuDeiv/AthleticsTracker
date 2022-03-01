@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".registro.Registro3Activity">
+    tools:context=".registro.ActivityRegistro3">
 
     <Space
         android:layout_width="match_parent"

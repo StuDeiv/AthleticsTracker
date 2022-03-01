@@ -10,7 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.athleticstracker.MenuUsuario;
+import com.example.athleticstracker.ActivityMenuUsuario;
 import com.example.athleticstracker.R;
 import com.example.athleticstracker.entidades.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -23,7 +23,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 /**
  * Clase Bienvenida que formaliza el completo de registro de usuarios en la aplicación
  */
-public class BienvenidaActivity extends AppCompatActivity {
+public class ActivityBienvenida extends AppCompatActivity {
 
     private TextView textViewUsuario;
     private Button btnComenzar;
@@ -99,7 +99,7 @@ public class BienvenidaActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<SignInMethodQueryResult> task) {
                                 boolean noExisteMail = task.getResult().getSignInMethods().isEmpty();
                                 if (noExisteMail) {
-                                    mAuth.createUserWithEmailAndPassword(mailUsuario, contrasenia).addOnCompleteListener(BienvenidaActivity.this, new OnCompleteListener<AuthResult>() {
+                                    mAuth.createUserWithEmailAndPassword(mailUsuario, contrasenia).addOnCompleteListener(ActivityBienvenida.this, new OnCompleteListener<AuthResult>() {
                                         @Override
                                         public void onComplete(@NonNull Task<AuthResult> task) {
                                             if (task.isSuccessful()) {
@@ -114,7 +114,7 @@ public class BienvenidaActivity extends AppCompatActivity {
                                                 Toast.makeText(getApplicationContext(), R.string.registro_exito, Toast.LENGTH_SHORT).show();
 
                                                 //Acceso a un menu
-                                                intent = new Intent(getApplicationContext(), MenuUsuario.class);
+                                                intent = new Intent(getApplicationContext(), ActivityMenuUsuario.class);
                                                 intent.putExtra(getResources().getString(R.string.usuario), usuario);
                                                 startActivity(intent);
 

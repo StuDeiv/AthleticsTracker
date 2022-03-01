@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_vertical"
     android:orientation="vertical"
-    tools:context=".registro.BienvenidaActivity">
+    tools:context=".registro.ActivityBienvenida">
 
     <TextView
         android:id="@+id/textViewBienvenido"

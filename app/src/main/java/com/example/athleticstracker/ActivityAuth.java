@@ -13,7 +13,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.athleticstracker.entidades.Usuario;
-import com.example.athleticstracker.registro.Registro2Activity;
+import com.example.athleticstracker.registro.ActivityRegistro2;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
@@ -28,7 +28,7 @@ import org.apache.commons.lang3.StringUtils;
  * Clase que permite realizar las acciones de acceso a la plataforma a través de Firebase Auth
  * o bien comenzar el proceso de registro en la aplicación
  */
-public class AuthActivity extends AppCompatActivity {
+public class ActivityAuth extends AppCompatActivity {
 
     //private final String TITULO_PANTALLA = "INICIO SESIÓN";
     private EditText editTextMail;
@@ -69,7 +69,7 @@ public class AuthActivity extends AppCompatActivity {
                 if (!StringUtils.isBlank(editTextMail.getText().toString()) && !StringUtils.isBlank(editTextContrasenia.getText().toString()) && editTextContrasenia.getText().toString().length() >= 6) {
                     String mailUsuario = editTextMail.getText().toString();
                     String contrasenia = editTextContrasenia.getText().toString();
-                    Intent intent = new Intent(getApplicationContext(), Registro2Activity.class);
+                    Intent intent = new Intent(getApplicationContext(), ActivityRegistro2.class);
                     intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario.toLowerCase());
                     intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
                     startActivity(intent);
@@ -108,7 +108,7 @@ public class AuthActivity extends AppCompatActivity {
                                     @Override
                                     public void onSuccess(DocumentSnapshot documentSnapshot) {
                                         Usuario user = documentSnapshot.toObject(Usuario.class);
-                                        Intent intent = new Intent(getApplicationContext(), MenuUsuario.class);
+                                        Intent intent = new Intent(getApplicationContext(), ActivityMenuUsuario.class);
                                         intent.putExtra(getResources().getString(R.string.usuario), user);
                                         startActivity(intent);
                                     }

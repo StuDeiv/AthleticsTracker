@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AuthActivity">
+    tools:context=".ActivityAuth">
 
     <fragment
         android:id="@+id/fragmentContainerView"
-        android:name="com.example.athleticstracker.fragments.PubliFragment"
+        android:name="com.example.athleticstracker.fragments.FragmentPublicidad"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="0.6"

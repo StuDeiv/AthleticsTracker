@@ -26,7 +26,7 @@ import java.util.Date;
  * Clase correspondiente al Paso 2 del registro, en donde se recogen los campos nombre,
  * apellidos, fecha nacimiento, sexo y rol (Entrenador/Atleta)
  */
-public class Registro2Activity extends AppCompatActivity {
+public class ActivityRegistro2 extends AppCompatActivity {
 
     private EditText editTextNombre;
     private TextView editTextApellidos;
@@ -122,7 +122,7 @@ public class Registro2Activity extends AppCompatActivity {
             usuario.setSexo(sexo);
             usuario.setRol(rol);
 
-            Intent intent = new Intent(getApplicationContext(), Registro3Activity.class);
+            Intent intent = new Intent(getApplicationContext(), ActivityRegistro3.class);
             intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario);
             intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
             intent.putExtra(getResources().getString(R.string.usuario), usuario);

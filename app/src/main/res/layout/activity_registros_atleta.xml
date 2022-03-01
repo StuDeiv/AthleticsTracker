@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".visualizaciondatos.RegistrosAtleta">
+    tools:context=".visualizaciondatos.ActivityRegistrosAtleta">
 
     <ListView
         android:id="@+id/listViewRegistros"

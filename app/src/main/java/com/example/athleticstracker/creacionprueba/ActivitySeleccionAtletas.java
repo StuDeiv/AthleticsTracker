@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -29,7 +28,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
-public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
+public class ActivitySeleccionAtletas extends AppCompatActivity {
 
     private Club club;
     private Bundle bundle;
@@ -59,7 +58,7 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_seleccion_atletas_prueba);
+        setContentView(R.layout.activity_seleccion_atletas);
         iniciarDatos();
         anadirListenersBotones();
         inicializarListenerSpinners();

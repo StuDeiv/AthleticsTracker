@@ -14,7 +14,6 @@ import android.widget.Toast;
 import com.example.athleticstracker.R;
 import com.example.athleticstracker.entidades.Club;
 import com.example.athleticstracker.entidades.Usuario;
-import com.example.athleticstracker.registro.Registro3Activity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -27,7 +26,7 @@ import java.util.ArrayList;
  * Clase que permite registrar un Club a través de un Usuario con rol Entrenador.
  * Para ello, simplemente se le solicitan al usuario tres campos nombre, localidad y mail.
  */
-public class RegistroClubActivity extends AppCompatActivity {
+public class ActivityRegistroClub extends AppCompatActivity {
 
     private EditText editTextNombre;
     private EditText editTextLocalidad;
@@ -44,7 +43,7 @@ public class RegistroClubActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_registro_club);
+        setContentView(R.layout.activity_registro_club);
         iniciarDatos();
         lNombreClubs = obtenerClubesBD();
 
@@ -72,7 +71,7 @@ public class RegistroClubActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), R.string.mensaje_registro_club_exito, Toast.LENGTH_SHORT).show();
 
                     //Volvemos al paso 3 del registro
-                    Intent intent = new Intent(getApplicationContext(), Registro3Activity.class);
+                    Intent intent = new Intent(getApplicationContext(), ActivityRegistro3.class);
 
                     intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario);
                     intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);

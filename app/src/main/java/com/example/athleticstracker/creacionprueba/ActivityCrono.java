@@ -10,19 +10,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.example.athleticstracker.MenuUsuario;
+import com.example.athleticstracker.ActivityMenuUsuario;
 import com.example.athleticstracker.R;
 import com.example.athleticstracker.entidades.Prueba;
 import com.example.athleticstracker.entidades.Registro;
 import com.example.athleticstracker.entidades.Usuario;
-import com.example.athleticstracker.visualizaciondatos.DatosPrueba;
+import com.example.athleticstracker.visualizaciondatos.ActivityDatosPrueba;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.DecimalFormat;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
@@ -53,7 +52,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_crono);
+        setContentView(R.layout.activity_crono);
 
         /* Iniciamos los datos, textos y botones */
         this.mDatabase = FirebaseFirestore.getInstance();
@@ -262,7 +261,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 persistirDatos();
-                Intent intent = new Intent(getApplicationContext(), DatosPrueba.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityDatosPrueba.class);
                 intent.putExtra(getResources().getString(R.string.prueba), prueba);
                 startActivity(intent);
                 finish();
@@ -281,7 +280,7 @@ public class ActivityCrono extends AppCompatActivity implements View.OnClickList
         builder.setNegativeButton(R.string.volver_iniciar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                Intent intent = new Intent(getApplicationContext(), MenuUsuario.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityMenuUsuario.class);
                 intent.putExtra(getResources().getString(R.string.usuario), entrenador);
                 intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 startActivity(intent);

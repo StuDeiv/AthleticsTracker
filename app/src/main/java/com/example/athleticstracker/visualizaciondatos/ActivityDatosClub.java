@@ -23,7 +23,7 @@ import java.util.Date;
  * Clase que permite mostrar en nuestra aplicación los datos albergados en nuestra base de datos
  * y relativos al club del usuario que realiza la consulta en la aplicación
  */
-public class DatosClub extends AppCompatActivity {
+public class ActivityDatosClub extends AppCompatActivity {
 
     private Club club;
     private TextView txtNombreClub;
@@ -52,7 +52,7 @@ public class DatosClub extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Prueba prueba = club.getlPruebas().get(i);
-                Intent intent = new Intent(getApplicationContext(), DatosPrueba.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityDatosPrueba.class);
                 intent.putExtra(getResources().getString(R.string.prueba), prueba);
                 startActivity(intent);
             }
@@ -112,21 +112,11 @@ public class DatosClub extends AppCompatActivity {
                 txtTipoPrueba.setText(club.getlPruebas().get(i).getTipo());
                 txtPruebaCorredores.setText(String.valueOf(club.getlPruebas().get(i).getMapaTiempos().size()));
                 txtLocalidadPrueba.setText(club.getlPruebas().get(i).getLocalidad());
-                txtFechaPrueba.setText(fechaToString(club.getlPruebas().get(i).getFecha()));
+                txtFechaPrueba.setText(Utilidades.fechaToString(club.getlPruebas().get(i).getFecha()));
 
                 return view;
             }
         };
         return adapter;
-    }
-
-    /**
-     * Método que convierte a String y formatea el tiempo que se le pasa por parámetro
-     * @param date Tiempo que quiere formatearse y convertirlo a cadena
-     * @return String, cadena de texto con el tiempo formateado
-     */
-    private String fechaToString(Date date){
-        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss");
-        return dateFormat.format(date);
     }
 }

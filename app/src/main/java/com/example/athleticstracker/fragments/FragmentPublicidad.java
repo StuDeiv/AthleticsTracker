@@ -14,22 +14,22 @@ import com.example.athleticstracker.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link PubliFragment#newInstance} factory method to
+ * Use the {@link FragmentPublicidad#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PubliFragment extends Fragment {
+public class FragmentPublicidad extends Fragment {
 
-    public PubliFragment() {
+    public FragmentPublicidad() {
         // Required empty public constructor
     }
 
     /**
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
-     * @return A new instance of fragment PubliFragment.
+     * @return A new instance of fragment FragmentPublicidad.
      */
-    public static PubliFragment newInstance(String param1, String param2) {
-        PubliFragment fragment = new PubliFragment();
+    public static FragmentPublicidad newInstance(String param1, String param2) {
+        FragmentPublicidad fragment = new FragmentPublicidad();
         return fragment;
     }
 

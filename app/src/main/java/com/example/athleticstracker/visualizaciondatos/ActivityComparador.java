@@ -37,7 +37,7 @@ import java.util.Collections;
  * Clase que nos permite implementar en nuestra aplicación un Comparador de tiempos entre Atletas, así como
  * su interfaz.
  */
-public class ComparadorActivity extends AppCompatActivity {
+public class ActivityComparador extends AppCompatActivity {
 
     private Spinner spinnerClub1;
     private Spinner spinnerClub2;
@@ -269,7 +269,7 @@ public class ComparadorActivity extends AppCompatActivity {
             while(!encontrado1 && j < usuario1.getRegistros().size()){
                 registro = usuario1.getRegistros().get(j);
                 if(registro.getPrueba().equals(vPruebas[i])){       //Si encontramos un registro donde la prueba coincida...
-                    dato[0] = tiempoToString(registro.getTiempo()); //... lo guardamos
+                    dato[0] = Utilidades.tiempoToString(registro.getTiempo()); //... lo guardamos
                     encontrado1 = true;
                 }
                 j++;
@@ -279,7 +279,7 @@ public class ComparadorActivity extends AppCompatActivity {
             while(!encontrado2 && j < usuario2.getRegistros().size()){
                 registro = usuario2.getRegistros().get(j);
                 if(registro.getPrueba().equals(vPruebas[i])){
-                    dato[2] = tiempoToString(registro.getTiempo());
+                    dato[2] = Utilidades.tiempoToString(registro.getTiempo());
                     encontrado2 = true;
                 }
                 j++;
@@ -341,19 +341,5 @@ public class ComparadorActivity extends AppCompatActivity {
             }
         };
         return adapter;
-    }
-
-    /**
-     * Método que convierte a String y formatea el tiempo que se le pasa por parámetro
-     * @param tiempo Tiempo que quiere formatearse y convertirlo a cadena
-     * @return String, cadena de texto con el tiempo formateado
-     */
-    private String tiempoToString(long tiempo){
-        DecimalFormat fS = new DecimalFormat("00");
-        long decimas = (tiempo%1000)/100;
-        long segundos = tiempo/1000;
-        long minutos = (segundos/60);
-        segundos = segundos%60;
-        return String.valueOf(minutos)+":"+fS.format(segundos)+":"+String.valueOf(decimas);
     }
 }

@@ -19,7 +19,6 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Locale;
 
 public class ActivitySeleccion extends AppCompatActivity {
 
@@ -33,7 +32,7 @@ public class ActivitySeleccion extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_seleccion);
+        setContentView(R.layout.activity_seleccion);
         iniciarDatos();
 
         this.btnElegirAtletas.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +48,7 @@ public class ActivitySeleccion extends AppCompatActivity {
                             );
 
                     //Enviamos los objetos a la siguiente activity
-                    Intent intent = new Intent(getApplicationContext(),SeleccionAtletasPruebaActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), ActivitySeleccionAtletas.class);
                     intent.putExtra(getResources().getString(R.string.usuario),usuario);
                     intent.putExtra(getResources().getString(R.string.prueba),prueba);
                     startActivity(intent);
@@ -71,7 +70,7 @@ public class ActivitySeleccion extends AppCompatActivity {
         btnElegirAtletas = (Button) findViewById(R.id.btnElegirAtletas);
 
         spinnerSeleccionPrueba = (Spinner) findViewById(R.id.spinnerSeleccionPrueba);
-        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.spinner_item, getResources().getStringArray(R.array.pruebas));
+        ArrayAdapter adapter = new ArrayAdapter(this, R.layout.item_spinner, getResources().getStringArray(R.array.pruebas));
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerSeleccionPrueba.setAdapter(adapter);
     }

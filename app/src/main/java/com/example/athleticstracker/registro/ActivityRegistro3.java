@@ -26,7 +26,7 @@ import java.util.ArrayList;
  * Clase correspondiente al paso 3 del registro donde se realiza la selección o creación del Club por parte del Usuario.
  * En el caso de crear un Club, solo está habilitado para Usuarios con el rol Entrenador.
  */
-public class Registro3Activity extends AppCompatActivity {
+public class ActivityRegistro3 extends AppCompatActivity {
 
     private Spinner spinnerSeleccionClub;
     private Button btnRegistrarClub;
@@ -51,7 +51,7 @@ public class Registro3Activity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 asignarClubSeleccionadoSpinner();
-                Intent intent = new Intent(getApplicationContext(), BienvenidaActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityBienvenida.class);
                 intent.putExtra("mailUsuario", mailUsuario);
                 intent.putExtra("contrasenia", contrasenia);
                 intent.putExtra("usuario", usuario);
@@ -63,7 +63,7 @@ public class Registro3Activity extends AppCompatActivity {
         btnRegistrarClub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(), RegistroClubActivity.class);
+                Intent intent = new Intent(getApplicationContext(), ActivityRegistroClub.class);
                 intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario);
                 intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
                 intent.putExtra(getResources().getString(R.string.usuario), usuario);
