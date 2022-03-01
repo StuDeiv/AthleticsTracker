@@ -83,7 +83,7 @@ public class SeleccionAtletasPruebaActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else{
-                    Toast.makeText(getApplicationContext(),"Todas las calles están vacías",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),R.string.mensaje_error_calles_vacias_seleccion_atletas,Toast.LENGTH_SHORT).show();
                 }
             }
         });

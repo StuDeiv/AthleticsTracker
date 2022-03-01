@@ -69,7 +69,7 @@ public class BienvenidaActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Mail enviado.Revisa tu bandeja de entrada", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), R.string.mensaje_enviado_mail, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
@@ -97,7 +97,7 @@ public class BienvenidaActivity extends AppCompatActivity {
 
                                                 //Registro del usuario en la BBDD
                                                 mDatabase.collection("users").document(mailUsuario).set(usuario);
-                                                Toast.makeText(getApplicationContext(), "Registro completado con éxito", Toast.LENGTH_SHORT).show();
+                                                Toast.makeText(getApplicationContext(), R.string.registro_exito, Toast.LENGTH_SHORT).show();
 
                                                 //Acceso a un menu
                                                 intent = new Intent(getApplicationContext(), MenuUsuario.class);
@@ -110,7 +110,7 @@ public class BienvenidaActivity extends AppCompatActivity {
                                         }
                                     });
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "Este mail ya se encuentra registrado en nuestro servidor", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), R.string.mail_duplicado, Toast.LENGTH_SHORT).show();
                                     btnOlvidasteContrasenia.setVisibility(View.VISIBLE);
                                 }
 

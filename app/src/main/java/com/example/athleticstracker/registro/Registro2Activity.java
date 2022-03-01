@@ -123,20 +123,20 @@ public class Registro2Activity extends AppCompatActivity {
         String nombre = this.editTextNombre.getText().toString();
         String apellidos = this.editTextApellidos.getText().toString();
         if(StringUtils.isBlank(nombre)){
-            Toast.makeText(this, "El campo Nombre no puede estar vacío.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this,R.string.mensaje_error_nombre_registro, Toast.LENGTH_LONG).show();
             return false;
         }
         if(StringUtils.isBlank(apellidos)){
-            Toast.makeText(this, "El campo Apellidos no puede estar vacío.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.mensaje_error_apellidos_registro, Toast.LENGTH_LONG).show();
             return false;
         }
         if(fecha == null){
-            Toast.makeText(this, "Debe seleccionar una fecha de nacimiento.", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.mensaje_error_fecha_nacimiento_registro, Toast.LENGTH_LONG).show();
             return false;
         }
         //Comprobamos que la fecha seleccionada no se encuentre después de la fecha actual
         if(fecha.after(new Date())){
-            Toast.makeText(this, "Fecha de nacimiento debe ser anterior a la fecha actual...", Toast.LENGTH_LONG).show();
+            Toast.makeText(this, R.string.mensaje_error_fecha_superior_actual, Toast.LENGTH_LONG).show();
             return false;
         }
         return true;

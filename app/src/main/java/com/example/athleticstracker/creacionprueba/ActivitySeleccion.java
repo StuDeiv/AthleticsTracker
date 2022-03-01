@@ -76,11 +76,11 @@ public class ActivitySeleccion extends AppCompatActivity {
 
     private boolean verificarCampos() {
         if (StringUtils.isBlank(spinnerSeleccionPrueba.getSelectedItem().toString())){
-            Toast.makeText(getApplicationContext(),"Selecciona una prueba por favor",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.mensaje_error_spinner_seleccion_prueba,Toast.LENGTH_SHORT).show();
             return false;
         }
         if (StringUtils.isBlank(editTextLocalidadPrueba.getText().toString())){
-            Toast.makeText(getApplicationContext(),"Selecciona una localidad por favor",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),R.string.mensaje_error_edit_text_localidad_prueba,Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

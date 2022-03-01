@@ -79,7 +79,7 @@ public class Registro3Activity extends AppCompatActivity {
 
         //Comprobamos que se ha seleccionado un articulo. Por defecto, si no seleccionas una opción del Spinner, saldría null.
         if (uidPersonalizado.equals(null)) {
-            Toast.makeText(getApplicationContext(), "Selecciona un club, por favor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), R.string.mensaje_error_club_no_seleccionado_spinner_registro, Toast.LENGTH_SHORT).show();
         } else {
             usuario.setClub(uidPersonalizado);
         }

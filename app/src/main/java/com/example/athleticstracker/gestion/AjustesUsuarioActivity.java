@@ -75,9 +75,9 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
 
     private void alertDialogCerrarSesion() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Cerrar sesión");
-        builder.setMessage("¿Estás seguro de que quieres cerrar sesión?");
-        builder.setPositiveButton("CERRAR SESIÓN", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.titulo_alert_dialog_cerrar_sesion);
+        builder.setMessage(R.string.mensaje_titulo_alert_dialog_cerrar_sesion);
+        builder.setPositiveButton(R.string.titulo_alert_dialog_cerrar_sesion, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 FirebaseAuth.getInstance().signOut();
@@ -86,7 +86,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
                 startActivity(intent);
             }
         });
-        builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+        builder.setNegativeButton(R.string.cancelar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
@@ -97,9 +97,9 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
 
     private void alertDialogEnviarMensajeVerificacion() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Envíado mensaje de verificación");
-        builder.setMessage("Se ha enviado un mensaje de verificación a la siguiente dirección de correo: " + sesionUsuario.getEmail());
-        builder.setNegativeButton("CERRAR", new DialogInterface.OnClickListener() {
+        builder.setTitle(R.string.titulo_alert_dialog_enviar_mensaje_verificacion);
+        builder.setMessage(R.string.mensaje_alert_dialog_enviar_mensaje_verificacion + sesionUsuario.getEmail());
+        builder.setNegativeButton(R.string.cerrar, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.cancel();
@@ -111,11 +111,11 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
 
     private void alertDialogReestablecerContrasenia() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Reestablecer contraseña");
-        builder.setMessage("¿Estás seguro de que deseas reestablecer tu contraseña? Pulsa OK para confirmarlo");
+        builder.setTitle(R.string.titulo_alert_dialog_reestablecer_contrasenia);
+        builder.setMessage(R.string.mensaje_alert_dialog_reestablecer_contrasenia);
 
         //Opción que acepta reestablecer contraseña
-        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+        builder.setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 FirebaseAuth.getInstance().sendPasswordResetEmail(sesionUsuario.getEmail())
@@ -123,7 +123,7 @@ public class AjustesUsuarioActivity extends AppCompatActivity implements View.On
                             @Override
                             public void onComplete(@NonNull Task<Void> task) {
                                 if (task.isSuccessful()) {
-                                    Toast.makeText(getApplicationContext(), "Mail enviado.Revisa tu bandeja de entrada", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), R.string.mensaje_enviado_mail, Toast.LENGTH_SHORT).show();
                                     dialogInterface.cancel();
                                 }
                             }

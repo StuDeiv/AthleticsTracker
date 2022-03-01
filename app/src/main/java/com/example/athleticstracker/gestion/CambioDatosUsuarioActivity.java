@@ -66,13 +66,13 @@ public class CambioDatosUsuarioActivity extends AppCompatActivity {
 
                 }else{
                     if (editTextNuevaContrasenia.getText().toString().length() < 6){
-                        Toast.makeText(getApplicationContext(),"La contraseña debe tener al menos 6 caracteres",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),R.string.invalid_password,Toast.LENGTH_SHORT).show();
                     }
                     if (StringUtils.isBlank(editTextNuevoMailUsuario.getText().toString())){
-                        Toast.makeText(getApplicationContext(),"Introduce un mail, por favor",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),R.string.mensaje_error_mail,Toast.LENGTH_SHORT).show();
                     }
                     if (StringUtils.isBlank(editTextNuevaContrasenia.getText().toString())){
-                        Toast.makeText(getApplicationContext(),"Introduce una contraseña, por favor",Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getApplicationContext(),R.string.mensaje_error_contrasenia,Toast.LENGTH_SHORT).show();
                     }
                 }
             }
