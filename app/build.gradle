@@ -43,6 +43,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth' //Firebase Auth
     implementation 'com.google.firebase:firebase-analytics' //Google Analytics
     implementation 'com.google.firebase:firebase-firestore' //Firestore
+    implementation 'commons-validator:commons-validator:1.7'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

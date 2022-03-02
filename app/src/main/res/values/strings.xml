@@ -116,4 +116,5 @@
     <string name="tipo_de_prueba">Tipo de prueba</string>
     <string name="anios">" años"</string>
     <string name="sr">S/R</string>
+    <string name="invalid_mail_regex">Introduce una dirección de mail válida</string>
 </resources>

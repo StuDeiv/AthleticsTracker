@@ -23,6 +23,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.validator.routines.EmailValidator;
 
 /**
  * Clase que permite realizar las acciones de acceso a la plataforma a través de Firebase Auth
@@ -67,12 +68,17 @@ public class ActivityAuth extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 if (!StringUtils.isBlank(editTextMail.getText().toString()) && !StringUtils.isBlank(editTextContrasenia.getText().toString()) && editTextContrasenia.getText().toString().length() >= 6) {
-                    String mailUsuario = editTextMail.getText().toString();
-                    String contrasenia = editTextContrasenia.getText().toString();
-                    Intent intent = new Intent(getApplicationContext(), ActivityRegistro2.class);
-                    intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario.toLowerCase());
-                    intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
-                    startActivity(intent);
+                    //Validación del email introducido
+                    if (!EmailValidator.getInstance().isValid(editTextMail.getText().toString())) {
+                        Toast.makeText(getBaseContext(), R.string.invalid_mail_regex, Toast.LENGTH_LONG).show();
+                    } else {
+                        String mailUsuario = editTextMail.getText().toString();
+                        String contrasenia = editTextContrasenia.getText().toString();
+                        Intent intent = new Intent(getApplicationContext(), ActivityRegistro2.class);
+                        intent.putExtra(getResources().getString(R.string.mailUsuario), mailUsuario.toLowerCase());
+                        intent.putExtra(getResources().getString(R.string.contrasenia), contrasenia);
+                        startActivity(intent);
+                    }
                 } else {
                     //Toast que aparece si los campos mail y contraseña están vacíos
                     if (StringUtils.isBlank(editTextMail.getText().toString()) && StringUtils.isBlank(editTextContrasenia.getText().toString())) {
@@ -124,6 +130,7 @@ public class ActivityAuth extends AppCompatActivity {
             }
         });
     }
+
 
     /**
      * Método que muestra un AlertDialog en el caso de que haya existido un problema en el registro del usuario
